@@ -1,0 +1,167 @@
+#FormSubirEvento{
+	position: absolute;
+
+	top: 95px;
+
+}
+#FormSubirEvento_holder{
+position: absolute;
+
+
+
+}
+#FormSubirEvento_prox{
+
+	position: absolute;
+	top: 80px;
+	font-size: 25px;
+	width: 100%;
+	text-align: center;
+	color: #ccc;
+	font-family: 'GothamBold';
+
+}
+.FormSubirEvento_Tabs_holder{
+
+	position: absolute;
+	border-top: solid 1px #e5e5e5;
+	left: 20px;
+	top: 0px;
+
+}
+
+#FormSubirEvento_titulo{
+	font-family: 'GothamBold';
+	color: #000;
+	
+	font-size: 14px;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 90%;
+}
+
+
+.FormSubirEvento_label{
+
+	font-family: 'GothamBook';
+	color: #000;
+	font-size: 14px;
+	
+	position: absolute;
+	
+
+	left: 20px;
+}
+#FormSubirEvento_combo_categorias{
+
+	-webkit-appearance: none;
+	border: none;
+	padding: 0px 10px 0px 10px;
+	outline: none;
+	font-family: 'GothamBook';
+	font-size: 12px;
+	-webkit-border-radius: 5px;
+	-webkit-appearance: none;
+	height: 31px;
+	border-radius: 5px;
+	border: solid 1px #ccc;
+	
+	position: absolute;
+	background-image: url(../img/form/flecha_combo.png);
+	background-repeat: no-repeat;
+	background-size: 30px 30px;
+	
+
+	background-position: right 0px;
+
+	top: 70px;
+
+	
+
+	left: 110px;
+}
+#FormSubirEvento input{
+
+	display: inline-block;
+}
+
+#FormSubirEvento_label_categoria{
+	top: 80px;
+}
+
+#FormSubirEvento_label_titulo{
+	top: 120px;
+}
+
+#FormSubirEvento_label_fecha{
+	top: 200px;
+}
+#FormSubirEvento_label_hora{
+	top: 240px;
+}
+
+#FormSubirEvento_label_lugar{
+	top: 278px;
+}
+
+#FormSubirEvento_label_desc{
+	top: 160px;
+}
+
+#FormSubirEvento_txt_titulo{
+	top: 110px;
+	left: 110px;
+}
+
+#FormSubirEvento_txt_hora{
+
+	top: 230px;
+	left: 110px;
+}
+#FormSubirEvento_txt_fecha{
+
+	top: 190px;
+	left: 110px;
+}
+#FormSubirEvento_txt_lugar{
+
+	top: 270px;
+	left: 110px;
+}
+#FormSubirEvento_txt_desc{
+
+	top: 150px;
+	left: 110px;
+}
+#FormSubirEvento_btn_position{
+	position: absolute;
+	top: 273px;
+	
+}
+#FormSubirEvento_btn_date{
+
+	position: absolute;
+	
+
+	top: 192px;
+}
+#FormSubirEvento_btn_time{
+
+	position: absolute;
+	
+
+	top: 233px;
+}
+
+#FormSubirEvento_btn_subir{
+
+	position: absolute;
+	left: 50%;
+	width: 140px;
+	
+
+	bottom: 6px;
+	margin-left: -70px;
+
+}

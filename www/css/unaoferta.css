@@ -1,0 +1,90 @@
+
+#UnaOferta{
+	position: absolute;
+ 
+}
+
+
+#SeccionUnaOferta{
+	position: absolute;
+}
+
+#SeccionUnaOferta_img{
+	position: relative;
+	
+
+}
+#UnaOferta_btn_volver{
+
+	position: absolute;
+	right: 6px;
+	top: 4px;
+}
+#UnaOferta_hoy{
+
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 70px;
+}
+#UnaOferta_btn_ver_en_mapa{
+
+	position: absolute;
+	right: 35px;
+	top: 4px;
+}
+
+#UnaOferta_header_titulo{
+	position: relative;
+	
+	height: 35px;
+	width: 100%;
+	background-color: #ed1c24;
+	margin-top: -4px;
+}
+#UnaOferta_titulo_txt{
+	position: absolute;
+	
+	height: 35px;
+	width: 90%;
+	color: #fff;
+	font-family: 'GothamBold';
+	font-size: 14px;
+	top: 9px;
+	left: 11px;
+}
+#UnaOferta_holder_data{
+	position: relative;
+	
+	width: 100%;
+}
+.UnaOferta_reg{
+	position: relative;
+	width: 100%;
+	padding: 5px;
+	border-bottom: solid 1px #ccc;
+	
+}
+.UnaOferta_label{
+	position: relative;
+	width: 100px;
+	font-family: 'GothamBold';
+	font-size: 12px;
+	float: left;
+}
+.UnaOferta_data{
+	position: relative;
+	font-family: 'GothamBook';
+	font-size: 12px;
+	float: left;
+}
+#UnaOferta_holder_footer{
+	position: relative;
+	width: 100%;
+	height: 70px;
+}
+#UnaOferta_btn_compartir{
+	left: 50%;
+	top: 15px;
+	margin-left: -75px;
+}

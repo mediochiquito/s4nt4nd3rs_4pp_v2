@@ -1,0 +1,40 @@
+#SeccionHome{
+	position: absolute;
+}
+
+#SeccionHome div{
+	position: absolute;
+
+}
+
+#SeccionHome img{
+	position: absolute;
+
+}
+
+#SeccionHome_btn_mapa{
+	bottom: 18px;
+	left: 50%;
+	margin-left: -107px;
+}
+
+#SeccionHome_btn_descuentos{
+	bottom: 20px;
+	left: 50%;
+	margin-left: -35px;
+}
+
+#SeccionHome_btn_eventos{
+	bottom: 19px;
+	left: 50%;
+	margin-left: 60px;
+}
+
+#SeccionHome_promo{
+	left: 50%;
+	top: 50%;
+	margin-left: -100px;
+	margin-top: -176px;
+	width: 200px;
+	-webkit-backface-visibility: hidden;
+}

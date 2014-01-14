@@ -1,0 +1,152 @@
+#SeccionEventosOfertas{
+	position: absolute;
+}
+
+#solapa_eventos{
+	left: 20px;
+	top: 60px;
+}
+
+#solapa_ofertas{
+
+	left: 119px;
+	top: 60px;
+
+}
+.ItemListaOferta_hoy{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 30px;
+}
+#ListaOfertas{
+	position: absolute;
+
+	width: 100%;
+}
+
+#ListaEventos{
+	position: absolute;
+	
+	width: 100%;
+}
+
+#ListaEventos_btn_ver_en_mapa{
+	left: 50%;
+	width: 130px;
+}
+#ListaEventos_btn_subir_evento{
+	left: 50%;
+	width: 130px;
+}
+#ListaOfertas_btn_ver_en_mapa{
+	left: 50%;
+	width: 140px;
+}
+
+
+
+.Tabs_holder{
+	position: absolute;
+	border-top: solid 1px #e5e5e5;
+	left: 20px;
+	top: 96px;
+	overflow: hidden;
+	
+}
+
+
+#ListaOfertas_holder{
+	overflow: hidden;
+}
+#ListaOfertas_holder > div{
+	overflow: hidden;
+}
+
+
+#SeccionEventosOfertas_holder_tabs{
+
+	position: absolute;
+	border-top: solid 1px #e5e5e5;
+	width: 200px;
+	height: 200px;
+	top: 96px;
+	left: 20px;
+
+}
+.ItemListaEvento{
+	position: relative !important;
+	padding: 10px 5px 8px 20px;
+	 border-left: solid 1px #e5e5e5;
+	 border-bottom: solid 1px #e5e5e5;
+	 border-right: solid 1px #e5e5e5;
+	 outline: none;
+	 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	 -webkit-transform: translate3d(0,0,0); 
+}
+.ItemListaEvento_txt_nombre{
+
+	 font-family: 'GothamBook';
+	 font-size: 13px;
+	
+}
+.ItemListaOferta{
+	position: relative !important;
+	padding: 10px 5px 8px 20px;
+	 border-left: solid 1px #e5e5e5;
+	 border-bottom: solid 1px #e5e5e5;
+	 border-right: solid 1px #e5e5e5;
+	  outline: none;
+	  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.ItemListaOferta_txt_nombre{
+
+	 font-family: 'GothamBook';
+	 font-size: 13px;
+
+}
+.ItemListaOferta_txt_descuento{
+
+	font-family: 'GothamBold';
+	 font-size: 13px;
+	 color: #ed1c24;
+	 position: absolute;
+	right: 10px;
+	top: 10px;
+	text-align: right;
+
+}
+.ItemListaEvento_fecha{
+	position: relative;
+	font-family: 'GothamBold';
+	 font-size: 13px;
+	 color: #674d97;
+	 
+	width: 55px;
+
+	display: block;
+	float: left;
+}
+.ItemListaEvento_nombre{
+	position: relative;
+	
+	float: left;
+}
+.sin_resultados{
+
+	font-family: 'GothamBook';
+	margin-top: 10px;
+	font-size: 13px;
+	color: #ccc;
+	width: 100%;
+	height: 50px;
+	position: relative !important;
+	display: block;
+
+}
+.sin_resultados div{
+
+	padding: 5px;
+	height: 50px;
+	position: relative;
+}
