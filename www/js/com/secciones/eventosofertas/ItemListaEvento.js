@@ -14,13 +14,13 @@ function ItemListaEvento($row)
 
 	$(txt).html('<div class="ItemListaEvento_fecha">' + array_fehca[2] + ' ' + app.meses[(Number(array_fehca[1])-1)] + '.</div><div class="ItemListaEvento_nombre">' + $row.eventos_nombre + '</div><br style="clear:both" />')
 	
-	/*if( este_evento_es_hoy()){
+	if( este_evento_es_hoy()){
 		var hoy = new Image();
 		hoy.className =  'ItemListaOferta_hoy';
-		hoy.src = 'img/hoy.svg';
+		hoy.src = 'img/hoy.png';
 		$(this.main).append(hoy);
 	}
-*/
+
 
 	setTimeout(function(){
 
