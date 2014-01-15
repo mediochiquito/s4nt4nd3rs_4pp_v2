@@ -113,16 +113,13 @@ margin-left: 105px;
 
 }
 #SeccionMapa_holdermap_canvas{
-	-webkit-transform: translateZ(0);
 	font-size:75%;
 }
 
 #SeccionMapa_holdermap_canvas img{
 
-	-webkit-transform: translateZ(0);
 	-webkit-backface-visibility: hidden;
-	-webkit-perspective: 1000;
-
+	
 
 }
 #SeccionMapa_holdermap_canvas {

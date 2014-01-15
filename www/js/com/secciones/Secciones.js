@@ -12,19 +12,19 @@ function Secciones(){
 	this.seccionmapa = new SeccionMapa();
 	$(this.main).append(this.seccionmapa.main)
 	this.seccionmapa.ocultar(0);
-/*
+
 	this.seccioneventosofertas = new SeccionEventosOfertas();
 	$(this.main).append(this.seccioneventosofertas.main)
-	this.seccioneventosofertas.ocultar(0);*/
+	this.seccioneventosofertas.ocultar(0);
 
 	this.seccionmenu = new SeccionMenu();
 	$(this.main).append(this.seccionmenu.main)
 	this.seccionmenu.ocultar(0);
 
-	/*this.seccionterms = new SeccionTerms();
+	this.seccionterms = new SeccionTerms();
 	$(this.main).append(this.seccionterms.main)
 	this.seccionterms.ocultar(0);
-*/
+
 	this.seccionmapaform = new SeccionMapaForm();
 	$(this.main).append(this.seccionmapaform.main)
 	this.seccionmapaform.ocultar(0);

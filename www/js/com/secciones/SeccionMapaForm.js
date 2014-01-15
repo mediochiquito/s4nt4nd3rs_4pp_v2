@@ -128,7 +128,7 @@ function SeccionMapaForm()
 			var pos
 			var ultima_pos;
 			try{
-				userAgentltima_pos = app.secciones.seccionmapa.getUltimaPos();
+				ultima_pos = new google.maps.LatLng(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude)
 			}catch(e){
 				ultima_pos = ''
 			}	

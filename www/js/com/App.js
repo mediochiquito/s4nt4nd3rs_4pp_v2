@@ -32,6 +32,8 @@ function App(){
 	this.categorias_eventos = new Array("Deportes","Moda", "Música", "Culturales", "Gastronómico");
 	this.meses = new Array('Ene', 'Feb', 'Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic');
 
+	this.posicion_global = ''
+	var watchid;
 	this.initialize = function(){
 
 		document.addEventListener('deviceready', deviceready, false);
@@ -150,10 +152,21 @@ function App(){
 			   StatusBar.hide();
 			}
 
-
-			
+				
    		}
    		
+   		 if(navigator.geolocation) {
+
+		    		watchid = navigator.geolocation.watchPosition(
+											onLocation, 
+											errorLocation, 
+											{
+												timeout: 30000
+											}
+					);
+			}
+
+
         self.ancho = window.innerWidth;
 		self.alto = window.innerHeight;
 		if(self.alto<480)self.alto = 480;
@@ -184,7 +197,19 @@ function App(){
 	}
 
 
+	function onLocation(position){
+		self.posicion_global = position
+		navigator.geolocation.clearWatch(watchid);
+		
+	}
 
+
+
+	function errorLocation(error) {
+		
+			
+		
+	}
 
 	function start(){
 		 

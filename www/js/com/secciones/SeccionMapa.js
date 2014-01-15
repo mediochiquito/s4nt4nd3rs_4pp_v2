@@ -53,9 +53,11 @@ function SeccionMapa()
 	var array_markers_eventos;
 	var array_markers_ofertas;
 	var map;
+
+
 /*
 	setTimeout(_construct, 0);*/
-	$(document).bind('LISTAR_EVENTOS', do_LISTAR_EVENTOS);
+//	$(document).bind('LISTAR_EVENTOS', do_LISTAR_EVENTOS);
 
 	
 	var mostrando_mi_pos = false
@@ -77,6 +79,7 @@ function SeccionMapa()
 
 	var ya_me_localizo_una_vez = false;
 	var ultimo_obj = '';
+
 	function doCheckEventos(){
 
 		mostrar_elementos('eventos', chk_eventos.getSelected())
@@ -91,71 +94,27 @@ function SeccionMapa()
 
 		mostrar_elementos('ofertas', chk_oferta.getSelected())
 	}
-
-	function onLocation(position){
-			
-
-		try{
-
-			ultima_pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-	 		
-	 		if(mostrando_mi_pos){
-				ya_me_localizo_una_vez = true;
-				my_marker.setPosition(ultima_pos);
-				$(imposible).hide()
-			}
-
-
-		}catch(e){}
-
-	 		
-	}
-
-
-
-	function errorLocation(error) {
-		
-			if(!ya_me_localizo_una_vez){
-					  $(imposible).show();
-					  setTimeout(function(){
-							$(imposible).hide()
-					  }, 3000);
-			}
-		
-	}
 	
-	if(app.hay_internet() && !app.cargo_mapa)
-		$.getScript("http://maps.google.com/maps/api/js?callback=app.secciones.seccionmapa.googleMapsLoaded&sensor=false", function(){});
+	/*if(app.hay_internet() && !app.cargo_mapa)
+		$.getScript("http://maps.google.com/maps/api/js?callback=app.secciones.seccionmapa.googleMapsLoaded&sensor=true", function(){});*/
 
 	this.googleMapsLoaded = function (){
 		app.cargo_mapa = true;
-		if(ultimo_obj !='')
-			_set(ultimo_obj);
+		app.secciones.seccionmapa._set(ultimo_obj);
 	}
 
 	this._remove = function(){
 
 		$(map_canvas).empty()
-
+		if(navigator.geolocation)
+			navigator.geolocation.clearWatch(gps_locator);
 	}
 
-	function _construct() {
-		
-		    if(navigator.geolocation) {
-
-
-		    		gps_locator = navigator.geolocation.watchPosition(
-											onLocation, 
-											errorLocation, 
-											{
-												timeout: 30000
-											}
-					);
-			}
-		
+	function _construct() { 
 
 		  var mapOptions = {
 		    zoom: 15,
+		    draggable:true,
 		    mapTypeControl: false,
 		    zoomControl: true,
 		    mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -179,7 +138,7 @@ function SeccionMapa()
 		  map = new google.maps.Map(map_canvas,  mapOptions);
 
 		 var pos = new google.maps.LatLng(-34.965311,-54.94985);
-		  map.setCenter(pos);
+		 map.setCenter(pos);
 
 		 my_marker = new google.maps.Marker(
 		           				{
@@ -188,13 +147,13 @@ function SeccionMapa()
 								});
 		my_marker.setMap(map);
 
-		listar_ofertas()
-		listar_ofertas()
+		//listar_ofertas()
 
-		setTimeout(function() {
+
+		/*setTimeout(function() {
 		     google.maps.event.trigger(map,'resize');
 		}, 200);
-	
+	*/
 	}
 
 	
@@ -208,33 +167,37 @@ function SeccionMapa()
 	*/
 
 	this._set = function (obj){
+		
 		ultimo_obj = obj;
+
 		if(!app.hay_internet()) app.alerta("Debes conectarte a internet para ver el mapa.");
 
-			if(app.hay_internet() && !app.cargo_mapa){
+				if(app.hay_internet() && !app.cargo_mapa){
 					
 					$.getScript("http://maps.google.com/maps/api/js?callback=app.secciones.seccionmapa.googleMapsLoaded&sensor=false", function(){});
 					return;
 				}
 
-
 				_construct()
+
 				try{
-				  mostrando_mi_pos = false
+					  mostrando_mi_pos = false
 					  map.setCenter(new google.maps.LatLng(obj.center[0], obj.center[1]));
 					  map.setZoom(16)
 
 				}catch(e){
-				
+			
 	 				mostrando_mi_pos = true;
+	 				
 	 				try{
-							map.setCenter(ultima_pos);
-							my_marker.setPosition(ultima_pos);
+
+	 					var mi_pos = new google.maps.LatLng(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude     )
+							map.setCenter(mi_pos);
+							my_marker.setPosition(mi_pos);
 	 				}catch(e){}
 						        	
 			
 				}
-
 
 			var solo_ver = '';
 			try{
@@ -335,7 +298,7 @@ function SeccionMapa()
 		});
 
 	}
-	function do_LISTAR_EVENTOS(e){
+	/*function do_LISTAR_EVENTOS(e){
 
 
 		array_markers_eventos = new Array();
@@ -366,7 +329,7 @@ function SeccionMapa()
 
 		});
 
-	}
+	}*/
 
 	function mostrar_una_oferta($row){
 	
