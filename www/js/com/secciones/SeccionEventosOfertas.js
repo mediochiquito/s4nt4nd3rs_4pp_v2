@@ -55,7 +55,7 @@ function SeccionEventosOfertas()
 
 	this.cargar_listas = function($busqueda){
 
-		alert('cargar lists' + $busqueda)
+	
 		if(en_solapa=='una_oferta') mostrar_solapa({solapa:'eventos'});
 		if(en_solapa=='un_evento')  mostrar_solapa({solapa:'ofertas'});
 

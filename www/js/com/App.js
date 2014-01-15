@@ -1,5 +1,7 @@
 function App(){
 	//
+
+	var version = '1.1';
 	this.main = document.createElement('div');
 	this.main.id = 'app'
 	this.ancho = 320;
@@ -36,6 +38,13 @@ function App(){
 	this.posicion_global = ''
 	var watchid;
 
+	// tipo_de_instalacion 
+	// 1 = intalando de 0
+	// 2 = reintalando de verion 1 a 2
+	// 3 cambiando de version
+
+	var tipo_de_instalacion = 0;
+
 	this.initialize = function(){
 
 		document.addEventListener('deviceready', deviceready, false);
@@ -49,8 +58,9 @@ function App(){
 	}
 
 	function doPrevent(event) {
-		//event.preventDefault();
+		event.preventDefault();
 	}
+
 	this.openlink = function($url){
 
 		 window.open($url, '_system');
@@ -118,7 +128,6 @@ function App(){
 	
 	function deviceready(){
 
-
 		if(app.is_phonegap()){
 
 			if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) alert('Cordova variable does not exist. Check that you have included cordova.js correctly');
@@ -143,11 +152,8 @@ function App(){
             
 	    	self._ManagePush = new ManagePush();
 
-	    	
-
 	    	self._Facebook = new Facebook()
 	    	self._Facebook.init() 
-
 
 		    if ( device.platform == 'android' || device.platform == 'Android' ) { }
 			else {
@@ -192,16 +198,47 @@ function App(){
 		$('body').append(self.main)
         
         app.db.transaction(function (tx) {
-			crear_db(tx)	
+        	verificar_version_de_app(tx)
 		});
       
 
 	}
 
 
+	function verificar_version_de_app($tx)
+	{
+		   $tx.executeSql("SELECT version FROM app" , [], function (tx, resultado) {
+	    		
+	    		//ya tiene la version 2
+	    		if(String(resultado.rows.item(0).version) == String(version)){
+	    			//ya tiene lo ultimo;
+	    			//alert('asd')
+	    			start()
+	    		}else{
+
+	    			tipo_de_instalacion = 3;
+	    			crear_db($tx)	
+	    		}
+
+		   }, function ($tx){
+
+			   		la_tala_fue_creada($tx, 'app', function($bool){
+						
+						if($bool) {
+							tipo_de_instalacion = 2;
+						} else {
+							tipo_de_instalacion = 1;
+						} 
+					
+						crear_db($tx)	
+					});	
+			   			 
+		   })
+	}
+
 	function crear_db($tx) {
-		 
-		   $.ajax({
+		
+		  $.ajax({
 				type: "GET",
 				url: "xml/default_db.xml",
 				dataType: 'xml',
@@ -221,7 +258,6 @@ function App(){
 					}
 			});
 	}
-
 
 	function onLocation(position){
 		
@@ -247,13 +283,13 @@ function App(){
 
 	function start(){
 		 
-		//setTimeout(function(){
-			
 			if(app.secciones.get_obj_seccion_actual()==null)
 				app.secciones.go(app.secciones.seccionhome);
 
 			if(app.is_phonegap()){
+		    	
 		    	app.db.transaction(function (tx) {
+
 					tx.executeSql("SELECT push FROM app" , [], function (tx, resultado) {
 		    				
 		    				if(String(resultado.rows.item(0).push) == '0' || String(resultado.rows.item(0).push) == '1' ) 
@@ -263,12 +299,10 @@ function App(){
 				});
 	    	}
 
-
-
 			if(app.hay_internet()) verfificar_sync();
 			else $(document).trigger('CARGAR_LISTAS');
 
-		//}, 100);
+		
 
 	}
 
@@ -400,35 +434,39 @@ function App(){
 	}
 
 
-	
-
-
-	
-
-
-
     function crearTabla_App($tx){
 
+    	
+    		//ALTER TABLE "main"."app" ADD COLUMN "version" VARCHAR
 			la_tala_fue_creada($tx, 'app', function($bool){
 				
-				$tx.executeSql('CREATE TABLE IF NOT EXISTS app ("sync_value" INTEGER, "push" INTEGER)', [], comprobacion_total_tablas_creadas);
+				$tx.executeSql('CREATE TABLE IF NOT EXISTS app ("sync_value" INTEGER, "push" INTEGER, "version" VARCHAR)', [], comprobacion_total_tablas_creadas);
+
+				if(tipo_de_instalacion == 2){
+
+					$tx.executeSql('ALTER TABLE "app" ADD COLUMN "version" VARCHAR');
+
+				}
+
 
 				if(!$bool) {
-					$tx.executeSql('INSERT INTO app (sync_value, push) VALUES (?,?)', [0,0]);
+
+					$tx.executeSql('INSERT INTO app (sync_value, push, version) VALUES (?,?,?)', [0,0,version]);
 
 				} else {
 
+					$tx.executeSql('UPDATE app SET version=?', [version]);
+
 					$tx.executeSql("SELECT sync_value FROM app" , [], function (tx, resultado) {
-	    					sync_value = resultado.rows.item(0).sync_value
+	    				sync_value = resultado.rows.item(0).sync_value
 					})
-
-
 				} 
 			});	
     }
 
     
     function crearTabla_Eventos($tx){
+
 			//$tx.executeSql('DROP TABLE IF EXISTS eventos');
 			$tx.executeSql('CREATE TABLE IF NOT EXISTS eventos ("eventos_id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , ' +
 						  '"eventos_nombre" VARCHAR, ' +
@@ -447,10 +485,7 @@ function App(){
 
 
 			var obj = $.parseJSON($(xml_default_db).find('eventos').text())
-		
-			for(var item_evento in obj){
-					
-
+		for(var item_evento in obj){
 				$tx.executeSql('INSERT OR IGNORE INTO "eventos" ("eventos_id","eventos_nombre","eventos_fecha_hora","eventos_categoria_id","eventos_lugar","eventos_desc","eventos_lat","eventos_lon","eventos_uid","eventos_tags","eventos_estado","eventos_header_img","eventos_fecha_hora_creado") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', 
 													  [
 													  obj[item_evento].eventos_id, 
@@ -469,6 +504,9 @@ function App(){
 
 
 													  ]);
+			
+					
+
 
 			}
     }
