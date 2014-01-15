@@ -65,11 +65,13 @@ function ListaOfertas()
 				setTimeout(function(){  
 					if(!scroll_set){
 							scroll_set = true;
-							is =  new iScroll('ListaOfertas_holder', {hScrollbar: false, vScrollbar: false});
+							is =  new IScroll('#ListaOfertas_holder',{ mouseWheel: true });
+							//is =  new IScroll('ListaOfertas_holder', {hScrollbar: false, vScrollbar: false});
+						
 					}else{
-							is.refresh()
+							//is.refresh()
 					}
-					is.scrollTo(0, 0, 0);
+					//is.scrollTo(0, 0, 0);
 		   		}, 0);
 		   		
 				if(typeof($callback)!='undefined') $callback(cant_ofertas);

@@ -27,7 +27,8 @@ function SeccionTerms()
 
 
 			setTimeout(function(){  
-				new iScroll('SeccionTerms_holder', {hScrollbar: false, vScrollbar: true});;
+				//new iScroll('SeccionTerms_holder', {hScrollbar: false, vScrollbar: true});;
+				is =  new IScroll('#SeccionTerms_holder',{ mouseWheel: true });
 			}, 110)
 		}
 	

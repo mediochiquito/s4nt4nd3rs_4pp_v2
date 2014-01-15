@@ -30,7 +30,10 @@
 	
 	width: 100%;
 }
-
+#ListaEventos_holder{
+	overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
 #ListaEventos_btn_ver_en_mapa{
 	left: 50%;
 	width: 130px;
@@ -81,7 +84,7 @@
 	 border-bottom: solid 1px #e5e5e5;
 	 border-right: solid 1px #e5e5e5;
 	 outline: none;
-	/* -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+/*	 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	 -webkit-transform: translate3d(0,0,0); */
 }
 .ItemListaEvento_txt_nombre{

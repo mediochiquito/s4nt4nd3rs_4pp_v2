@@ -27,8 +27,8 @@ function ListaEventos()
 
 	$(holder).css({width: app.ancho-40, height: app.alto-200});
 
-	var is ;
-	var scroll_set =  false
+	/*var is ;
+	var scroll_set =  false*/
 
 	$(document).bind('LISTAR_EVENTOS', do_LISTAR_EVENTOS);
 
@@ -102,7 +102,7 @@ function ListaEventos()
 		            //}
 		        }
 
-				setTimeout(function(){  
+				/*setTimeout(function(){  
 					if(!scroll_set){
 							scroll_set = true;
 							is =  new iScroll('ListaEventos_holder', {hScrollbar: false, vScrollbar: false});
@@ -110,7 +110,7 @@ function ListaEventos()
 							is.refresh()
 					}
 					is.scrollTo(0, 0, 0);
-		   		}, 0)
+		   		}, 0)*/
 
 				if(typeof($callback)!='undefined') $callback(cant_eventos);
 
