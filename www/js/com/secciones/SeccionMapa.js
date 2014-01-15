@@ -106,8 +106,7 @@ function SeccionMapa()
 	this._remove = function(){
 
 		$(map_canvas).empty()
-		if(navigator.geolocation)
-			navigator.geolocation.clearWatch(gps_locator);
+		
 	}
 
 	function _construct() { 

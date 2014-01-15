@@ -111,7 +111,11 @@ function SeccionMapaForm()
 		app.secciones.seccionmapaform._set({pos:''})
 
 	}
+	this._remove = function(){
 
+		$(map_canvas).empty()
+
+	}
 	this._set = function (obj){
 		
 

@@ -41,7 +41,7 @@ function SeccionEventosOfertas()
 
 
 	var en_solapa=''
-
+	var en_transaccion=false
 	function doSolapaClick(e){
 
 		mostrar_solapa({solapa:e.value})
@@ -53,18 +53,23 @@ function SeccionEventosOfertas()
 		if(en_solapa=='una_oferta') mostrar_solapa({solapa:'eventos'});
 		if(en_solapa=='un_evento')  mostrar_solapa({solapa:'ofertas'});
 
-		lista_eventos.listar($busqueda, function ($cantidad_eventos){
 
-			lista_ofertas.listar($busqueda, function ($cantidad_ofertas){
-
-					if($busqueda != ''){
-
-						if($cantidad_ofertas>$cantidad_eventos) mostrar_solapa({solapa: 'ofertas'});
-						else mostrar_solapa({solapa: 'eventos'});
-					}
-
-			});
-		});
+		if(!en_transaccion){
+				en_transaccion =  true
+				lista_eventos.listar($busqueda, function ($cantidad_eventos){
+		
+					lista_ofertas.listar($busqueda, function ($cantidad_ofertas){
+		
+							if($busqueda != ''){
+		
+								if($cantidad_ofertas>$cantidad_eventos) mostrar_solapa({solapa: 'ofertas'});
+								else mostrar_solapa({solapa: 'eventos'});
+							}
+							en_transaccion = false;
+		
+					});
+				});
+		}
 		
 
 	
