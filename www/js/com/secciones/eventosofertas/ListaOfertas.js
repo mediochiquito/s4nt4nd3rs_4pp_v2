@@ -18,7 +18,7 @@ function ListaOfertas()
 	$(this.main).append(holder)
 
 	$(holder).css({width: app.ancho-40, height: app.alto-200});
-
+	
 	/*var is ;
 	var scroll_set =  false
 */

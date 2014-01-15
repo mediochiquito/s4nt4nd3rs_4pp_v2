@@ -13,8 +13,8 @@ function App(){
 	};
 	this.redirigiendo_una_push = false;
 	this.cargo_mapa = false;
-	this.server = 'http://192.168.0.2/s4nt4nd3rs_4pp_v2/server/'
-	//this.server = 'http://192.168.235.140:8888/s4nt4nd3rs_4pp_v2/server/';
+	//this.server = 'http://192.168.0.2/s4nt4nd3rs_4pp_v2/server/'
+	this.server = 'http://192.168.235.140:8888/s4nt4nd3rs_4pp_v2/server/';
 	//this.server = 'http://santander.crudo.com.uy/';
 	
 	this.db = openDatabase('santanders_app_punta', '1.0', 'santanders_app_punta', 2000000);
@@ -31,9 +31,11 @@ function App(){
 
 	this.categorias_eventos = new Array("Deportes","Moda", "Música", "Culturales", "Gastronómico");
 	this.meses = new Array('Ene', 'Feb', 'Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic');
-
+	this.array_deptos = new Array();
+	this.id_depto_en_que_estoy = 0;
 	this.posicion_global = ''
 	var watchid;
+
 	this.initialize = function(){
 
 		document.addEventListener('deviceready', deviceready, false);
@@ -197,7 +199,32 @@ function App(){
 	}
 
 
+	function crear_db($tx) {
+		 
+		   $.ajax({
+				type: "GET",
+				url: "xml/default_db.xml",
+				dataType: 'xml',
+				async : false,
+			}).success(function(xml) {
+
+					xml_default_db = xml;
+					tablas_creadas = 0;
+					//crearTabla_Categorias, 
+					array_tablas_a_crear = new Array(crearTabla_Eventos,
+													 crearTabla_Participaciones,
+													 crearTabla_Ofertas, 
+													 crearTabla_App);
+
+					for(var func in array_tablas_a_crear){
+						array_tablas_a_crear[func]($tx);
+					}
+			});
+	}
+
+
 	function onLocation(position){
+		
 		self.posicion_global = position
 		navigator.geolocation.clearWatch(watchid);
 		
@@ -211,13 +238,19 @@ function App(){
 		
 	}
 
+	function comprobacion_total_tablas_creadas(e){
+
+    	tablas_creadas++;
+    	if(tablas_creadas == array_tablas_a_crear.length) start();
+
+    }
+
 	function start(){
 		 
-		setTimeout(function(){
+		//setTimeout(function(){
 			
 			if(app.secciones.get_obj_seccion_actual()==null)
 				app.secciones.go(app.secciones.seccionhome);
-
 
 			if(app.is_phonegap()){
 		    	app.db.transaction(function (tx) {
@@ -232,10 +265,10 @@ function App(){
 
 
 
-			if(app.hay_internet()) setTimeout(verfificar_sync, 2000);
-			else $(document).trigger('LISTAR_EVENTOS');
+			if(app.hay_internet()) verfificar_sync();
+			else $(document).trigger('CARGAR_LISTAS');
 
-		}, 100);
+		//}, 100);
 
 	}
 
@@ -252,35 +285,32 @@ function App(){
 					
 					if(new_sync_value>Number(sync_value)){
 						
-						app.cargando(true, 'Sincronizando eventos...')
+						app.cargando(true, 'Sincronizando eventos...');
 						$.ajax({
 
 							type: "GET",
-							url: app.server + "xml.eventos.php",
+							url: app.server + "xml.sync.php",
 							dataType: 'xml',
 							cache: false, 
 							data:{sync_value: sync_value},
 
 							success: function($xml) {
-								
 								app.cargando(false);
 								actualizar_db($xml);
 							},
 							error: function(){ 
-								$(document).trigger('LISTAR_EVENTOS'); 
-								app.cargando(false)
-								
+								$(document).trigger('CARGAR_LISTAS');
+								app.cargando(false);
 							}
 						});	
 					}else{
 						
-						$(document).trigger('LISTAR_EVENTOS');
+						$(document).trigger('CARGAR_LISTAS');
 					}
 				},
 				error: function() {
-					$(document).trigger('LISTAR_EVENTOS');
-
-					 }
+					$(document).trigger('CARGAR_LISTAS');
+				}
 			});
 
     }
@@ -359,7 +389,7 @@ function App(){
 						tx.executeSql('DELETE FROM "eventos" WHERE ' + where);
 			}
 			tx.executeSql('UPDATE app SET sync_value=?', [new_sync_value]);
-			$(document).trigger('LISTAR_EVENTOS');
+			$(document).trigger('CARGAR_LISTAS');
 
 
 
@@ -370,37 +400,10 @@ function App(){
 	}
 
 
-	function crear_db($tx) {
-		 
-		   $.ajax({
-				type: "GET",
-				url: "xml/default_db.xml",
-				dataType: 'xml',
-				async : false,
-			}).success(function(xml) {
-
-					xml_default_db = xml;
-					tablas_creadas = 0;
-					//crearTabla_Categorias, 
-					array_tablas_a_crear = new Array(crearTabla_Eventos,
-													 crearTabla_Participaciones,
-													 crearTabla_Ofertas, 
-													 crearTabla_App);
-
-					for(var func in array_tablas_a_crear){
-						array_tablas_a_crear[func]($tx);
-					}
-			});
-	}
+	
 
 
-
-	function comprobacion_total_tablas_creadas(e){
-
-    	tablas_creadas++;
-    	if(tablas_creadas == array_tablas_a_crear.length) start();
-
-    }
+	
 
 
 

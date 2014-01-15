@@ -41,7 +41,12 @@ function SeccionEventosOfertas()
 
 
 	var en_solapa=''
-	var en_transaccion=false
+	var en_transaccion=false;
+
+	$(document).bind('CARGAR_LISTAS', function(){
+		app.secciones.seccioneventosofertas.cargar_listas('')
+	});
+
 	function doSolapaClick(e){
 
 		mostrar_solapa({solapa:e.value})
@@ -49,10 +54,10 @@ function SeccionEventosOfertas()
 	}
 
 	this.cargar_listas = function($busqueda){
-		
+
+		alert('cargar lists' + $busqueda)
 		if(en_solapa=='una_oferta') mostrar_solapa({solapa:'eventos'});
 		if(en_solapa=='un_evento')  mostrar_solapa({solapa:'ofertas'});
-
 
 		if(!en_transaccion){
 				en_transaccion =  true
@@ -70,16 +75,12 @@ function SeccionEventosOfertas()
 					});
 				});
 		}
-		
-
-	
-
-
 	}
 
 	this.ir_a_una_solapa = function($obj){
 
-		mostrar_solapa($obj)
+		mostrar_solapa($obj);
+
 	}
 
 	function mostrar_solapa($obj){
@@ -154,7 +155,7 @@ function SeccionEventosOfertas()
 
 		if(typeof($obj)!='undefined'){
 
-			this.cargar_listas('');
+			//this.cargar_listas('');
 			mostrar_solapa($obj);
 
 		}else{

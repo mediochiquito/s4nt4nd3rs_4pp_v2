@@ -24,7 +24,7 @@ function ItemListaEvento($row)
 
 	setTimeout(function(){
 
-		$('.ItemListaEvento_nombre').css('width', app.ancho-135)
+		$('.ItemListaEvento_nombre').css('width', app.ancho-145)
 	}, 0)
 	
 

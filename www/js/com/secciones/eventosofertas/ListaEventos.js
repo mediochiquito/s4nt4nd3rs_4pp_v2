@@ -30,7 +30,7 @@ function ListaEventos()
 	/*var is ;
 	var scroll_set =  false*/
 
-	$(document).bind('LISTAR_EVENTOS', do_LISTAR_EVENTOS);
+	//$(document).bind('LISTAR_EVENTOS', do_LISTAR_EVENTOS);
 
 	
 	function doVerEnMapa(e){
@@ -46,15 +46,15 @@ function ListaEventos()
 
 
 	
-	function do_LISTAR_EVENTOS(){
+	/*function do_LISTAR_EVENTOS(){
 
 		//self.listar('');
 
-	}
+	}*/
 
 
 	this.listar =  function ($busqueda, $callback){
-
+		
 		var _date = new Date();
 		var mes =  (_date.getMonth()+1)
 		if(mes<10) mes = '0' + mes;

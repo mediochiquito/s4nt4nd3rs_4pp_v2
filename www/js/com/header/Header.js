@@ -35,6 +35,11 @@ function Header(){
 
 	var wm = 'Buscar...';
 	$(search).val(wm);
+
+	var intervalo_tipeo;
+	var ultima_busqeuda = ''
+
+
 	function do_blur(){
 
 		if($(search).val() == '') $(search).val(wm);
@@ -57,11 +62,32 @@ function Header(){
 	function doKeyUp(e){
 
 		if(app.secciones.get_obj_seccion_actual().main.id != 'SeccionEventosOfertas');
-		app.secciones.go(app.secciones.seccioneventosofertas);
+			app.secciones.go(app.secciones.seccioneventosofertas);
+		
 		if($(search).val().length > 0) $(btn_close.main).show();
-		app.secciones.seccioneventosofertas.cargar_listas($(search).val());
+
+		try{
+			clearTimeout(intervalo_tipeo)
+		}catch(e){}
+
+		intervalo_tipeo = setTimeout(enviar_busqueda, 500)
+
+		
 
 	}
+
+
+	function enviar_busqueda(){
+
+
+		
+		if(ultima_busqeuda!=$(search).val()){
+			console.log('enviar_busqueda: ' + $(search).val())
+			app.secciones.seccioneventosofertas.cargar_listas($(search).val());
+			ultima_busqeuda = $(search).val()
+		}
+	}
+
 
 	function do_click(){
 		
