@@ -48,7 +48,7 @@ function ListaEventos()
 	
 	function do_LISTAR_EVENTOS(){
 
-		self.listar('');
+		//self.listar('');
 
 	}
 

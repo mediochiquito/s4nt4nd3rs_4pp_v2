@@ -19,9 +19,9 @@ function ListaOfertas()
 
 	$(holder).css({width: app.ancho-40, height: app.alto-200});
 
-	var is ;
+	/*var is ;
 	var scroll_set =  false
-
+*/
 	function doVerEnMapa(e){
 
 		app.secciones.go(app.secciones.seccionmapa, 300, {solo_ver:'ofertas'})
@@ -62,7 +62,7 @@ function ListaOfertas()
 		        }
 
 
-				setTimeout(function(){  
+				/*setTimeout(function(){  
 					if(!scroll_set){
 							scroll_set = true;
 							is =  new IScroll('#ListaOfertas_holder',{ mouseWheel: true });
@@ -73,7 +73,7 @@ function ListaOfertas()
 					}
 					//is.scrollTo(0, 0, 0);
 		   		}, 0);
-		   		
+		   		*/
 				if(typeof($callback)!='undefined') $callback(cant_ofertas);
 
 		    })

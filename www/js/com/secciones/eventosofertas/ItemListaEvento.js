@@ -27,15 +27,45 @@ function ItemListaEvento($row)
 		$('.ItemListaEvento_nombre').css('width', app.ancho-135)
 	}, 0)
 	
-	this.main.addEventListener('click', doClick);
 
+	var haciendo_click = false;
+
+	if(app.es_touch()){
+		this.main.addEventListener('touchstart', doTocuhStart);
+		this.main.addEventListener('touchend', doTocuhEnd);
+		this.main.addEventListener('touchmove', doTocuhMove);
+	}else{
+
+		this.main.addEventListener('click', doClick);
+	}
+	function doTocuhMove(){
+		despintar()	
+		haciendo_click = false
+	}
+	function doTocuhStart(){
+		pintar()	
+		haciendo_click = true
+	}
+
+	function doTocuhEnd(){
+		
+		if(haciendo_click){
+			app.secciones.seccioneventosofertas.ir_a_una_solapa({solapa:'un_evento', row: $row});
+			setTimeout(despintar, 800)
+			haciendo_click = false
+		}
+
+	}
+	
 	function doClick(e){
+
 		pintar()
 		setTimeout(function(){
 			app.secciones.seccioneventosofertas.ir_a_una_solapa({solapa:'un_evento', row: $row});
 		}, 200)
 		setTimeout(despintar, 800)
 	}
+
 	function este_evento_es_hoy(){
 
 		var array_fecha_hora = $row.eventos_fecha_hora.split(' ');

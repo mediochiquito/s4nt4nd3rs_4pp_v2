@@ -50,9 +50,9 @@ function UnaOferta()
 	var btn_ver_en_mapa = new Boton2Frames("img/ofertas/marker_lineas.svg", 25, 50, doVerEnMapa)
 	btn_ver_en_mapa.main.id = 'UnEvento_btn_ver_en_mapa'
 	$(header_titulo).append(btn_ver_en_mapa.main)
-
+/*
 	var is ;
-	var scroll_set =  false
+	var scroll_set =  false*/
 	var obj;
 
 	function doVolver(){
@@ -111,7 +111,7 @@ function UnaOferta()
 		addRegistro('Dirección', $obj.row.ofertas_dir)
 		addRegistro('Observaciones', $obj.row.ofertas_desc)
 
-	  	try{
+	  /*	try{
 	        is.scrollTo(0, 0, 0);
 	        }catch(e){}
 		setTimeout(function(){  
@@ -123,13 +123,13 @@ function UnaOferta()
 			}
 			is.scrollTo(0, 0, 0);
 		}, 0)
+*/
 
-
-		setTimeout(function(){  
+		/*setTimeout(function(){  
 			is.refresh()
 			
 		}, 300)
-
+*/
 
 
 	}

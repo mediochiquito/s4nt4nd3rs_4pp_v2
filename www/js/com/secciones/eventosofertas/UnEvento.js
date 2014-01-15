@@ -63,8 +63,8 @@ function UnEvento()
  	$(holder_participaciones).append('<div id="UnEvento_txt_tambien_participan">También participan de este Evento:</div><div id="UnEvento_holder_usuarios_fb"></div>')
  	$(holder).find('>div').append(holder_participaciones)
 
-	var is;
-	var scroll_set =  false;
+	/*var is;
+	var scroll_set =  false;*/
 	var obj;
 
 	function doVolver(){
@@ -234,11 +234,11 @@ function UnEvento()
 		obj = $obj;
 
 
-		try{
+	/*	try{
 			img.onLoad = function(){
 				is.refresh();
 			}
-		}catch(e){}
+		}catch(e){}*/
 
 		if(app.hay_internet() && $obj.row.eventos_header_img!='')
 			img.src =  $obj.row.eventos_header_img;
@@ -272,13 +272,13 @@ function UnEvento()
 		$('#UnEvento_holder_usuarios_fb').empty()
         $('#UnEvento_holder_usuarios_fb').html('<div id="UnEvento_mensaje_participantes">Obteniendo participaciones...</div>')
 
-        try{
+     /*   try{
         	is.scrollTo(0, 0, 0);
         }catch(e){}
-
+*/
         cargar_participantes($obj);
 
-		setTimeout(function(){  
+	/*	setTimeout(function(){  
 			
 			if(!scroll_set){
 				scroll_set = true;
@@ -292,7 +292,7 @@ function UnEvento()
 		setTimeout(function(){
 			is.refresh();
 		}, 300)
-
+*/
 	}
 
 	function cargar_participantes($obj){

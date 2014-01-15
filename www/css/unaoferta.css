@@ -3,8 +3,13 @@
 	position: absolute;
  
 }
+	
 
-
+#UnaOferta_holder{
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+ 	-webkit-transform: translateZ(0); 
+}
 #SeccionUnaOferta{
 	position: absolute;
 }
@@ -56,11 +61,11 @@
 #UnaOferta_holder_data{
 	position: relative;
 	
-	width: 100%;
+
 }
 .UnaOferta_reg{
 	position: relative;
-	width: 100%;
+	
 	padding: 5px;
 	border-bottom: solid 1px #ccc;
 	
@@ -80,7 +85,7 @@
 }
 #UnaOferta_holder_footer{
 	position: relative;
-	width: 100%;
+	
 	height: 70px;
 }
 #UnaOferta_btn_compartir{
