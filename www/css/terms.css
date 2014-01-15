@@ -7,7 +7,7 @@
 	color: #000;
 	top:60px;
 	left: 20px;
-	overflow: hidden;
+	overflow: scroll;
 	-webkit-overflow-scrolling: touch;
 
 }
@@ -17,12 +17,13 @@
 
 #SeccionTerms_titulo{
 	position: relative;
-	font-family: 'GothamBold';
+	
 	font-size: 15px;
 	margin-bottom: 10px;
 }
 #SeccionTerms_txt{
 	position: relative;
-	 font-family: 'GothamBook';
+	 
 	 font-size: 13px;
+	 -webkit-transform: translate3d(0,0,0);
 }

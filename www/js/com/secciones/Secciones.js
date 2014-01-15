@@ -9,9 +9,9 @@ function Secciones(){
 	$(this.main).append(this.seccionhome.main)
 	this.seccionhome.ocultar(0);
 
-	this.seccionmapa = new SeccionMapa();
+	/*this.seccionmapa = new SeccionMapa();
 	$(this.main).append(this.seccionmapa.main)
-	this.seccionmapa.ocultar(0);
+	this.seccionmapa.ocultar(0);*/
 
 	this.seccioneventosofertas = new SeccionEventosOfertas();
 	$(this.main).append(this.seccioneventosofertas.main)
@@ -25,9 +25,9 @@ function Secciones(){
 	$(this.main).append(this.seccionterms.main)
 	this.seccionterms.ocultar(0);
 
-	this.seccionmapaform = new SeccionMapaForm();
+/*	this.seccionmapaform = new SeccionMapaForm();
 	$(this.main).append(this.seccionmapaform.main)
-	this.seccionmapaform.ocultar(0);
+	this.seccionmapaform.ocultar(0);*/
 
 	var historia = new Array()
 
