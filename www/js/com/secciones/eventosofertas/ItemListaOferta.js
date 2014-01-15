@@ -20,10 +20,38 @@ function ItemListaOferta($row)
 	hoy.src = 'img/hoy.png';
 	$(this.main).append(hoy);
 
-	this.main.addEventListener('click', doClick);
-/*	this.main.addEventListener('touchstart', pintar);
-	this.main.addEventListener('touchend', despintar);
-*/
+
+	var haciendo_click = false;
+
+	if(app.es_touch()){
+		this.main.addEventListener('touchstart', doTocuhStart);
+		this.main.addEventListener('touchend', doTocuhEnd);
+		document.addEventListener('touchmove', doTocuhMove);
+	}else{
+
+		this.main.addEventListener('click', doClick);
+	}
+	function doTocuhMove(){
+		
+		despintar()	
+		haciendo_click = false
+	}
+	function doTocuhStart(){
+		pintar()	
+		haciendo_click = true
+	}
+
+	function doTocuhEnd(){
+		
+		if(haciendo_click){
+			app.secciones.seccioneventosofertas.ir_a_una_solapa({solapa:'una_oferta', row: $row})
+			setTimeout(despintar, 800)
+			haciendo_click = false
+		}
+
+	}
+
+
 	function doClick(e){
 		pintar()
 		setTimeout(function(){

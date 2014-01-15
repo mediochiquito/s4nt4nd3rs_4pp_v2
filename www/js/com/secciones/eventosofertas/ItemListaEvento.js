@@ -33,7 +33,7 @@ function ItemListaEvento($row)
 	if(app.es_touch()){
 		this.main.addEventListener('touchstart', doTocuhStart);
 		this.main.addEventListener('touchend', doTocuhEnd);
-		this.main.addEventListener('touchmove', doTocuhMove);
+		document.addEventListener('touchmove', doTocuhMove);
 	}else{
 
 		this.main.addEventListener('click', doClick);

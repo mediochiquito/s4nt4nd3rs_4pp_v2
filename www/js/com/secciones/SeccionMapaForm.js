@@ -101,28 +101,45 @@ function SeccionMapaForm()
 		     google.maps.event.trigger(map,'resize');
 		}, 200);
 
-	
+		
 	}
+	this.googleMapsLoaded = function (){
 
+
+		app.cargo_mapa = true;
+
+		app.secciones.seccionmapaform._set({pos:''})
+
+	}
 
 	this._set = function (obj){
 		
-		if(!app.hay_internet()) app.alerta("Debes conectarte a internet para ver el mapa.");
-			_construct()	;
 
-		if(!app.cargo_mapa)
-			$.getScript("http://maps.google.com/maps/api/js?callback=app.secciones.seccionmapa.googleMapsLoaded&sensor=false", function(){});
+		if(!app.cargo_mapa && app.hay_internet()){
+				$.getScript("http://maps.google.com/maps/api/js?callback=app.secciones.seccionmapaform.googleMapsLoaded&sensor=false", function(){ });
+				return;
+		}else{
+			if(!app.hay_internet()) app.alerta("Debes conectarte a internet para ver el mapa.");
+			_construct();
+		}
 		
 		if(app.cargo_mapa){
 
 			var pos
+			var ultima_pos;
+			try{
+				userAgentltima_pos = app.secciones.seccionmapa.getUltimaPos();
+			}catch(e){
+				ultima_pos = ''
+			}	
+
 			if(obj.pos != ''){
 				
 				var array_pos = obj.pos.split(',')
 				pos = new google.maps.LatLng(array_pos[0],array_pos[1]);
-			}
-			else if(app.secciones.seccionmapa.getUltimaPos()!=''){
-				pos = app.secciones.seccionmapa.getUltimaPos();
+
+			}else if(ultima_pos!='' && typeof(ultima_pos)!='undefined'){
+				pos = ultima_pos;
 
 			}else{
 				pos = new google.maps.LatLng(-34.965311,-54.94985);

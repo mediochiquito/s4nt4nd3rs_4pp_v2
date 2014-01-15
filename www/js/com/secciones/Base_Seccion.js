@@ -36,11 +36,15 @@ function Base_Seccion(){
 
 
 	}
+
+	this._remove = function(){
+
+
+	}
+
 	this.ocultar = function($time){
 		
-		/*document.activeElement.blur();
-		$("input").blur();
-*/
+		this._remove()
 		var t = $time; 
 		if(typeof($time) ==  'undefined') t = 300
 
@@ -52,7 +56,9 @@ function Base_Seccion(){
 			  opacity: 0
 
 		}, t, function(){
+
 			$(self.main).transition({x:3000},0)
+			
 		})
 		
 	}

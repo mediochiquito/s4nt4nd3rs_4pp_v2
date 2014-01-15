@@ -76,7 +76,7 @@ function SeccionMapa()
 	$(this.main).append(imposible)
 
 	var ya_me_localizo_una_vez = false;
-	
+	var ultimo_obj = '';
 	function doCheckEventos(){
 
 		mostrar_elementos('eventos', chk_eventos.getSelected())
@@ -94,7 +94,10 @@ function SeccionMapa()
 
 	function onLocation(position){
 			
-	 		ultima_pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+		try{
+
+			ultima_pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	 		
 	 		if(mostrando_mi_pos){
 				ya_me_localizo_una_vez = true;
@@ -102,6 +105,10 @@ function SeccionMapa()
 				$(imposible).hide()
 			}
 
+
+		}catch(e){}
+
+	 		
 	}
 
 
@@ -122,10 +129,16 @@ function SeccionMapa()
 
 	this.googleMapsLoaded = function (){
 		app.cargo_mapa = true;
-		_construct()
+		if(ultimo_obj !='')
+			_set(ultimo_obj);
 	}
 
-	
+	this._remove = function(){
+
+		$(map_canvas).empty()
+
+	}
+
 	function _construct() {
 		
 		    if(navigator.geolocation) {
@@ -176,6 +189,7 @@ function SeccionMapa()
 		my_marker.setMap(map);
 
 		listar_ofertas()
+		listar_ofertas()
 
 		setTimeout(function() {
 		     google.maps.event.trigger(map,'resize');
@@ -194,12 +208,17 @@ function SeccionMapa()
 	*/
 
 	this._set = function (obj){
-		
+		ultimo_obj = obj;
 		if(!app.hay_internet()) app.alerta("Debes conectarte a internet para ver el mapa.");
 
-		if(app.hay_internet() && !app.cargo_mapa)
-			$.getScript("http://maps.google.com/maps/api/js?callback=app.secciones.seccionmapa.googleMapsLoaded&sensor=false", function(){});
+			if(app.hay_internet() && !app.cargo_mapa){
+					
+					$.getScript("http://maps.google.com/maps/api/js?callback=app.secciones.seccionmapa.googleMapsLoaded&sensor=false", function(){});
+					return;
+				}
 
+
+				_construct()
 				try{
 				  mostrando_mi_pos = false
 					  map.setCenter(new google.maps.LatLng(obj.center[0], obj.center[1]));
