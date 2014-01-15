@@ -24,9 +24,9 @@ function ItemListaOferta($row)
 	var haciendo_click = false;
 
 	if(app.es_touch()){
-		/*this.main.addEventListener('touchstart', doTocuhStart);
+		this.main.addEventListener('touchstart', doTocuhStart);
 		this.main.addEventListener('touchend', doTocuhEnd);
-		document.addEventListener('touchmove', doTocuhMove);*/
+		document.addEventListener('touchmove', doTocuhMove);
 	}else{
 
 		this.main.addEventListener('click', doClick);
