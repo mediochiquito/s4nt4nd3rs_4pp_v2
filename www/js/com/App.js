@@ -437,7 +437,6 @@ function App(){
     function crearTabla_App($tx){
 
     	
-    		//ALTER TABLE "main"."app" ADD COLUMN "version" VARCHAR
 			la_tala_fue_creada($tx, 'app', function($bool){
 				
 				$tx.executeSql('CREATE TABLE IF NOT EXISTS app ("sync_value" INTEGER, "push" INTEGER, "version" VARCHAR)', [], comprobacion_total_tablas_creadas);
