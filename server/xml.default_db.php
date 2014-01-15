@@ -10,6 +10,14 @@ include dirname(__FILE__) . '/_init.php';
 	echo json_encode($rows_ofertas);
 	echo ']]></ofertas>';
 
+	$rs_locales = mysql_query('SELECT * FROM locales ORDER BY locales_id ASC');
+	echo '<locales><![CDATA[';
+	$rows_locales = array();
+	while($row_locales =  mysql_fetch_assoc($rs_locales)){
+		 $rows_locales[] = $row_locales;
+	}
+	echo json_encode($rows_locales);
+	echo ']]></locales>';
 
 	$rs_eventos = mysql_query('SELECT * FROM eventos WHERE eventos_estado=1 ORDER BY eventos_id ASC');
 	echo '<eventos><![CDATA[';

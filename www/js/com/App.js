@@ -199,7 +199,7 @@ function App(){
         
         app.db.transaction(function (tx) {
         	verificar_version_de_app(tx)
-		});
+		}, app.db_errorGeneral);
       
 
 	}
@@ -299,7 +299,7 @@ function App(){
 				});
 	    	}
 
-			if(app.hay_internet()) verfificar_sync();
+			if(!app.hay_internet()) verfificar_sync();
 			else $(document).trigger('CARGAR_LISTAS');
 
 		
@@ -466,7 +466,9 @@ function App(){
     
     function crearTabla_Eventos($tx){
 
-			//$tx.executeSql('DROP TABLE IF EXISTS eventos');
+
+    		if(tipo_de_instalacion==2) $tx.executeSql('DROP TABLE IF EXISTS eventos');
+
 			$tx.executeSql('CREATE TABLE IF NOT EXISTS eventos ("eventos_id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , ' +
 						  '"eventos_nombre" VARCHAR, ' +
 						  '"eventos_fecha_hora" DATETIME, ' +
@@ -478,14 +480,18 @@ function App(){
 						  '"eventos_uid" VARCHAR, ' +
 						  '"eventos_tags" VARCHAR, ' +
 						  '"eventos_estado" INTEGER, ' +
+						  '"eventos_departamentos_id" INTEGER, ' +
 						  '"eventos_header_img" VARCHAR, ' +
 						  '"eventos_fecha_hora_creado" DATETIME)', [], comprobacion_total_tablas_creadas);
 
 
 
 			var obj = $.parseJSON($(xml_default_db).find('eventos').text())
-		for(var item_evento in obj){
-				$tx.executeSql('INSERT OR IGNORE INTO "eventos" ("eventos_id","eventos_nombre","eventos_fecha_hora","eventos_categoria_id","eventos_lugar","eventos_desc","eventos_lat","eventos_lon","eventos_uid","eventos_tags","eventos_estado","eventos_header_img","eventos_fecha_hora_creado") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', 
+			
+			for(var item_evento in obj){
+
+
+				$tx.executeSql('INSERT OR IGNORE INTO "eventos" ("eventos_id","eventos_nombre","eventos_fecha_hora","eventos_categoria_id","eventos_lugar","eventos_desc","eventos_lat","eventos_lon","eventos_uid","eventos_tags","eventos_estado","eventos_departamentos_id","eventos_header_img","eventos_fecha_hora_creado") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)', 
 													  [
 													  obj[item_evento].eventos_id, 
 													  obj[item_evento].eventos_nombre, 
@@ -498,6 +504,7 @@ function App(){
 													  obj[item_evento].eventos_uid, 
 													  obj[item_evento].eventos_tags, 
 													  obj[item_evento].eventos_estado, 
+													  obj[item_evento].eventos_departamentos_id, 
 													  obj[item_evento].eventos_header_img, 
 													  obj[item_evento].eventos_fecha_hora_creado
 
@@ -512,41 +519,29 @@ function App(){
 
 
     function crearTabla_Ofertas($tx){
-		
+
+			if(tipo_de_instalacion==2) $tx.executeSql('DROP TABLE IF EXISTS ofertas');
+
 			$tx.executeSql('CREATE TABLE IF NOT EXISTS ofertas ("ofertas_id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , ' +
 						  '"ofertas_nombre" VARCHAR, ' +
-						  '"ofertas_tel" VARCHAR, ' +
-						  '"ofertas_dir" VARCHAR, ' +
-						  '"ofertas_descuento" VARCHAR, ' +
-						  '"ofertas_cutoas" VARCHAR, ' +
-						  '"ofertas_dias" VARCHAR, ' +
-						  '"ofertas_desc" TEXT, ' +
-						  '"ofertas_lat" VARCHAR, ' +
-						  '"ofertas_lon" VARCHAR, ' +
 						  '"ofertas_tags" VARCHAR, ' +
 						  '"ofertas_tipo" VARCHAR, ' +
-						  '"ofertas_header_img" VARCHAR )', [], comprobacion_total_tablas_creadas);
+						  '"ofertas_header_img" VARCHAR, ' +
+						  '"ofertas_estado" INTEGER)', [], comprobacion_total_tablas_creadas);
 
 
 			var obj = $.parseJSON($(xml_default_db).find('ofertas').text())
 		
 			for(var item_ofeta in obj){
 					
-					$tx.executeSql('INSERT OR IGNORE INTO "ofertas" ("ofertas_id","ofertas_nombre","ofertas_tel","ofertas_dir","ofertas_descuento","ofertas_cutoas","ofertas_dias","ofertas_desc","ofertas_lat","ofertas_lon","ofertas_tags","ofertas_tipo","ofertas_header_img") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', 
+					$tx.executeSql('INSERT OR IGNORE INTO "ofertas" ("ofertas_id","ofertas_nombre","ofertas_tags","ofertas_tipo","ofertas_header_img","ofertas_estado") VALUES (?,?,?,?,?,?)', 
 													  [
 													  obj[item_ofeta].ofertas_id, 
 													  obj[item_ofeta].ofertas_nombre, 
-													  obj[item_ofeta].ofertas_tel, 
-													  obj[item_ofeta].ofertas_dir, 
-													  obj[item_ofeta].ofertas_descuento, 
-													  obj[item_ofeta].ofertas_cutoas, 
-													  obj[item_ofeta].ofertas_dias, 
-													  obj[item_ofeta].ofertas_desc, 
-													  obj[item_ofeta].ofertas_lat, 
-													  obj[item_ofeta].ofertas_lon, 
 													  obj[item_ofeta].ofertas_tags, 
 													  obj[item_ofeta].ofertas_tipo, 
-													  obj[item_ofeta].ofertas_header_img
+													  obj[item_ofeta].ofertas_header_img,
+													  obj[item_ofeta].ofertas_estado
 													  ], function(){}, app.db_errorGeneral);
 
 			}
