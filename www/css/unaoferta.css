@@ -4,6 +4,35 @@
  
 }
 	
+#ItemLocal{
+	position: relative;
+
+
+}
+
+#ItemLocal_header_titulo{
+	position: relative;
+
+
+	width: 100%;
+	background-color: #dedcdc;
+}
+#ItemLocal_titulo_txt{
+	position: relative;
+	width: 80%;
+	color: #000;
+	font-family: 'GothamBold';
+	font-size: 12px;
+	padding: 10px;
+
+}
+
+#UnaOferta_btn_ver_en_mapa{
+
+	position: absolute;
+	right: 6px;
+	top: 4px;
+}
 
 #UnaOferta_holder{
 	overflow-y: scroll;
@@ -23,7 +52,7 @@
 
 	position: absolute;
 	right: 6px;
-	top: 4px;
+	top: 10px;
 }
 #UnaOferta_hoy{
 
@@ -31,12 +60,6 @@
 	top: 0px;
 	left: 0px;
 	width: 70px;
-}
-#UnaOferta_btn_ver_en_mapa{
-
-	position: absolute;
-	right: 35px;
-	top: 4px;
 }
 
 #UnaOferta_header_titulo{
@@ -63,6 +86,9 @@
 	
 
 }
+
+
+
 .UnaOferta_reg{
 	position: relative;
 	

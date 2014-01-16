@@ -47,9 +47,7 @@ function UnaOferta()
 	btn_volver.main.id = 'UnaOferta_btn_volver'
 	$(header_titulo).append(btn_volver.main)
 
-	var btn_ver_en_mapa = new Boton2Frames("img/ofertas/marker_lineas.svg", 25, 50, doVerEnMapa)
-	btn_ver_en_mapa.main.id = 'UnEvento_btn_ver_en_mapa'
-	$(header_titulo).append(btn_ver_en_mapa.main)
+	
 /*
 	var is ;
 	var scroll_set =  false*/
@@ -60,21 +58,8 @@ function UnaOferta()
 		//app.secciones.go(app.secciones.seccioneventosofertas, 300, {solapa: 'ofertas'});
 
 	}
-	function doVerEnMapa(){
-
-			app.secciones.go(app.secciones.seccionmapa, 300, {solo_ver:'ofertas', center:[obj.row.ofertas_lat, obj.row.ofertas_lon]});
-
-
-	}
 	
-	function addRegistro($label, $data){
-		
-		$(holder_data).append('<div class="UnaOferta_reg"><div class="UnaOferta_label">'+ $label+
-							  '</div><div class="UnaOferta_data" style="width: ' + (app.ancho-170) + 'px">'+ $data+
-							  '</div><br style="clear:both"></div>');
-		
-	}
-
+	
 	function doCompartir(){
 
 
@@ -104,12 +89,28 @@ function UnaOferta()
 		$(titulo_txt).html($obj.row.ofertas_nombre);
 		$(holder_data).empty();
 		
-		addRegistro('Descuento', $obj.row.ofertas_descuento)
+		app.db.transaction(function (tx) {
+
+			tx.executeSql("SELECT * FROM locales WHERE locales_estado=1 AND locales_ofertas_id="+$obj.row.ofertas_id+" AND locales_departamentos_id="+app.depto_que_me_encuentro , [], function (tx, resulato_locales) {
+		    	
+		    	var cant_locales = resulato_locales.rows.length;
+		    	
+		        for(var i=0; i<cant_locales; i++){
+					
+		        	var itemlocal = new ItemLocal(resulato_locales.rows.item(i));
+		        	$(holder_data).append(itemlocal.main)
+
+		        }
+		    });
+		}, app.db_errorGeneral);
+
+
+		/*addRegistro('Descuento', $obj.row.ofertas_descuento)
 		addRegistro('Cuotas', $obj.row.ofertas_cutoas)
 		addRegistro('Días de descuentos', $obj.row.ofertas_dias)
 		addRegistro('Teléfono', '<a href="tel:' + $obj.row.ofertas_tel + '">' + $obj.row.ofertas_tel + "</a>")
 		addRegistro('Dirección', $obj.row.ofertas_dir)
-		addRegistro('Observaciones', $obj.row.ofertas_desc)
+		addRegistro('Observaciones', $obj.row.ofertas_desc)*/
 
 	  /*	try{
 	        is.scrollTo(0, 0, 0);
