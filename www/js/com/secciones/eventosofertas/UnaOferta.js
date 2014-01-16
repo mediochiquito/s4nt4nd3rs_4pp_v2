@@ -104,35 +104,6 @@ function UnaOferta()
 		    });
 		}, app.db_errorGeneral);
 
-
-		/*addRegistro('Descuento', $obj.row.ofertas_descuento)
-		addRegistro('Cuotas', $obj.row.ofertas_cutoas)
-		addRegistro('Días de descuentos', $obj.row.ofertas_dias)
-		addRegistro('Teléfono', '<a href="tel:' + $obj.row.ofertas_tel + '">' + $obj.row.ofertas_tel + "</a>")
-		addRegistro('Dirección', $obj.row.ofertas_dir)
-		addRegistro('Observaciones', $obj.row.ofertas_desc)*/
-
-	  /*	try{
-	        is.scrollTo(0, 0, 0);
-	        }catch(e){}
-		setTimeout(function(){  
-			if(!scroll_set){
-					scroll_set = true;
-					is =  new iScroll('UnaOferta_holder', {hScrollbar: false, vScrollbar: false});
-			}else{
-					is.refresh()
-			}
-			is.scrollTo(0, 0, 0);
-		}, 0)
-*/
-
-		/*setTimeout(function(){  
-			is.refresh()
-			
-		}, 300)
-*/
-
-
 	}
 
 }

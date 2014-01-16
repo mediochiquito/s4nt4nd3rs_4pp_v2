@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 4.0.6
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 16-01-2014 a las 12:54:11
--- Versión del servidor: 5.5.24-log
--- Versión de PHP: 5.3.13
+-- Tiempo de generación: 16-01-2014 a las 21:42:05
+-- Versión del servidor: 5.5.33
+-- Versión de PHP: 5.5.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -23,10 +23,34 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `banners_ofertas`
+--
+
+CREATE TABLE `banners_ofertas` (
+  `banners_ofertas_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `banners_ofertas_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `banners_ofertas_terms` text COLLATE utf8_unicode_ci NOT NULL,
+  `banners_ofertas_estado` tinyint(1) NOT NULL,
+  PRIMARY KEY (`banners_ofertas_id`),
+  UNIQUE KEY `banners_ofertas_id` (`banners_ofertas_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `banners_ofertas`
+--
+
+INSERT INTO `banners_ofertas` (`banners_ofertas_id`, `banners_ofertas_url`, `banners_ofertas_terms`, `banners_ofertas_estado`) VALUES
+(1, 'banner1.png', '', 1),
+(2, 'banner2.jpg', '', 0),
+(3, 'banner3.gif', '', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `categorias`
 --
 
-CREATE TABLE IF NOT EXISTS `categorias` (
+CREATE TABLE `categorias` (
   `categorias_id` tinyint(2) unsigned NOT NULL AUTO_INCREMENT,
   `categorias_nombre` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`categorias_id`)
@@ -49,7 +73,7 @@ INSERT INTO `categorias` (`categorias_id`, `categorias_nombre`) VALUES
 -- Estructura de tabla para la tabla `departamentos`
 --
 
-CREATE TABLE IF NOT EXISTS `departamentos` (
+CREATE TABLE `departamentos` (
   `departamentos_id` tinyint(2) unsigned NOT NULL AUTO_INCREMENT,
   `departamentos_nombre` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`departamentos_id`)
@@ -86,7 +110,7 @@ INSERT INTO `departamentos` (`departamentos_id`, `departamentos_nombre`) VALUES
 -- Estructura de tabla para la tabla `eventos`
 --
 
-CREATE TABLE IF NOT EXISTS `eventos` (
+CREATE TABLE `eventos` (
   `eventos_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `eventos_nombre` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `eventos_fecha_hora` datetime NOT NULL,
@@ -310,7 +334,7 @@ INSERT INTO `eventos` (`eventos_id`, `eventos_nombre`, `eventos_fecha_hora`, `ev
 -- Estructura de tabla para la tabla `locales`
 --
 
-CREATE TABLE IF NOT EXISTS `locales` (
+CREATE TABLE `locales` (
   `locales_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `locales_ofertas_id` smallint(5) unsigned NOT NULL,
   `locales_estado` tinyint(1) NOT NULL,
@@ -338,8 +362,8 @@ CREATE TABLE IF NOT EXISTS `locales` (
 INSERT INTO `locales` (`locales_id`, `locales_ofertas_id`, `locales_estado`, `locales_sync_value`, `locales_tel`, `locales_dir`, `locales_descuento`, `locales_cutoas`, `locales_dias`, `locales_desc`, `locales_lat`, `locales_lon`, `locales_departamentos_id`, `locales_localidad`) VALUES
 (1, 1, 1, '2014-01-16 03:42:05', '4244 9741', 'Calle 20 entre 27 y 28', '20%', '6 cuotas sin interés', 'Todos los días', 'Descuento no acumulable a otras promociones del comercio. El cliente podrá hacer uso de los planes de cuota de acuerdo al mínimo de compra establecido por cada sucursal. El beneficio no aplica para la compra de líquidos para lentes de contacto, ni para los productos de la marca Ray Ban.', '-34.961319390107235', '-54.94433396403201', 9, 'Punta del Este'),
 (2, 2, 1, '2014-01-16 06:25:27', '4244 2020', 'Calle 31 (entre Gorlero y Rambla) ', '10%', '', 'Todos los días', 'Para aplicar el descuento se debe pagar el alquiler del vehículo en las oficinas de AVIS de Uruguay. Promoción válida en los países donde se acepta voucher prepago.', '-34.95894532659741', '-54.939033919018584', 10, 'Punta del Este'),
-(3, 2, 1, '2014-01-16 03:45:57', '4255 9858', 'Punta Del Este Airport (Airport) Laguna Del Sauce', '10%', '', 'Todos los días', 'Para aplicar el descuento se debe pagar el alquiler del vehículo en las oficinas de AVIS de Uruguay. Promoción válida en los países donde se acepta voucher prepago.', '-34.86052642170021', '-55.09839618652347', 9, 'Punta del Este'),
-(4, 4, 1, '2014-01-16 01:27:13', '4225 0997', 'M. Chiossi casi 3 de Febrero', '15%', '12 cuotas sin interés', 'Todos los días', 'Descuento no acumulable a otras promociones del comercio. El cliente podrá hacer uso de los planes de cuota de acuerdo al mínimo de compra establecido por cada sucursal.', '-34.91274646537331', '-54.95332034365538', 9, 'Punta del Este'),
+(3, 2, 1, '2014-01-16 15:20:14', '4255 9858', 'Punta Del Este Airport (Airport) Laguna Del Sauce', '10%', '', 'Todos los días', 'Para aplicar el descuento se debe pagar el alquiler del vehículo en las oficinas de AVIS de Uruguay. Promoción válida en los países donde se acepta voucher prepago.', '-34.86052642170021', '-55.09839618652347', 10, 'Punta del Este'),
+(4, 4, 1, '2014-01-16 15:20:19', '4225 0997', 'M. Chiossi casi 3 de Febrero', '15%', '12 cuotas sin interés', 'Todos los días', 'Descuento no acumulable a otras promociones del comercio. El cliente podrá hacer uso de los planes de cuota de acuerdo al mínimo de compra establecido por cada sucursal.', '-34.91274646537331', '-54.95332034365538', 10, 'Punta del Este'),
 (5, 5, 1, '2014-01-16 01:27:13', '4224 6206', 'Roman Guerra Esq. Ventura Alegre', '15%', '12 cuotas sin interés', 'Todos los días', 'Descuento no acumulable a otras promociones del comercio. El cliente podrá hacer uso de los planes de cuota de acuerdo al mínimo de compra establecido por cada sucursal.', '-34.9064514', '-54.95659460000002', 9, 'Punta del Este'),
 (6, 6, 1, '2014-01-16 01:27:13', '4248 9015', 'Punta Shopping (Av. Roosevelt Esq. Los Alpes) Local 260', '15%', '6 cuotas sin interés', 'Todos los días', 'Descuento no acumulable a otras promociones del comercio. El cliente podrá hacer uso de los planes de cuota de acuerdo al mínimo de compra establecido por cada sucursal.', '-34.93957041724333', '-54.93419760947876', 9, 'Punta del Este'),
 (7, 7, 1, '2014-01-16 01:27:13', '4248 6927', 'Av. Roosevelt y Parada 10', '10%', '6 cuotas sin interés', 'Todos los días', 'El beneficio es acumulable a otros descuentos en cualquiera de los locales Farmashop.', '-34.93381078855851', '-54.940298824667366', 9, 'Punta del Este'),
@@ -380,7 +404,7 @@ INSERT INTO `locales` (`locales_id`, `locales_ofertas_id`, `locales_estado`, `lo
 -- Estructura de tabla para la tabla `ofertas`
 --
 
-CREATE TABLE IF NOT EXISTS `ofertas` (
+CREATE TABLE `ofertas` (
   `ofertas_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `ofertas_nombre` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `ofertas_tags` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -430,7 +454,7 @@ INSERT INTO `ofertas` (`ofertas_id`, `ofertas_nombre`, `ofertas_tags`, `ofertas_
 -- Estructura de tabla para la tabla `participaciones`
 --
 
-CREATE TABLE IF NOT EXISTS `participaciones` (
+CREATE TABLE `participaciones` (
   `participaciones_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `participaciones_eventos_id` smallint(5) unsigned NOT NULL,
   `participaciones_uid` bigint(20) unsigned NOT NULL,
@@ -445,7 +469,7 @@ CREATE TABLE IF NOT EXISTS `participaciones` (
 -- Estructura de tabla para la tabla `push`
 --
 
-CREATE TABLE IF NOT EXISTS `push` (
+CREATE TABLE `push` (
   `push_id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
   `push_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `push_platform` enum('ios','android') COLLATE utf8_unicode_ci NOT NULL,
@@ -472,8 +496,8 @@ INSERT INTO `push` (`push_id`, `push_token`, `push_platform`, `push_fecha_hora_c
 -- Filtros para la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  ADD CONSTRAINT `eventos_ibfk_2` FOREIGN KEY (`eventos_departamentos_id`) REFERENCES `departamentos` (`departamentos_id`),
-  ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`eventos_categoria_id`) REFERENCES `categorias` (`categorias_id`);
+  ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`eventos_categoria_id`) REFERENCES `categorias` (`categorias_id`),
+  ADD CONSTRAINT `eventos_ibfk_2` FOREIGN KEY (`eventos_departamentos_id`) REFERENCES `departamentos` (`departamentos_id`);
 
 --
 -- Filtros para la tabla `locales`

@@ -100,33 +100,18 @@ function ListaEventos()
 		    		else 
 		    			$(holder).find('#ListaEventosWrapper').html('<div class="sin_resultados"><div>No hay eventos publicados por el momento.<br /><br />Te invitamos a que consultes la sección Descuentos.</div></div>');
 
-		    		/*setTimeout(function(){
-			        	$(holder).find('>div').css('height', 50)
-			        },100)*/
 		    	}else{
 
-		    		/*setTimeout(function(){
-			        	$(holder).find('>div').css('height', '')
-			        },100);*/
-			        
+		    		
 		    	}
 
 		        for(var i=0; i<cant_eventos; i++){
-					//for(var u=0; u<30; u++){
+
+					//for(var u=0; u<20; u++){
 					var _ItemListaEvento = new ItemListaEvento(resultado.rows.item(i));
 					$(holder).find('#ListaEventosWrapper').append(_ItemListaEvento.main)
-		            //}
+		           // }
 		        }
-
-				/*setTimeout(function(){  
-					if(!scroll_set){
-							scroll_set = true;
-							is =  new iScroll('ListaEventos_holder', {hScrollbar: false, vScrollbar: false});
-					}else{
-							is.refresh()
-					}
-					is.scrollTo(0, 0, 0);
-		   		}, 0)*/
 
 				if(typeof($callback)!='undefined') $callback(cant_eventos);
 

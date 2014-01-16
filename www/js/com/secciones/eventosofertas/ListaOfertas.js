@@ -25,17 +25,33 @@ function ListaOfertas()
 	var holder = document.createElement('div')
 	holder.id = 'ListaOfertas_holder'
 	holder.className = 'Tabs_holder'
-	$(holder).append('<div id="ListaOferta_holder_combo_deptos"><div id="ListaOferta_txt_deptos">Departamento:</div></div><div id="ListaOfertasWrapper">')
+	$(holder).append('<div id="ListaOferta_banner"></div><div id="ListaOferta_holder_combo_deptos"><div id="ListaOferta_txt_deptos">Departamento:</div></div><div id="ListaOfertasWrapper">')
 	$(this.main).append(holder)
 
 	$(holder).css({width: app.ancho-40, height: app.alto-200});
 	
 	setTimeout(function (){
-
 		$('#ListaOferta_holder_combo_deptos').append(combo_deptos);
-		
-
+		cargar_banner_oferta()
 	}, 0)
+
+
+	function cargar_banner_oferta(){
+		
+		 $.ajax({
+				type: "GET",
+				url: app.server + "json.get_img_banner.php",
+				dataType: 'json',
+				async : false
+			}).success(function($json) {
+
+				if($json!==false) $('#ListaOferta_banner').html('<img width="'+(app.ancho-40)+'" src="'+app.server+'imgs/banners/'+$json.banners_ofertas_url+'" />')
+				else $('#ListaOferta_banner').hide()
+			});
+
+	}
+
+
 
 
 	function doChangeDepto(){
