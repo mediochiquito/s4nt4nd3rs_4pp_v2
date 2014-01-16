@@ -59,8 +59,8 @@ function SeccionEventosOfertas()
 		
 		if(en_solapa=='una_oferta') mostrar_solapa({solapa:'eventos'});
 		if(en_solapa=='un_evento')  mostrar_solapa({solapa:'ofertas'});
-
-		if(!en_transaccion){
+		
+		
 				en_transaccion =  true
 				lista_eventos.listar($busqueda, function ($cantidad_eventos){
 		
@@ -75,7 +75,7 @@ function SeccionEventosOfertas()
 		
 					});
 				});
-		}
+		
 	}
 
 	this.ir_a_una_solapa = function($obj){

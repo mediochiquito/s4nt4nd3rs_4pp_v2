@@ -64,17 +64,17 @@ function ListaEventos()
 
 		var fecha_hasta_hoy = _date.getFullYear() + '-' + mes + '-' + dia + ' 00:00:00';
 
+
 		
-		var where = ' WHERE eventos_estado=1 AND  eventos_fecha_hora>="'+fecha_hasta_hoy+'" ';
+		var where = ' WHERE eventos_estado=1 AND  eventos_fecha_hora>="'+fecha_hasta_hoy+'" AND eventos_estado=1 AND eventos_departamentos_id="'+app.depto_que_me_encuentro + '" ';
 		if($busqueda != ''){
-			where = ' WHERE (eventos_nombre LIKE "%' + $busqueda + '%" OR eventos_tags LIKE "%' + $busqueda + '%") AND eventos_estado=1 AND  eventos_fecha_hora>="'+fecha_hasta_hoy+'"';
+			where = ' WHERE (eventos_nombre LIKE "%' + $busqueda + '%" OR eventos_tags LIKE "%' + $busqueda + '%") AND eventos_estado=1 AND eventos_departamentos_id="'+app.depto_que_me_encuentro+'" AND  eventos_fecha_hora>="'+fecha_hasta_hoy+'"';
 		}
 
-
 		$(holder).find('>div').empty();
-
+		
 		app.db.transaction(function (tx) {
-
+			
 			tx.executeSql('SELECT * FROM eventos ' + where + ' ORDER BY eventos_fecha_hora ASC' , [], function (tx, resultado) {
 		    	
 		    	var cant_eventos = resultado.rows.length;
@@ -85,14 +85,14 @@ function ListaEventos()
 		    		else 
 		    			$(holder).find('>div').html('<div class="sin_resultados"><div>No hay eventos publicados por el momento.<br /><br />Te invitamos a que consultes la sección Descuentos.</div></div>');
 
-		    		setTimeout(function(){
+		    		/*setTimeout(function(){
 			        	$(holder).find('>div').css('height', 50)
-			        },100)
+			        },100)*/
 		    	}else{
 
-		    		setTimeout(function(){
+		    		/*setTimeout(function(){
 			        	$(holder).find('>div').css('height', '')
-			        },100);
+			        },100);*/
 			        
 		    	}
 

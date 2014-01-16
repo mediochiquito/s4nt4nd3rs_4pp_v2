@@ -32,6 +32,7 @@ function ListaOfertas()
 		
 
 	var where = '';
+		
 		if($busqueda != ''){
 			where = ' WHERE (ofertas_nombre LIKE "%' + $busqueda + '%" OR ofertas_tags LIKE "%' + $busqueda + '%") ';
 		}
@@ -40,7 +41,7 @@ function ListaOfertas()
 		$(holder).find('>div').empty()
 		app.db.transaction(function (tx) {
 			
-			tx.executeSql("SELECT * FROM ofertas "+where+" ORDER BY ofertas_id ASC" , [], function (tx, resultado) {
+			tx.executeSql("SELECT * FROM ofertas "+where+" ORDER BY ofertas_id  AND ofertas_departamentos_id="+app.depto_que_me_encuentro+" AND ofertas_estado=1  ASC" , [], function (tx, resultado) {
 		    	
 		    	var cant_ofertas = resultado.rows.length;
 		    	if(cant_ofertas == 0){

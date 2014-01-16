@@ -30,7 +30,7 @@ function App(){
 	var sync_value = 0;
 	var new_sync_value = 0;
 	var btn_connect;
-	
+	var buscando_depto = true;
 	this.depto_que_me_encuentro = 9;
 	this.categorias_eventos = new Array("Deportes","Moda", "Música", "Culturales", "Gastronómico");
 	this.meses = new Array('Ene', 'Feb', 'Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic');
@@ -74,7 +74,9 @@ function App(){
 	}
 
 	function doPrevent(event) {
-		//event.preventDefault();
+		
+		if(app.secicones.get_obj_seccion_actual().main.id == 'SeccionMapa' || app.secicones.get_obj_seccion_actual().main.id == 'SeccionMapaForm')
+		event.preventDefault();
 	}
 
 	this.openlink = function($url){
@@ -189,7 +191,6 @@ function App(){
 					);
 			}
 
-
         self.ancho = window.innerWidth;
 		self.alto = window.innerHeight;
 		if(self.alto<480)self.alto = 480;
@@ -281,26 +282,49 @@ function App(){
 		navigator.geolocation.clearWatch(watchid);
 
 		// geolocalizar
-		$.ajax({
-				type: "GET",
-				url: "http://maps.googleapis.com/maps/api/geocode/json?latlng="+app.posicion_global.coords.latitude+","+app.posicion_global.coords.longitude+"&sensor=true",
-				dataType: 'json'
-			}).success(function($json) {
+
+		if(buscando_depto){
+				buscando_depto = false;
 				
-				
-				for(var address_components in  $json.results[0].address_components){
+				$.ajax({
+					type: "GET",
+					url: "http://maps.googleapis.com/maps/api/geocode/json?latlng="+app.posicion_global.coords.latitude+","+app.posicion_global.coords.longitude+"&sensor=true",
+					dataType: 'json'
+					}).success(function($json) {
+						
+						
+						for(var address_components in  $json.results[0].address_components){
 
-					if($json.results[0].address_components[address_components].types[0] == 'administrative_area_level_1')
-						self.depto_que_me_encuentro = ($.inArray($json.results[0].address_components[address_components].short_name, array_deptos_google)+1);
+							if($json.results[0].address_components[address_components].types[0] == 'administrative_area_level_1'){
+								
+								var depto_encontrado = ($.inArray($json.results[0].address_components[address_components].short_name, array_deptos_google)+1);
+								if(depto_encontrado>0){
+
+									///setTimeout(function(){
+										
+											self.depto_que_me_encuentro = depto_encontrado;
+										
+
+											$(document).trigger('CARGAR_LISTAS')
 
 
-				}
+									//}, 5000)
+								
+								}
 
-				if(self.depto_que_me_encuentro>0) alert(self.depto_que_me_encuentro)
+							}
+						}
 
-				
-			});
-		
+						app.cargando(false);
+
+						
+					}).error(function(){
+
+						app.cargando(false);
+					});
+			
+		}
+	
 		
 	}
 
