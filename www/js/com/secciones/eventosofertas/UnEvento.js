@@ -314,11 +314,11 @@ function UnEvento()
                         if($json.length == 0) $('#UnEvento_holder_usuarios_fb').html('<div id="UnEvento_mensaje_participantes">Aun no hay participantes en este evento.</div>')
 
                         $('#UnEvento_holder_usuarios_fb').append('<br style="clear:both" />');
-                       	is.refresh()
+                       	//is.refresh()
                 },
                 error: function(){ 
                         $('#UnEvento_holder_usuarios_fb').html('<div id="UnEvento_mensaje_participantes">Ocurrio un error al obtener los participantes</div>');
-                        is.refresh()
+                       // is.refresh()
                 }
         });        
 	}
