@@ -20,7 +20,6 @@ function UnEvento()
 	var header_titulo =  document.createElement('div')
 	header_titulo.id = 'UnEvento_header_titulo'
 	$(holder).find('>div').append(header_titulo)
-	
 
 
 	var titulo_txt =  document.createElement('div')

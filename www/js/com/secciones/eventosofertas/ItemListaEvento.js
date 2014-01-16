@@ -82,12 +82,15 @@ function ItemListaEvento($row)
 	function pintar(){
 
 		$(self.main).css('background-color', '#ccc')
-
+		
 	}
 	function despintar(){
 
 		$(self.main).css('background-color', '#fff')
 	
 	}
+
+
+
 }
 

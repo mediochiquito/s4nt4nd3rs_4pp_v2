@@ -30,13 +30,28 @@ function App(){
 	var sync_value = 0;
 	var new_sync_value = 0;
 	var btn_connect;
-
+	
+	this.depto_que_me_encuentro = 9;
 	this.categorias_eventos = new Array("Deportes","Moda", "Música", "Culturales", "Gastronómico");
 	this.meses = new Array('Ene', 'Feb', 'Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic');
-	this.array_deptos = new Array();
+	
+	this.array_deptos = new Array('Artigas','Canelones','Cerro Largo','Colonia','Durazno','Flores','Florida',
+								  'Lavalleja','Maldonado','Montevideo','Paysandú','Río Negro','Rivera','Rocha',
+								  'Salto','San José','Soriano','Tacuarembó',
+								  'Treinta y Tres');
+
+	var array_deptos_google = new Array( 'Departamento de Artigas','Departamento de Canelones','Cerro Largo','Departamento de Colonia',
+										  'Departamento de Durazno','Departamento de Flores','Departamento de Florida', 
+										  'Departamento de Lavalleja','Departamento de Maldonado','Departamento de Montevideo',
+										  'Paysandú','Río Negro','Departamento de Rivera','Departamento de Rocha',
+										  'Departamento de Salto','San José','Departamento de Soriano','Tacuarembó',
+										  'Departamento de Treinta y Tres');
+
+
 	this.id_depto_en_que_estoy = 0;
 	this.posicion_global = ''
 	var watchid;
+
 
 	// tipo_de_instalacion 
 	// 1 = intalando de 0
@@ -54,7 +69,8 @@ function App(){
 
 	this.get_xml_default_db = function (){
 
-		return xml_default_db
+		return xml_default_db;
+
 	}
 
 	function doPrevent(event) {
@@ -109,7 +125,6 @@ function App(){
 	            states[Connection.CELL_4G]  = 'Cell 4G connection';
 	            states[Connection.CELL]     = 'Cell generic connection';
 	            states[Connection.NONE]     = 'No network connection';
-	          
 
 	            if(networkState == Connection.NONE ){
 	 				return false;
@@ -264,6 +279,28 @@ function App(){
 		
 		self.posicion_global = position
 		navigator.geolocation.clearWatch(watchid);
+
+		// geolocalizar
+		$.ajax({
+				type: "GET",
+				url: "http://maps.googleapis.com/maps/api/geocode/json?latlng="+app.posicion_global.coords.latitude+","+app.posicion_global.coords.longitude+"&sensor=true",
+				dataType: 'json'
+			}).success(function($json) {
+				
+				
+				for(var address_components in  $json.results[0].address_components){
+
+					if($json.results[0].address_components[address_components].types[0] == 'administrative_area_level_1')
+						self.depto_que_me_encuentro = ($.inArray($json.results[0].address_components[address_components].short_name, array_deptos_google)+1);
+
+
+				}
+
+				if(self.depto_que_me_encuentro>0) alert(self.depto_que_me_encuentro)
+
+				
+			});
+		
 		
 	}
 

@@ -193,6 +193,7 @@ function SeccionMapa()
 	 					var mi_pos = new google.maps.LatLng(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude     )
 							map.setCenter(mi_pos);
 							my_marker.setPosition(mi_pos);
+							
 	 				}catch(e){}
 						        	
 			
@@ -297,6 +298,8 @@ function SeccionMapa()
 		});
 
 	}
+
+	
 	/*function do_LISTAR_EVENTOS(e){
 
 
