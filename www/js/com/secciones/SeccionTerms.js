@@ -29,7 +29,8 @@ function SeccionTerms()
 				dataType: 'text'
 			}).success(function(html) {
 
-				$(holder).append(html)
+				$(holder).append(html);
+				
 			});
 
 

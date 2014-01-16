@@ -279,7 +279,7 @@ function SeccionMapa()
 		array_markers_ofertas = new Array();
 		app.db.transaction(function (tx) {
 			
-			tx.executeSql("SELECT * FROM locales WHERE locales_estado=1 AND locales_departamentos_id=?" , [app.depto_que_me_encuentro], function (tx, resulato_locales) {
+			tx.executeSql("SELECT * FROM locales INNER JOIN ofertas ON locales_ofertas_id=ofertas_id WHERE locales_estado=1 AND locales_departamentos_id=?" , [app.depto_que_me_encuentro], function (tx, resulato_locales) {
 		    	
 		    	var cant_locales = resulato_locales.rows.length;
 		    
@@ -298,6 +298,8 @@ function SeccionMapa()
 					array_markers_ofertas[i].setMap(map);
 
 					google.maps.event.addListener(array_markers_ofertas[i], 'click', function() {
+					   
+
 					   	mostrar_una_oferta(this.row)
 					});
 		        }

@@ -16,23 +16,46 @@ function ListaEventos()
 	$(btn_ver_en_mapa.main).css({'margin-left': -132, top: app.alto-75});
 	$(btn_subir_evento.main).css({'margin-left': 2, top: app.alto-75});
 
+	var combo_deptos = document.createElement('select');
+	combo_deptos.id = 'ListaEventos_combo_deptos'
+	$(combo_deptos).bind('change', doChangeDepto)
+	for(var i=0; i< app.array_deptos.length; i++){
+
+			var option =  document.createElement('option');
+				option.value = (i+1)
+				$(option).append(app.array_deptos[i])
+				$(combo_deptos).append(option);
+
+	}
 
 	var holder = document.createElement('div')
 	holder.id = 'ListaEventos_holder'
 	holder.className = 'Tabs_holder'
-	$(holder).append('<div></div>')
+	$(holder).append('<div id="ListaEventos_holder_combo_deptos"><div id="ListaEventos_txt_deptos">Departamento:</div></div><div id="ListaEventosWrapper">')
 	$(this.main).append(holder),
 
 
 
 	$(holder).css({width: app.ancho-40, height: app.alto-200});
 
+	setTimeout(function (){
+
+		$('#ListaEventos_holder_combo_deptos').append(combo_deptos);
+
+
+	}, 0);
+
+
 	/*var is ;
 	var scroll_set =  false*/
 
-	//$(document).bind('LISTAR_EVENTOS', do_LISTAR_EVENTOS);
+	function doChangeDepto(){
 
-	
+		app.depto_que_me_encuentro = ($(combo_deptos).val())
+		$(document).trigger('CARGAR_LISTAS')
+
+	}
+
 	function doVerEnMapa(e){
 
 		app.secciones.go(app.secciones.seccionmapa, 300, {solo_ver:'eventos'})
@@ -46,14 +69,6 @@ function ListaEventos()
 	}
 
 
-	
-	/*function do_LISTAR_EVENTOS(){
-
-		//self.listar('');
-
-	}*/
-
-
 	this.listar =  function ($busqueda, $callback){
 		
 		var _date = new Date();
@@ -64,14 +79,14 @@ function ListaEventos()
 
 		var fecha_hasta_hoy = _date.getFullYear() + '-' + mes + '-' + dia + ' 00:00:00';
 
-
+		$(combo_deptos).find('option[value="'+app.depto_que_me_encuentro+'"]').prop('selected', true)
 		
 		var where = ' WHERE eventos_estado=1 AND  eventos_fecha_hora>="'+fecha_hasta_hoy+'" AND eventos_estado=1 AND eventos_departamentos_id="'+app.depto_que_me_encuentro + '" ';
 		if($busqueda != ''){
 			where = ' WHERE (eventos_nombre LIKE "%' + $busqueda + '%" OR eventos_tags LIKE "%' + $busqueda + '%") AND eventos_estado=1 AND eventos_departamentos_id="'+app.depto_que_me_encuentro+'" AND  eventos_fecha_hora>="'+fecha_hasta_hoy+'"';
 		}
 
-		$(holder).find('>div').empty();
+		$(holder).find('#ListaEventosWrapper').empty();
 		
 		app.db.transaction(function (tx) {
 			
@@ -81,9 +96,9 @@ function ListaEventos()
 		    	if(cant_eventos == 0){
 
 		    		if($busqueda != '')
-		    			$(holder).find('>div').html('<div class="sin_resultados"><div>La busqueda no ha arrojado ningun resultado en eventos.</div></div>');
+		    			$(holder).find('#ListaEventosWrapper').html('<div class="sin_resultados"><div>La busqueda no ha arrojado ningun resultado en eventos.</div></div>');
 		    		else 
-		    			$(holder).find('>div').html('<div class="sin_resultados"><div>No hay eventos publicados por el momento.<br /><br />Te invitamos a que consultes la sección Descuentos.</div></div>');
+		    			$(holder).find('#ListaEventosWrapper').html('<div class="sin_resultados"><div>No hay eventos publicados por el momento.<br /><br />Te invitamos a que consultes la sección Descuentos.</div></div>');
 
 		    		/*setTimeout(function(){
 			        	$(holder).find('>div').css('height', 50)
@@ -99,7 +114,7 @@ function ListaEventos()
 		        for(var i=0; i<cant_eventos; i++){
 					//for(var u=0; u<30; u++){
 					var _ItemListaEvento = new ItemListaEvento(resultado.rows.item(i));
-					$(holder).find('>div').append(_ItemListaEvento.main)
+					$(holder).find('#ListaEventosWrapper').append(_ItemListaEvento.main)
 		            //}
 		        }
 

@@ -46,9 +46,9 @@ function SeccionMapaForm()
 
 
 	function doAceptar(){
-		
-		lat = marker.getPosition().nb
-		lon = marker.getPosition().ob
+
+		lat = marker.getPosition().lat();
+		lon = marker.getPosition().lng()
 
 		app.secciones.go(app.secciones.seccioneventosofertas, 300, {solapa: 'subirevento'});
 	}
@@ -97,9 +97,9 @@ function SeccionMapaForm()
 		marker.setMap(map);
 
 	
-		setTimeout(function() {
+		/*setTimeout(function() {
 		     google.maps.event.trigger(map,'resize');
-		}, 200);
+		}, 200);*/
 
 		
 	}

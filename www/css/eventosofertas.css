@@ -31,6 +31,48 @@
 	width: 100%;
 }
 
+#ListaOferta_txt_deptos,#ListaEventos_txt_deptos{
+
+ 	 font-family: 'GothamBold';
+	 font-size: 13px;
+	 position: absolute;
+	 width: 130px;
+ 	 margin-left: -120px;
+	 left: 50%;
+ 	 top: 20px;
+
+}
+#ListaOferta_combo_deptos,#ListaEventos_combo_deptos{
+
+	-webkit-appearance: none;
+	border: none;
+	padding: 0px 10px 0px 10px;
+	outline: none;
+	font-family: 'GothamBook';
+	font-size: 12px;
+	-webkit-border-radius: 5px;
+	-webkit-appearance: none;
+	height: 31px;
+	border-radius: 5px;
+	border: solid 1px #ccc;
+	position: absolute;
+	background-image: url(../img/form/flecha_combo.png);
+	background-repeat: no-repeat;
+	background-size: 30px 30px;
+	background-position: right 0px;
+	top: 11px;
+	left: 50%;
+	margin-left: -15px;
+	width: 147px;
+	position: absolute;
+
+}
+#ListaOferta_holder_combo_deptos,#ListaEventos_holder_combo_deptos{
+	
+	height: 55px;
+	padding: 0 auto;
+	
+}
 #ListaOfertas_holder{
 	overflow: scroll;
     -webkit-overflow-scrolling: touch;
