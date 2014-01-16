@@ -1,4 +1,12 @@
- - Colocarle este valor de color a los links que poseen el teléfono (#ed1c24)
+- doble consulta al inicio, a los listados, verificar! 
+
+
+- boton menu que se pinta?
+
+- paddin en unevento
+
+- orden por distancia locales.
+
 
  - Se cambiaron algunos iconos, verás en el PSD de subir-eventos.psd 
 También mando un PSD con los nuevos iconos de los headers de Eventos y Descuentos, que mencionan que se ven poco. Son 3 iconos nuevos. Están en el set GRID ONLY, apagados, del PSD descuentos-banner-ampliacion.psd

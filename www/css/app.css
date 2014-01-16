@@ -24,7 +24,9 @@ html,body {
          url('fonts/gotham-book.ttf') format('truetype'),
          url('fonts/gotham-book.svg#GothamBook') format('svg');
 }
-
+a{
+	color: #ed1c24;
+}
 
 input,textarea, select{
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);

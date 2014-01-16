@@ -39,8 +39,8 @@ function ItemLocal($row)
 	function addRegistro($label, $data){
 
 		$(self.main).append('<div class="UnaOferta_reg"><div class="UnaOferta_label">'+ $label+
-							  '</div><div class="UnaOferta_data" style="width: ' + (app.ancho-170) + 'px">'+ $data+
-							  '</div><br style="clear:both"></div>');
+							  '</div><div class="UnaOferta_data" ><div>'+ $data+
+							  '</div></div><br style="clear:both" /></div>');
 		
 	}
 

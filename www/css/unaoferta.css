@@ -31,7 +31,9 @@
 
 	position: absolute;
 	right: 6px;
-	top: 4px;
+	
+
+	top: 10px;
 }
 
 #UnaOferta_holder{
@@ -52,7 +54,9 @@
 
 	position: absolute;
 	right: 6px;
-	top: 10px;
+	
+
+	top: 4px;
 }
 #UnaOferta_hoy{
 
@@ -92,23 +96,33 @@
 .UnaOferta_reg{
 	position: relative;
 	
-	padding: 5px;
-	border-bottom: solid 1px #ccc;
+	
 	
 }
 .UnaOferta_label{
-	position: relative;
-	width: 100px;
+	position: absolute;
+	width: 120px;a
 	font-family: 'GothamBold';
 	font-size: 12px;
-	float: left;
+	top:5px;
+	
+	left: 10px;
 }
 .UnaOferta_data{
 	position: relative;
 	font-family: 'GothamBook';
 	font-size: 12px;
 	float: left;
+
+	min-height: 25px;
+	width: 100%;
+	border-bottom: solid 1px #ccc;
 }
+.UnaOferta_data>div{
+	padding: 5px;
+	margin-left: 130px;
+}
+
 #UnaOferta_holder_footer{
 	position: relative;
 	
