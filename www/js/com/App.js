@@ -58,7 +58,7 @@ function App(){
 	}
 
 	function doPrevent(event) {
-		event.preventDefault();
+		//event.preventDefault();
 	}
 
 	this.openlink = function($url){
