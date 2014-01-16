@@ -13,7 +13,7 @@ function ItemListaOferta($row)
 	var txt = document.createElement('div');
 	txt.className = 'ItemListaOferta_txt_descuento';
 	$(this.main).append(txt)
-	$(txt).html($row.ofertas_descuento)
+	//$(txt).html($row.ofertas_descuento)
 	
 	var hoy = new Image();
 	hoy.className =  'ItemListaOferta_hoy';

@@ -70,7 +70,7 @@ function UnaOferta()
 	function addRegistro($label, $data){
 		
 		$(holder_data).append('<div class="UnaOferta_reg"><div class="UnaOferta_label">'+ $label+
-							  '</div><div class="UnaOferta_data" style="width: ' + (app.ancho-150) + 'px">'+ $data+
+							  '</div><div class="UnaOferta_data" style="width: ' + (app.ancho-170) + 'px">'+ $data+
 							  '</div><br style="clear:both"></div>');
 		
 	}

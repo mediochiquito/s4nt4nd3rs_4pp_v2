@@ -44,6 +44,7 @@ function SeccionEventosOfertas()
 	var en_transaccion=false;
 
 	$(document).bind('CARGAR_LISTAS', function(){
+		
 		app.secciones.seccioneventosofertas.cargar_listas('')
 	});
 
@@ -55,7 +56,7 @@ function SeccionEventosOfertas()
 
 	this.cargar_listas = function($busqueda){
 
-	
+		
 		if(en_solapa=='una_oferta') mostrar_solapa({solapa:'eventos'});
 		if(en_solapa=='un_evento')  mostrar_solapa({solapa:'ofertas'});
 

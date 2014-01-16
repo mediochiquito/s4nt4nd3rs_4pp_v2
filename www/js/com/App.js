@@ -15,8 +15,8 @@ function App(){
 	};
 	this.redirigiendo_una_push = false;
 	this.cargo_mapa = false;
-	//this.server = 'http://192.168.0.2/s4nt4nd3rs_4pp_v2/server/'
-	this.server = 'http://192.168.235.140:8888/s4nt4nd3rs_4pp_v2/server/';
+	this.server = 'http://192.168.0.2/s4nt4nd3rs_4pp_v2/server/';
+	//this.server = 'http://192.168.235.140:8888/s4nt4nd3rs_4pp_v2/server/';
 	//this.server = 'http://santander.crudo.com.uy/';
 	
 	this.db = openDatabase('santanders_app_punta', '1.0', 'santanders_app_punta', 2000000);
@@ -251,6 +251,7 @@ function App(){
 					array_tablas_a_crear = new Array(crearTabla_Eventos,
 													 crearTabla_Participaciones,
 													 crearTabla_Ofertas, 
+													 crearTabla_Locales,
 													 crearTabla_App);
 
 					for(var func in array_tablas_a_crear){
@@ -285,24 +286,26 @@ function App(){
 		 
 			if(app.secciones.get_obj_seccion_actual()==null)
 				app.secciones.go(app.secciones.seccionhome);
+	
+		   	 app.db.transaction(function (tx) {
 
-			if(app.is_phonegap()){
-		    	
-		    	app.db.transaction(function (tx) {
-
-					tx.executeSql("SELECT push FROM app" , [], function (tx, resultado) {
+					tx.executeSql("SELECT sync_value,push FROM app" , [], function (tx, resultado) {
 		    				
-		    				if(String(resultado.rows.item(0).push) == '0' || String(resultado.rows.item(0).push) == '1' ) 
-		    						self._ManagePush.registrar();
-		    					
+		    				sync_value = resultado.rows.item(0).sync_value
+
+		    				if(app.is_phonegap()){
+			    				if(String(resultado.rows.item(0).push) == '0' || String(resultado.rows.item(0).push) == '1' ) 
+			    					self._ManagePush.registrar();
+		    				}
+
+
+		    				if(app.hay_internet()) verfificar_sync();
+							else $(document).trigger('CARGAR_LISTAS');
+
 					})
-				});
-	    	}
 
-			if(!app.hay_internet()) verfificar_sync();
-			else $(document).trigger('CARGAR_LISTAS');
 
-		
+			});
 
 	}
 
@@ -319,7 +322,7 @@ function App(){
 					
 					if(new_sync_value>Number(sync_value)){
 						
-						app.cargando(true, 'Sincronizando eventos...');
+						app.cargando(true, 'Actualizando información...');
 						$.ajax({
 
 							type: "GET",
@@ -329,7 +332,7 @@ function App(){
 							data:{sync_value: sync_value},
 
 							success: function($xml) {
-								app.cargando(false);
+								
 								actualizar_db($xml);
 							},
 							error: function(){ 
@@ -352,87 +355,202 @@ function App(){
 	//C:\Users\Mateo\AppData\Local\Google\Chrome\User Data\Default\databases\http_localhost_0
 	function actualizar_db($xml){
 	
-		var obj = $.parseJSON($($xml).find('eventos').text())
+		var obj_eventos = $.parseJSON($($xml).find('sync_eventos>data').text());
+		var obj_ofertas = $.parseJSON($($xml).find('sync_ofertas>data').text());
+		var obj_locales = $.parseJSON($($xml).find('sync_locales>data').text());
+
 		app.db.transaction(function (tx) {
 
-			for(var item_evento in obj){
-					tx.executeSql('INSERT OR IGNORE INTO "eventos" ("eventos_id","eventos_nombre","eventos_fecha_hora","eventos_categoria_id","eventos_lugar","eventos_desc","eventos_lat","eventos_lon","eventos_uid","eventos_tags","eventos_estado","eventos_header_img","eventos_fecha_hora_creado") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', 
-			
+			for(var item_evento in obj_eventos){
+					tx.executeSql('INSERT OR IGNORE INTO "eventos" ("eventos_id","eventos_nombre","eventos_fecha_hora","eventos_categoria_id","eventos_lugar","eventos_desc","eventos_lat","eventos_lon","eventos_uid","eventos_tags","eventos_estado","eventos_departamentos_id","eventos_header_img","eventos_fecha_hora_creado") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)', 
 													  [
-													  
-													  obj[item_evento].eventos_id, 
-													  obj[item_evento].eventos_nombre, 
-													  obj[item_evento].eventos_fecha_hora, 
-													  obj[item_evento].eventos_categoria_id, 
-													  obj[item_evento].eventos_lugar, 
-													  obj[item_evento].eventos_desc, 
-													  obj[item_evento].eventos_lat, 
-													  obj[item_evento].eventos_lon, 
-													  obj[item_evento].eventos_uid, 
-													  obj[item_evento].eventos_tags, 
-													  obj[item_evento].eventos_estado, 
-													  obj[item_evento].eventos_header_img, 
-													  obj[item_evento].eventos_fecha_hora_creado
-
+													 
+													  obj_eventos[item_evento].eventos_id, 
+													  obj_eventos[item_evento].eventos_nombre, 
+													  obj_eventos[item_evento].eventos_fecha_hora, 
+													  obj_eventos[item_evento].eventos_categoria_id, 
+													  obj_eventos[item_evento].eventos_lugar, 
+													  obj_eventos[item_evento].eventos_desc, 
+													  obj_eventos[item_evento].eventos_lat, 
+													  obj_eventos[item_evento].eventos_lon, 
+													  obj_eventos[item_evento].eventos_uid, 
+													  obj_eventos[item_evento].eventos_tags, 
+													  obj_eventos[item_evento].eventos_estado, 
+													  obj_eventos[item_evento].eventos_departamentos_id, 
+													  obj_eventos[item_evento].eventos_header_img, 
+													  obj_eventos[item_evento].eventos_fecha_hora_creado
 
 													  ]);
-
 			}
-			
-		},  app.db_errorGeneral);
 
-		app.db.transaction(function (tx) {
-			
-			for(var item_evento in obj){
-					tx.executeSql('UPDATE "eventos" SET "eventos_nombre"=?,"eventos_fecha_hora"=?,"eventos_categoria_id"=?,"eventos_lugar"=?,"eventos_desc"=?,"eventos_lat"=?,"eventos_lon"=?,"eventos_uid"=?,"eventos_tags"=?,"eventos_estado"=?,"eventos_header_img"=?, "eventos_fecha_hora_creado"=? WHERE "eventos_id"=?', 
+
+			for(var item_ofeta in obj_ofertas){
+						tx.executeSql('INSERT OR IGNORE INTO "ofertas" ("ofertas_id","ofertas_nombre","ofertas_tags","ofertas_tipo","ofertas_header_img","ofertas_estado") VALUES (?,?,?,?,?,?)', 
+													  [
+													  obj_ofertas[item_ofeta].ofertas_id, 
+													  obj_ofertas[item_ofeta].ofertas_nombre, 
+													  obj_ofertas[item_ofeta].ofertas_tags, 
+													  obj_ofertas[item_ofeta].ofertas_tipo, 
+													  obj_ofertas[item_ofeta].ofertas_header_img,
+													  obj_ofertas[item_ofeta].ofertas_estado
+													  ]);
+			}
+
+
+
+
+			for(var item_local in obj_locales){
+				tx.executeSql('INSERT OR IGNORE INTO "locales" ("locales_id","locales_ofertas_id","locales_estado","locales_tel","locales_dir","locales_descuento", "locales_cutoas", "locales_dias", "locales_desc", "locales_lat", "locales_lon", "locales_departamentos_id", "locales_localidad") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', 
 														  [
-														
-														  obj[item_evento].eventos_nombre, 
-														  obj[item_evento].eventos_fecha_hora, 
-														  obj[item_evento].eventos_categoria_id, 
-														  obj[item_evento].eventos_lugar, 
-														  obj[item_evento].eventos_desc, 
-														  obj[item_evento].eventos_lat, 
-														  obj[item_evento].eventos_lon, 
-														  obj[item_evento].eventos_uid, 
-														  obj[item_evento].eventos_tags, 
-														  obj[item_evento].eventos_estado, 
-														  obj[item_evento].eventos_header_img, 
-														  obj[item_evento].eventos_fecha_hora_creado,
-														  obj[item_evento].eventos_id
+														  obj_locales[item_local].locales_id, 
+														  obj_locales[item_local].locales_ofertas_id, 
+														  obj_locales[item_local].locales_estado, 
+														  obj_locales[item_local].locales_tel, 
+														  obj_locales[item_local].locales_dir,
+														  obj_locales[item_local].locales_descuento,
+														  obj_locales[item_local].locales_cutoas, 
+														  obj_locales[item_local].locales_dias, 
+														  obj_locales[item_local].locales_desc, 
+														  obj_locales[item_local].locales_lat, 
+														  obj_locales[item_local].locales_lon,
+														  obj_locales[item_local].locales_departamentos_id,
+														  obj_locales[item_local].locales_localidad
 														  ]);
-
-
-				
-
 			}
+
+
+
+
+			
+		},  app.db_errorGeneral, function(){
+
+			//-----------------------------------------------
+					// LOS UPDATES
+					app.db.transaction(function ($tx) {
+						
+
+
+
+							for(var item_evento in obj_eventos){
+									$tx.executeSql('UPDATE "eventos" SET "eventos_nombre"=?,"eventos_fecha_hora"=?,"eventos_categoria_id"=?,"eventos_lugar"=?,"eventos_desc"=?,"eventos_lat"=?,"eventos_lon"=?,"eventos_uid"=?,"eventos_tags"=?,"eventos_estado"=?,"eventos_departamentos_id"=?,"eventos_header_img"=?, "eventos_fecha_hora_creado"=? WHERE "eventos_id"=?', 
+																		  [
+																		
+																		  obj_eventos[item_evento].eventos_nombre, 
+																		  obj_eventos[item_evento].eventos_fecha_hora, 
+																		  obj_eventos[item_evento].eventos_categoria_id, 
+																		  obj_eventos[item_evento].eventos_lugar, 
+																		  obj_eventos[item_evento].eventos_desc, 
+																		  obj_eventos[item_evento].eventos_lat, 
+																		  obj_eventos[item_evento].eventos_lon, 
+																		  obj_eventos[item_evento].eventos_uid, 
+																		  obj_eventos[item_evento].eventos_tags, 
+																		  obj_eventos[item_evento].eventos_estado, 
+																		  obj_eventos[item_evento].eventos_departamentos_id, 
+																		  obj_eventos[item_evento].eventos_header_img, 
+																		  obj_eventos[item_evento].eventos_fecha_hora_creado,
+																		  obj_eventos[item_evento].eventos_id
+																		  ]);
+							}
+
+							// a eliminar
+							var array_del = $($xml).find('sync_eventos>del').text().split(',')
+							var where='';
+							for(var del_id in array_del){
+								if(where!='') where += ' OR ';
+								where += ' eventos_id=' + array_del[del_id] ;
+							}
+							if($($xml).find('sync_eventos>del').text() !=''){
+								$tx.executeSql('DELETE FROM "eventos" WHERE ' + where);
+							}
+						
+
+							// --------------------------------------------------------------------------
+
+							for(var item_oferta in obj_ofertas){
+
+									$tx.executeSql('UPDATE "ofertas" SET  "ofertas_nombre"=?,"ofertas_tags"=?,"ofertas_tipo"=?,"ofertas_header_img"=?,"ofertas_estado"=? WHERE "ofertas_id"=?', 
+													  [
+													  obj_ofertas[item_oferta].ofertas_nombre, 
+													  obj_ofertas[item_oferta].ofertas_tags, 
+													  obj_ofertas[item_oferta].ofertas_tipo, 
+													  obj_ofertas[item_oferta].ofertas_header_img,
+													  obj_ofertas[item_oferta].ofertas_estado,
+													  obj_ofertas[item_oferta].ofertas_id
+													  ]);
+							}
+
+							// a eliminar
+							var array_del = $($xml).find('sync_ofertas>del').text().split(',')
+							var where='';
+							for(var del_id in array_del){
+								if(where!='') where += ' OR ';
+								where += ' ofertas_id=' + array_del[del_id] ;
+							}
+							if($($xml).find('sync_ofertas>del').text() !=''){
+								$tx.executeSql('DELETE FROM "ofertas" WHERE ' + where);
+							}
+
+
+
+							// --------------------------------------------------------------------------
+
+							for(var item_local in obj_locales){
+
+									$tx.executeSql('UPDATE "locales" SET "locales_ofertas_id"=?,"locales_estado"=?,"locales_tel"=?,"locales_dir"=?,"locales_descuento"=?, "locales_cutoas"=?, "locales_dias"=?, "locales_desc"=?, "locales_lat"=?, "locales_lon"=?, "locales_departamentos_id"=?, "locales_localidad"=? WHERE "locales_id"=?', 
+														  [
+														  
+														  obj_locales[item_local].locales_ofertas_id, 
+														  obj_locales[item_local].locales_estado, 
+														  obj_locales[item_local].locales_tel, 
+														  obj_locales[item_local].locales_dir,
+														  obj_locales[item_local].locales_descuento,
+														  obj_locales[item_local].locales_cutoas, 
+														  obj_locales[item_local].locales_dias, 
+														  obj_locales[item_local].locales_desc, 
+														  obj_locales[item_local].locales_lat, 
+														  obj_locales[item_local].locales_lon,
+														  obj_locales[item_local].locales_departamentos_id,
+														  obj_locales[item_local].locales_localidad,
+														  obj_locales[item_local].locales_id
+														  ]);
+							}
+
+							// a eliminar
+							var array_del = $($xml).find('sync_locales>del').text().split(',')
+							var where='';
+							for(var del_id in array_del){
+								if(where!='') where += ' OR ';
+								where += ' locales_id=' + array_del[del_id] ;
+							}
+							if($($xml).find('sync_locales>del').text() !=''){
+								$tx.executeSql('DELETE FROM "locales" WHERE ' + where);
+							}
+
+							// TERMINO !!!
+
+							termino_la_syncronizacion($tx)
+
+
+					},  app.db_errorGeneral);
+
+
+			//................................................
+
+		});
 
 		
-
-			// a eliminar
-			var array_del = $($xml).find('del').text().split(',')
-			var where='';
-			for(var del_id in array_del){
-				if(where!='') where += ' OR ';
-				where += ' eventos_id=' + array_del[del_id] ;
-
-			}
-
-			if($($xml).find('del').text() !=''){
-						
-						tx.executeSql('DELETE FROM "eventos" WHERE ' + where);
-			}
-			tx.executeSql('UPDATE app SET sync_value=?', [new_sync_value]);
-			$(document).trigger('CARGAR_LISTAS');
-
-
-
-		},  app.db_errorGeneral);
-
 		
 		
 	}
 
+	function termino_la_syncronizacion($tx){
+
+		$tx.executeSql('UPDATE app SET sync_value=?', [new_sync_value]);
+		$(document).trigger('CARGAR_LISTAS');
+		
+		app.cargando(false);
+	}
+		
 
     function crearTabla_App($tx){
 
@@ -456,9 +574,7 @@ function App(){
 
 					$tx.executeSql('UPDATE app SET version=?', [version]);
 
-					$tx.executeSql("SELECT sync_value FROM app" , [], function (tx, resultado) {
-	    				sync_value = resultado.rows.item(0).sync_value
-					})
+					
 				} 
 			});	
     }
@@ -493,6 +609,7 @@ function App(){
 
 				$tx.executeSql('INSERT OR IGNORE INTO "eventos" ("eventos_id","eventos_nombre","eventos_fecha_hora","eventos_categoria_id","eventos_lugar","eventos_desc","eventos_lat","eventos_lon","eventos_uid","eventos_tags","eventos_estado","eventos_departamentos_id","eventos_header_img","eventos_fecha_hora_creado") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)', 
 													  [
+													 
 													  obj[item_evento].eventos_id, 
 													  obj[item_evento].eventos_nombre, 
 													  obj[item_evento].eventos_fecha_hora, 
@@ -542,11 +659,61 @@ function App(){
 													  obj[item_ofeta].ofertas_tipo, 
 													  obj[item_ofeta].ofertas_header_img,
 													  obj[item_ofeta].ofertas_estado
-													  ], function(){}, app.db_errorGeneral);
+													  ]);
 
 			}
 
     }
+
+    function crearTabla_Locales($tx){
+
+		
+			$tx.executeSql('CREATE TABLE IF NOT EXISTS locales ( ' +
+
+						  '"locales_id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , ' +
+						  '"locales_ofertas_id" VARCHAR, ' +
+						  '"locales_estado" INTEGER, ' +
+						  '"locales_tel" VARCHAR, ' +
+						  '"locales_dir" VARCHAR, ' +
+						  '"locales_descuento" VARCHAR, ' +
+						  '"locales_cutoas" VARCHAR, ' +
+						  '"locales_dias" VARCHAR, ' +
+						  '"locales_desc" TEXT, ' +
+						  '"locales_lat" VARCHAR, ' +
+						  '"locales_lon" VARCHAR, ' +
+						  '"locales_departamentos_id"  INTEGER, ' + 
+						  '"locales_localidad" VARCHAR )', 
+
+
+					[], comprobacion_total_tablas_creadas);
+
+
+			var obj = $.parseJSON($(xml_default_db).find('locales').text())
+		
+			for(var item_local in obj){
+					
+					$tx.executeSql('INSERT OR IGNORE INTO "locales" ("locales_id","locales_ofertas_id","locales_estado","locales_tel","locales_dir","locales_descuento", "locales_cutoas", "locales_dias", "locales_desc", "locales_lat", "locales_lon", "locales_departamentos_id", "locales_localidad") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', 
+													  [
+													  obj[item_local].locales_id, 
+													  obj[item_local].locales_ofertas_id, 
+													  obj[item_local].locales_estado, 
+													  obj[item_local].locales_tel, 
+													  obj[item_local].locales_dir,
+													  obj[item_local].locales_descuento,
+													  obj[item_local].locales_cutoas, 
+													  obj[item_local].locales_dias, 
+													  obj[item_local].locales_desc, 
+													  obj[item_local].locales_lat, 
+													  obj[item_local].locales_lon,
+													  obj[item_local].locales_departamentos_id,
+													  obj[item_local].locales_localidad
+													  ]);
+
+			}
+
+    }
+
+
     function crearTabla_Participaciones($tx){
 		
 
@@ -563,6 +730,7 @@ function App(){
 		},  app.db_errorGeneral);
     }
 
+
     this.db_errorGeneral = function(tx, err) {
 		
 		try{
@@ -576,6 +744,7 @@ function App(){
 
    
 	this.cargando = function ($bool, $txt){
+		
 		if($bool){
 			$('#txt_loading').html($txt);
 			$('#loading').show();
@@ -584,7 +753,5 @@ function App(){
 		}
 
 	}
-
-	
 
 }

@@ -1,6 +1,8 @@
 <?
 include dirname(__FILE__) . '/_init.php';
 	
+echo '<root>';
+
 	$rs_ofertas = mysql_query('SELECT * FROM ofertas ORDER BY ofertas_id ASC');
 	echo '<ofertas><![CDATA[';
 	$rows_ofertas = array();
@@ -28,6 +30,7 @@ include dirname(__FILE__) . '/_init.php';
 	echo json_encode($rows_eventos);
 	echo ']]></eventos>';
 
-
-
 ?>
+
+
+</root>

@@ -38,6 +38,7 @@ function ListaEventos()
 		app.secciones.go(app.secciones.seccionmapa, 300, {solo_ver:'eventos'})
 
 	}
+	
 	function doSubirEvento(e){
 
 		app.secciones.seccioneventosofertas.ir_a_una_solapa({solapa:'subirevento'})

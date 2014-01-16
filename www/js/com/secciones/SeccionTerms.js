@@ -18,8 +18,21 @@ function SeccionTerms()
 	var cargada = false;
 
 	this._set  = function (obj){
+		
+
+
 		if(!cargada){
-			$(holder).append($(app.get_xml_default_db()).find('terms').text())
+			
+			$.ajax({
+				type: "GET",
+				url: "xml/terms.html",
+				dataType: 'text'
+			}).success(function(html) {
+
+				$(holder).append(html)
+			});
+
+
 			cargada = true;
 
 			

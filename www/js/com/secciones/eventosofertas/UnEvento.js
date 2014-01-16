@@ -82,7 +82,7 @@ function UnEvento()
 	function addRegistro($label, $data){
 
 		$(holder_data).append('<div class="UnEvento_reg"><div class="UnEvento_label">'+ $label+
-							  '</div><div class="UnEvento_data" style="width: ' + (app.ancho-150) + 'px">'+ $data+
+							  '</div><div class="UnEvento_data" style="width: ' + (app.ancho-170) + 'px">'+ $data+
 							  '</div><br style="clear:both"></div>');
 
 	}

@@ -28,7 +28,6 @@ function ListaOfertas()
 		
 	}
 	
-	
 	this.listar =  function ($busqueda, $callback){
 		
 
@@ -40,7 +39,8 @@ function ListaOfertas()
 
 		$(holder).find('>div').empty()
 		app.db.transaction(function (tx) {
-			tx.executeSql("SELECT * FROM ofertas "+where+" ORDER BY ofertas_descuento ASC" , [], function (tx, resultado) {
+			
+			tx.executeSql("SELECT * FROM ofertas "+where+" ORDER BY ofertas_id ASC" , [], function (tx, resultado) {
 		    	
 		    	var cant_ofertas = resultado.rows.length;
 		    	if(cant_ofertas == 0){
@@ -54,6 +54,7 @@ function ListaOfertas()
 			        	$(holder).find('>div').css('height', '')
 			        },100)
 		    	}
+		        
 		        for(var i=0; i<cant_ofertas; i++){
 					
 					var _ItemListaOferta = new ItemListaOferta(resultado.rows.item(i));
