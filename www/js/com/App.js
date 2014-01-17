@@ -310,7 +310,7 @@ function App(){
 										
 											self.depto_que_me_encuentro = depto_encontrado;
 										
-
+ 
 											$(document).trigger('CARGAR_LISTAS')
 
 
@@ -333,8 +333,8 @@ function App(){
 	
 		
 	}
-/* alert(Date.parse('ene 17, 2014 9:15:14 PM'))
- var _date = new Date( )
+ //alert(Date.parse('ene 17 2014 9:15:14 PM'))
+ /*var _date = new Date( )
 		alert(_date) 
 alert(_date.getHours() + ':' + _date.getMinutes())
 */
