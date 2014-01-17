@@ -168,10 +168,11 @@ var holder = document.createElement('div')
 			  	try{
 
 					var array_date = date.toString().split(',');
+				
 				  	if(array_date.length > 1) _date = array_date[1];
 
-			  	}catch(){
-			  		
+			  	}catch(e){
+
 			  	}
 			  
 
