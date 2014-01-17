@@ -152,7 +152,7 @@ var holder = document.createElement('div')
 	function doTime(){
 
 			var options = {
-			   date: new Date()
+			   date: new Date(),
 			   mode : 'time'
 			};
 			
