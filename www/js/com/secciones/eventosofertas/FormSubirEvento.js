@@ -160,8 +160,10 @@ var holder = document.createElement('div')
 			
 			// calling show() function with options and a result handler
 			datePicker.show(options, function(date){
-			  //console.log("date result " + date);  
+			  console.log("time result " + date);  
 			  var date = new Date(date)
+
+
 			  	 txt_hora.setValor(date.getHours() + ':' + date.getMinutes() )
 
 			});

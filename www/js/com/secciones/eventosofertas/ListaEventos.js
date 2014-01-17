@@ -107,10 +107,10 @@ function ListaEventos()
 
 		        for(var i=0; i<cant_eventos; i++){
 
-					//for(var u=0; u<20; u++){
+					for(var u=0; u<5; u++){
 					var _ItemListaEvento = new ItemListaEvento(resultado.rows.item(i));
 					$(holder).find('#ListaEventosWrapper').append(_ItemListaEvento.main)
-		           // }
+		            }
 		        }
 
 				if(typeof($callback)!='undefined') $callback(cant_eventos);
