@@ -333,9 +333,9 @@ function App(){
 	
 		
 	}
- alert(Date.parse('ene 17, 2014 9:15:14 PM'))
+/* alert(Date.parse('ene 17, 2014 9:15:14 PM'))
  var _date = new Date( )
-		alert(_date) 
+		alert(_date) */
 alert(_date.getHours() + ':' + _date.getMinutes())
 
 	function errorLocation(error) {
