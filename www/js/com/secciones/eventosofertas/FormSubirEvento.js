@@ -152,15 +152,14 @@ var holder = document.createElement('div')
 	function doTime(){
 
 			var options = {
-			   date: new Date(),
-			   allowOldDates:false,
-			   mode : 'time',
-			   allowFutureDates : true
+			   date: new Date()
+			   mode : 'time'
 			};
 			
 			// calling show() function with options and a result handler
 			datePicker.show(options, function(date){
-			  console.log("time result " + date);  
+			  console.log("time result " + date);
+
 			 	 var _date = new Date(date)
 			  	 txt_hora.setValor(_date.getHours() + ':' + _date.getMinutes() )
 
@@ -182,7 +181,7 @@ var holder = document.createElement('div')
 			
 			// calling show() function with options and a result handler
 			datePicker.show(options, function(date){
-			 // console.log("date result " + date);  
+			  console.log("date result " + date);  
 			  var _date = new Date(date)
 			  txt_fecha.setValor(_date.getDate()+'/'+(_date.getMonth()+1)+'/'+_date.getFullYear());
 			});

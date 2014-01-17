@@ -333,13 +333,15 @@ function App(){
 	
 		
 	}
-
-
+ alert(Date.parse('ene 17, 2014 9:15:14 PM'))
+ var _date = new Date( )
+		alert(_date) 
+alert(_date.getHours() + ':' + _date.getMinutes())
 
 	function errorLocation(error) {
-		
-			console.log('errorLocation')
-		
+
+		console.log('errorLocation error.code: ' + error.code + ', error.message: ' + error.message);
+
 	}
 
 	function comprobacion_total_tablas_creadas(e){
