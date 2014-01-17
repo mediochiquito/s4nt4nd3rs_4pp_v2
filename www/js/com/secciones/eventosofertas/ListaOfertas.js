@@ -40,17 +40,33 @@ function ListaOfertas()
 		
 		 $.ajax({
 				type: "GET",
-				url: app.server + "json.get_img_banner.php",
+				url: app.server + "json.get_banner.php",
 				dataType: 'json',
 				async : false
 			}).success(function($json) {
 
-				if($json!==false) $('#ListaOferta_banner').html('<img width="'+(app.ancho-40)+'" src="'+app.server+'imgs/banners/'+$json.banners_ofertas_url+'" />')
-				else $('#ListaOferta_banner').hide()
+				if($json!==false) {
+
+					$('#ListaOferta_banner').html('<img width="'+(app.ancho-40)+'" src="'+app.server+'imgs/banners/'+$json.banners_ofertas_url+'" /><div id="ListaOfertas_header_banner"><div id="ListaOfertas_header_banner_titulo_txt">Bases y Condiciones</div></div>')
+						
+						//
+						setTimeout(function(){
+							var btn_terms = new Boton2Frames("img/ofertas/btn_terms_banner.png", 20, 40, doVerTermsBanner)
+							btn_terms.main.id = 'ListaOfertas_btn_ver_terms'
+							$('#ListaOfertas_header_banner').append(btn_terms.main)
+
+						}, 0)
+						
+
+				}else $('#ListaOferta_banner').hide()
 			});
 
 	}
 
+	function doVerTermsBanner(){
+
+		alert('doVerTermsBanner')
+	}
 
 
 

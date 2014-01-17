@@ -23,6 +23,7 @@ var holder = document.createElement('div')
 	$(holder).append('<div class="FormSubirEvento_label" id="FormSubirEvento_label_hora">Hora</div>');
 	$(holder).append('<div class="FormSubirEvento_label" id="FormSubirEvento_label_lugar">Lugar</div>');
 	$(holder).append('<div class="FormSubirEvento_label" id="FormSubirEvento_label_desc">Descripción</div>');
+	$(holder).append('<div class="FormSubirEvento_label" id="FormSubirEvento_label_depto">Depto.</div>');
 
 	var combo_categorias = document.createElement('select');
 	combo_categorias.id = 'FormSubirEvento_combo_categorias'
@@ -60,19 +61,38 @@ var holder = document.createElement('div')
 	txt_lugar.main.id = 'FormSubirEvento_txt_lugar';
 	$(holder).append(txt_lugar.main);
 
-	var btn_date = new Boton2Frames('img/form/btn_calendario.png', 28, 56, doDate)
+
+	var combo_deptos = document.createElement('select');
+	combo_deptos.id = 'FormSubirEvento_combo_deptos'	
+	$(combo_deptos).css({'width': app.ancho-158})
+	
+	for(var i=0; i< app.array_deptos.length; i++){
+
+			var option =  document.createElement('option');
+				option.value = (i+1)
+				$(option).append(app.array_deptos[i])
+				$(combo_deptos).append(option);
+
+	}
+	$(holder).append(combo_deptos);
+
+
+
+	var btn_date = new Boton2Frames('img/form/btn_calendario.png', 28, 60, doDate)
 	btn_date.main.id = 'FormSubirEvento_btn_date'
 	//$(btn_date.main).bind('click', doDate)
 	$(holder).append(btn_date.main)
 	$(btn_date.main).css({'left': app.ancho-80});
 
-	var btn_time = new Boton2Frames('img/form/btn_calendario.png', 28, 56, doTime)
+	var btn_time = new Boton2Frames('img/form/btn_hora.png', 28, 60, doTime)
 	btn_time.main.id = 'FormSubirEvento_btn_time'
 	//$(btn_time.main).bind('click', doTime)
 	$(holder).append(btn_time.main)
 	$(btn_time.main).css({'left': app.ancho-80})
 
-	var btn_position = new Boton2Frames('img/form/btn_evento.png', 20, 60, doVerMapa)
+
+
+	var btn_position = new Boton2Frames('img/form/btn_evento.png', 20, 70, doVerMapa)
 	btn_position.main.id = 'FormSubirEvento_btn_position'
 	$(holder).append(btn_position.main)
 	$(btn_position.main).css({'left': app.ancho-75})
@@ -81,6 +101,16 @@ var holder = document.createElement('div')
 	btn_subir.main.id = 'FormSubirEvento_btn_subir'
 	$(holder).append(btn_subir.main);
 
+
+	$(document).bind('CARGAR_LISTAS', doSelectComboDepto)
+
+
+	function doSelectComboDepto(){
+
+		$(combo_deptos).find('option[value="'+app.depto_que_me_encuentro+'"]').prop('selected', true)
+
+
+	}
 
 
 	function doSubirEvento(){
@@ -113,6 +143,7 @@ var holder = document.createElement('div')
 							dataType: 'xml',
 							cache: false, 
 							data:{
+								
 								lat_lon: app.secciones.seccionmapaform.getLatLonString(),
 								id_categoria: $(combo_categorias).val(),
 								titulo: txt_titulo.getValor(),
@@ -120,7 +151,9 @@ var holder = document.createElement('div')
 								lugar: txt_lugar.getValor(),
 								hora: txt_hora.getValor(),
 								desc: txt_desc.getValor(),
-								uid: app.usuario.uid
+								uid: app.usuario.uid,
+								departamentos_id: $(combo_deptos).val()
+
 							},
 
 							success: function($xml) {

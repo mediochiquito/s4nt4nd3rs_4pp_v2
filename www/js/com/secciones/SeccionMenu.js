@@ -29,8 +29,6 @@ function SeccionMenu()
 	var btn_terms = new ItemMenu('Términos y Condiciones', 'icon_terms.svg', doTerms)
 	$(holder).append(btn_terms.main)
 
-
-
 	var chk_push = new BotonToogle("img/mapa/checkbox.svg", '1' , 30, 60, doCheckPush)
 	chk_push.main.id = 'SeccionMenu_chk_push'
 	$(chk_push.main).css('pointer-events', 'none');

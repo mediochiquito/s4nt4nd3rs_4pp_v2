@@ -1,7 +1,7 @@
 function App(){
 	//
 
-	var version = '1.1';
+	var version = '2.0';
 	this.main = document.createElement('div');
 	this.main.id = 'app'
 	this.ancho = 320;
@@ -15,8 +15,8 @@ function App(){
 	};
 	this.redirigiendo_una_push = false;
 	this.cargo_mapa = false;
-	this.server = 'http://192.168.0.2/s4nt4nd3rs_4pp_v2/server/';
-	//this.server = 'http://192.168.235.140:8888/s4nt4nd3rs_4pp_v2/server/';
+	//this.server = 'http://192.168.0.2/s4nt4nd3rs_4pp_v2/server/';
+	this.server = 'http://192.168.235.140:8888/s4nt4nd3rs_4pp_v2/server/';
 	//this.server = 'http://santander.crudo.com.uy/';
 	
 	this.db = openDatabase('santanders_app_punta', '1.0', 'santanders_app_punta', 2000000);
