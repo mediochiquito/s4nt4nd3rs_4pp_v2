@@ -312,8 +312,7 @@ function App(){
 										
  
 											$(document).trigger('CARGAR_LISTAS')
-
-
+											
 									//}, 5000)
 								
 								}

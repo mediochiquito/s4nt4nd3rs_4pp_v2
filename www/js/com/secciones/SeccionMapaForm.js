@@ -87,20 +87,12 @@ function SeccionMapaForm()
 		
 		  map = new google.maps.Map(map_canvas,  mapOptions);
 
-		 marker = new google.maps.Marker(
-		           				{
-								 
-								  draggable:true,
-								  icon: {url:'img/markers/evento.png',  scaledSize: new google.maps.Size(19, 30), size: new google.maps.Size(19, 30)}
-								});
+		
 
-		marker.setMap(map);
+		
 
 	
-		/*setTimeout(function() {
-		     google.maps.event.trigger(map,'resize');
-		}, 200);*/
-
+		
 		
 	}
 	this.googleMapsLoaded = function (){
@@ -149,7 +141,24 @@ function SeccionMapaForm()
 				pos = new google.maps.LatLng(-34.965311,-54.94985);
 			}
 
-			marker.setPosition(pos)
+			//marker.setPosition(pos)
+
+
+ marker = new google.maps.Marker(
+		           				{ 
+		           					  draggable:true,
+		           					title:'YO',
+		           					map:map,
+		           				  animation: google.maps.Animation.DROP,
+								  position:pos,
+								
+								  icon: {url:'img/markers/evento.png',  scaledSize: new google.maps.Size(19, 30), size: new google.maps.Size(19, 30)}
+								});
+
+
+
+			
+			
 			map.setCenter(pos);
 
 		}else{

@@ -291,7 +291,7 @@ function SeccionMapa()
 
 								  position: new google.maps.LatLng(resulato_locales.rows.item(i).locales_lat, resulato_locales.rows.item(i).locales_lon),
 								  title:resulato_locales.rows.item(i).locales_nombre,
-
+								  
 								  icon: {url:'img/markers/oferta.png', scaledSize: new google.maps.Size(19, 30), size: new google.maps.Size(19, 30)},
 								  row: resulato_locales.rows.item(i)
 								});
