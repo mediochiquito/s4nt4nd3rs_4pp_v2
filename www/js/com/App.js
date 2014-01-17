@@ -189,7 +189,7 @@ function App(){
 											onLocation, 
 											errorLocation, 
 											{
-												timeout: 3000
+												timeout: 5000
 											}
 					);
 			}
