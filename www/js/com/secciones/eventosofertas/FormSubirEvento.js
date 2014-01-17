@@ -164,10 +164,17 @@ var holder = document.createElement('div')
 			 	console.log("1 time result " + date);
 			  	var _date = date
 			  	console.log("2 time result " + date);
-			  	var array_date = date.split(',');
-			  	alert(array_date.length)
-			  	console.log("3 time result " + date);
-			  	if(array_date.length > 1) _date = array_date[1];
+
+			  	try{
+
+					var array_date = date.toString().split(',');
+				  	if(array_date.length > 1) _date = array_date[1];
+
+			  	}catch(){
+			  		
+			  	}
+			  
+
 			 	var date_f = new Date(_date)
 			 	console.log("4 time result " + date);
 			  	txt_hora.setValor(date_f.getHours() + ':' + date_f.getMinutes() )
