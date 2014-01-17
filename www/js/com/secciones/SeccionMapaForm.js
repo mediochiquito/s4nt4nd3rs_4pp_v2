@@ -143,15 +143,15 @@ function SeccionMapaForm()
 
 			//marker.setPosition(pos)
 
-
- marker = new google.maps.Marker(
+map.setCenter(pos);
+ 			marker = new google.maps.Marker(
 		           				{ 
-		           					  draggable:true,
+		           					 
 		           					title:'YO',
 		           					map:map,
 		           				  animation: google.maps.Animation.DROP,
 								  position:pos,
-								
+								 draggable:true,
 								  icon: {url:'img/markers/evento.png',  scaledSize: new google.maps.Size(19, 30), size: new google.maps.Size(19, 30)}
 								});
 
@@ -159,7 +159,7 @@ function SeccionMapaForm()
 
 			
 			
-			map.setCenter(pos);
+			
 
 		}else{
 

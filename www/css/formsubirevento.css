@@ -36,7 +36,7 @@ position: absolute;
 	
 	font-size: 14px;
 	position: absolute;
-	top: 20px;
+	top: 9px;
 	left: 20px;
 	width: 90%;
 }
@@ -67,7 +67,9 @@ position: absolute;
 	background-repeat: no-repeat;
 	background-size: 30px 30px;
 	background-position: right 0px;
-	top: 70px;
+	
+
+	top: 50px;
 	left: 110px;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -79,56 +81,56 @@ position: absolute;
 }
 
 #FormSubirEvento_label_categoria{
-	top: 80px;
+	top: 60px;
 }
 
 #FormSubirEvento_label_titulo{
-	top: 120px;
+	top: 100px;
 }
 
 #FormSubirEvento_label_fecha{
-	top: 200px;
+	top: 180px;
 }
 #FormSubirEvento_label_hora{
-	top: 240px;
+	top: 220px;
 }
 
 #FormSubirEvento_label_lugar{
-	top: 278px;
+	top: 258px;
 }
 
 #FormSubirEvento_label_desc{
-	top: 160px;
+	top: 140px;
 }
 
 #FormSubirEvento_txt_titulo{
-	top: 110px;
+	top: 90px;
 	left: 110px;
 }
 
 #FormSubirEvento_txt_hora{
 
-	top: 230px;
+	top: 210px;
 	left: 110px;
 }
 #FormSubirEvento_txt_fecha{
 
-	top: 190px;
+	top: 170px;
 	left: 110px;
 }
 #FormSubirEvento_txt_lugar{
 
-	top: 270px;
+	top: 250px;
 	left: 110px;
 }
 #FormSubirEvento_txt_desc{
 
-	top: 150px;
+	top: 130px;
 	left: 110px;
 }
 #FormSubirEvento_btn_position{
 	position: absolute;
-	top: 273px;
+	top: 253px;
 	
 }
 #FormSubirEvento_btn_date{
@@ -136,14 +138,14 @@ position: absolute;
 	position: absolute;
 	
 
-	top: 192px;
+	top: 172px;
 }
 #FormSubirEvento_btn_time{
 
 	position: absolute;
 	
 
-	top: 233px;
+	top: 213px;
 }
 
 #FormSubirEvento_btn_subir{

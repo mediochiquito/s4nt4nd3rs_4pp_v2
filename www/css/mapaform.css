@@ -16,7 +16,8 @@
 
 	top: 0px;
 	left: 0px;
-
+	width: 100%;
+height: 100%;
 }
 
 #SeccionMapaForm_map_canvas{
@@ -54,14 +55,17 @@
 #SeccionMapaForm_holdermap_canvas{
 
 	font-size:75%;
-	width: 100%;
-height: 100%;
 }
-
 #SeccionMapaForm_holdermap_canvas img{
 
+	
 	-webkit-backface-visibility: hidden;
 
+}
+
+#SeccionMapaForm_holdermap_canvas .gmnoprint img{
+
+	
+	-webkit-backface-visibility: visible;
 
 }
-#SeccionMapaForm_holdermap_canvas  img { max-width: none  !important; }

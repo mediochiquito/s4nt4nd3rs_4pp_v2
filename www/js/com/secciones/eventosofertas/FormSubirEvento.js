@@ -163,8 +163,8 @@ var holder = document.createElement('div')
 			  	var _date = date
 			  	var array_date = date.split(',')
 			  	if(array_date.length > 1) _date =  array_date[1];
-			 	var _date = new Date(_date)
-			  	txt_hora.setValor(_date.getHours() + ':' + _date.getMinutes() )
+			 	var date = new Date(_date)
+			  	txt_hora.setValor(date.getHours() + ':' + date.getMinutes() )
 
 			});
 
