@@ -161,10 +161,8 @@ var holder = document.createElement('div')
 			// calling show() function with options and a result handler
 			datePicker.show(options, function(date){
 			  console.log("time result " + date);  
-			  var date = new Date(date)
-
-
-			  	 txt_hora.setValor(date.getHours() + ':' + date.getMinutes() )
+			 	 var _date = new Date(date)
+			  	 txt_hora.setValor(_date.getHours() + ':' + _date.getMinutes() )
 
 			});
 
@@ -185,8 +183,8 @@ var holder = document.createElement('div')
 			// calling show() function with options and a result handler
 			datePicker.show(options, function(date){
 			 // console.log("date result " + date);  
-			  var date = new Date(date)
-			  txt_fecha.setValor(date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear());
+			  var _date = new Date(date)
+			  txt_fecha.setValor(_date.getDate()+'/'+(_date.getMonth()+1)+'/'+_date.getFullYear());
 			});
 
 	}

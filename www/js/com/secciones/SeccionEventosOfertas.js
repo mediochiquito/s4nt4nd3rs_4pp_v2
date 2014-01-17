@@ -11,11 +11,11 @@ function SeccionEventosOfertas()
 	
 	$(this.main).bind("SOLAPA_CLICK", doSolapaClick)
 
-	var solapa_eventos = new Solapa('EVENTOS', 'eventos', '#674d97')
+	var solapa_eventos = new Solapa('EVENTOS', 'eventos', '#674d97', doSolapaClick)
 	solapa_eventos.main.id = 'solapa_eventos'
 	$(this.main).append(solapa_eventos.main)
 
-	var solapa_ofertas = new Solapa('DESCUENTOS', 'ofertas', '#ed1c24')
+	var solapa_ofertas = new Solapa('DESCUENTOS', 'ofertas', '#ed1c24', doSolapaClick)
 	solapa_ofertas.main.id = 'solapa_ofertas'
 	$(this.main).append(solapa_ofertas.main)
 
@@ -48,9 +48,9 @@ function SeccionEventosOfertas()
 		app.secciones.seccioneventosofertas.cargar_listas('')
 	});
 
-	function doSolapaClick(e){
+	function doSolapaClick($value){
 
-		mostrar_solapa({solapa:e.value})
+		mostrar_solapa({solapa:$value})
 
 	}
 

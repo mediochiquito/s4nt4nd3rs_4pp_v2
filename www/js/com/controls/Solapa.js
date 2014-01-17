@@ -1,4 +1,4 @@
-function Solapa($txt, $value, $color){
+function Solapa($txt, $value, $color, $callback){
 
 	var self = this
 	this.main = document.createElement('div');
@@ -15,6 +15,7 @@ function Solapa($txt, $value, $color){
 	var Selected = false;
 
 	if(app.es_touch()){
+
 
 		$(this.main).bind("touchstart", do_click);
 		/*$(this.main).bind("touchend", do_mouseout);
@@ -56,10 +57,10 @@ function Solapa($txt, $value, $color){
 
 	function do_click(){
 		
-		
-		var _event = jQuery.Event("SOLAPA_CLICK");
+		$callback($value)	
+	/*	var _event = jQuery.Event("SOLAPA_CLICK");
         _event.value = value;
-        $(self.main).trigger(_event);
+        $(self.main).trigger(_event);*/
 
 	}
 	

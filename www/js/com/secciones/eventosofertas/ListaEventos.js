@@ -69,7 +69,7 @@ function ListaEventos()
 	}
 
 
-	this.listar =  function ($busqueda, $callback){
+	this.listar =  function ($busqueda_obsoleta, $callback){
 		
 		var _date = new Date();
 		var mes =  (_date.getMonth()+1)
@@ -77,25 +77,28 @@ function ListaEventos()
 		var dia =  (_date.getDate())
 		if(dia<10) dia = '0' + dia;
 
+		var busqueda = $.trim($('#Header_search').val())
+
+
 		var fecha_hasta_hoy = _date.getFullYear() + '-' + mes + '-' + dia + ' 00:00:00';
 
 		$(combo_deptos).find('option[value="'+app.depto_que_me_encuentro+'"]').prop('selected', true)
 		
 		var where = ' WHERE eventos_estado=1 AND  eventos_fecha_hora>="'+fecha_hasta_hoy+'" AND eventos_estado=1 AND eventos_departamentos_id="'+app.depto_que_me_encuentro + '" ';
-		if($busqueda != ''){
-			where = ' WHERE (eventos_nombre LIKE "%' + $busqueda + '%" OR eventos_tags LIKE "%' + $busqueda + '%") AND eventos_estado=1 AND eventos_departamentos_id="'+app.depto_que_me_encuentro+'" AND  eventos_fecha_hora>="'+fecha_hasta_hoy+'"';
+		if(busqueda != '' && busqueda != 'Buscar...'){
+			where = ' WHERE (eventos_nombre LIKE "%' + busqueda + '%" OR eventos_tags LIKE "%' + busqueda + '%") AND eventos_estado=1 AND eventos_departamentos_id="'+app.depto_que_me_encuentro+'" AND  eventos_fecha_hora>="'+fecha_hasta_hoy+'"';
 		}
 
-		$(holder).find('#ListaEventosWrapper').empty();
+		
 		
 		app.db.transaction(function (tx) {
 			
 			tx.executeSql('SELECT * FROM eventos ' + where + ' ORDER BY eventos_fecha_hora ASC' , [], function (tx, resultado) {
-		    	
+		    	$(holder).find('#ListaEventosWrapper').empty();
 		    	var cant_eventos = resultado.rows.length;
 		    	if(cant_eventos == 0){
 
-		    		if($busqueda != '')
+		    		if(busqueda != '' && busqueda != 'Buscar...')
 		    			$(holder).find('#ListaEventosWrapper').html('<div class="sin_resultados"><div>La busqueda no ha arrojado ningun resultado en eventos.</div></div>');
 		    		else 
 		    			$(holder).find('#ListaEventosWrapper').html('<div class="sin_resultados"><div>No hay eventos publicados por el momento.<br /><br />Te invitamos a que consultes la sección Descuentos.</div></div>');
@@ -104,14 +107,16 @@ function ListaEventos()
 
 		    		
 		    	}
+		    	
+					
+		    		for(var i=0; i<cant_eventos; i++){
 
-		        for(var i=0; i<cant_eventos; i++){
+						//for(var u=0; u<5; u++){
+						var _ItemListaEvento = new ItemListaEvento(resultado.rows.item(i));
+						$(holder).find('#ListaEventosWrapper').append(_ItemListaEvento.main)
+			            //}
+			        }
 
-					for(var u=0; u<5; u++){
-					var _ItemListaEvento = new ItemListaEvento(resultado.rows.item(i));
-					$(holder).find('#ListaEventosWrapper').append(_ItemListaEvento.main)
-		            }
-		        }
 
 				if(typeof($callback)!='undefined') $callback(cant_eventos);
 

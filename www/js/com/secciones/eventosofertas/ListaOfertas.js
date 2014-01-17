@@ -70,31 +70,38 @@ function ListaOfertas()
 		
 	}
 	
-	this.listar =  function ($busqueda, $callback){
+	this.listar =  function ($busqueda_obsoleta, $callback){
 		
 		var where = '';
-		
-		if($busqueda != ''){
-			where = '  (ofertas_nombre LIKE "%' + $busqueda + '%" OR ofertas_tags LIKE "%' + $busqueda + '%") AND ';
+		var busqueda = $.trim($('#Header_search').val())
+		if(busqueda != '' && busqueda != 'Buscar...'){
+			where = '  (ofertas_nombre LIKE "%' + busqueda + '%" OR ofertas_tags LIKE "%' + busqueda + '%") AND ';
 		}
+
+
+		
 		$(combo_deptos).find('option[value="'+app.depto_que_me_encuentro+'"]').prop('selected', true)
-		$(holder).find('#ListaOfertasWrapper').empty()
+		
 		app.db.transaction(function (tx) {
 			
 			tx.executeSql("SELECT * FROM locales INNER JOIN ofertas ON locales_ofertas_id=ofertas_id WHERE "+where+"  locales_departamentos_id="+app.depto_que_me_encuentro+" AND ofertas_estado=1  GROUP BY locales_ofertas_id " , [], function (tx, resultado) {
 		    	
 		    	var cant_ofertas = resultado.rows.length;
+
+		    
+		    	$(holder).find('#ListaOfertasWrapper').empty()
 		    	if(cant_ofertas == 0){
 		    		$(holder).find('#ListaOfertasWrapper').html('<div class="sin_resultados"><div>La busqueda no ha arrojado ningun resultado en descuentos.</div></div>')
-		    		/*setTimeout(function(){
+		    		setTimeout(function(){
 			        	$(self.main).css('height', 50)
-			        },100)*/
+			        },100)
 		    	}else{
 /*
 		    		setTimeout(function(){
 			        	$(holder).find('>div').css('height', '')
 			        },100)*/
 		    	}
+
 		        
 		        for(var i=0; i<cant_ofertas; i++){
 					
