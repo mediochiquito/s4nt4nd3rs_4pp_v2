@@ -312,7 +312,7 @@ function App(){
 										
  
 											$(document).trigger('CARGAR_LISTAS')
-											
+
 									//}, 5000)
 								
 								}
@@ -332,6 +332,9 @@ function App(){
 	
 		
 	}
+
+	alert(String('Fri Jan 17 2014 03:21:00 GMT-0200 (UYST)').split(','))
+
  //alert(Date.parse('ene 17 2014 9:15:14 PM'))
  /*var _date = new Date( )
 		alert(_date) 

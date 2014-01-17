@@ -159,12 +159,13 @@ var holder = document.createElement('div')
 			// calling show() function with options and a result handler
 			datePicker.show(options, function(date){
 			 	
-			 	console.log("time result " + date);
+			 	//console.log("time result " + date);
 			  	var _date = date
 			  	var array_date = date.split(',')
-			  	if(array_date.length > 1) _date =  array_date[1];
-			 	var date = new Date(_date)
-			  	txt_hora.setValor(date.getHours() + ':' + date.getMinutes() )
+			  	alert(array_date.length)
+			  	if(array_date.length > 1) _date = array_date[1];
+			 	var date_f = new Date(_date)
+			  	txt_hora.setValor(date_f.getHours() + ':' + date_f.getMinutes() )
 
 			});
 
