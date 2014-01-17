@@ -189,7 +189,7 @@ function App(){
 											onLocation, 
 											errorLocation, 
 											{
-												timeout: 30000
+												timeout: 3000
 											}
 					);
 			}
@@ -333,13 +333,7 @@ function App(){
 		
 	}
 
-	alert(String('Fri Jan 17 2014 03:21:00 GMT-0200 (UYST)').split(','))
 
- //alert(Date.parse('ene 17 2014 9:15:14 PM'))
- /*var _date = new Date( )
-		alert(_date) 
-alert(_date.getHours() + ':' + _date.getMinutes())
-*/
 	function errorLocation(error) {
 
 		console.log('errorLocation error.code: ' + error.code + ', error.message: ' + error.message);
