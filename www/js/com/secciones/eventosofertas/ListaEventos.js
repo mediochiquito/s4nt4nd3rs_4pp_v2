@@ -94,21 +94,21 @@ function ListaEventos()
 		app.db.transaction(function (tx) {
 			
 			tx.executeSql('SELECT * FROM eventos ' + where + ' ORDER BY eventos_fecha_hora ASC' , [], function (tx, resultado) {
-		    	$(holder).find('#ListaEventosWrapper').empty();
-		    	var cant_eventos = resultado.rows.length;
-		    	if(cant_eventos == 0){
+			    	
+			    	$(holder).find('#ListaEventosWrapper').empty();
+			    	var cant_eventos = resultado.rows.length;
+			    	if(cant_eventos == 0){
 
-		    		if(busqueda != '' && busqueda != 'Buscar...')
-		    			$(holder).find('#ListaEventosWrapper').html('<div class="sin_resultados"><div>La busqueda no ha arrojado ningun resultado en eventos.</div></div>');
-		    		else 
-		    			$(holder).find('#ListaEventosWrapper').html('<div class="sin_resultados"><div>No hay eventos publicados por el momento.<br /><br />Te invitamos a que consultes la sección Descuentos.</div></div>');
+			    		if(busqueda != '' && busqueda != 'Buscar...')
+			    			$(holder).find('#ListaEventosWrapper').html('<div class="sin_resultados"><div>La busqueda no ha arrojado ningun resultado en eventos.</div></div>');
+			    		else 
+			    			$(holder).find('#ListaEventosWrapper').html('<div class="sin_resultados"><div>No hay eventos publicados por el momento.<br /><br />Te invitamos a que consultes la sección Descuentos.</div></div>');
 
-		    	}else{
+			    	}else{
 
-		    		
-		    	}
+			    		
+			    	}
 		    	
-					
 		    		for(var i=0; i<cant_eventos; i++){
 
 						//for(var u=0; u<5; u++){

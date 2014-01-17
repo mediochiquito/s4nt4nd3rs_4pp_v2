@@ -29,28 +29,34 @@ function ItemListaEvento($row)
 	
 
 	var haciendo_click = false;
+	var inter_pintar;
 
-/*	if(app.es_touch()){
-		this.main.addEventListener('touchstart', doTocuhStart);
+	if(app.es_touch()){
+		 this.main.addEventListener('touchstart', doTocuhStart);
 		this.main.addEventListener('touchend', doTocuhEnd);
-		document.addEventListener('touchmove', doTocuhMove);
 	}else{
-*/
+
 		this.main.addEventListener('click', doClick);
-	//}
+	}
+
 	function doTocuhMove(){
-		despintar()	
 		haciendo_click = false
+		despintar()
+		clearTimeout(inter_pintar)
+		document.removeEventListener('touchmove', doTocuhMove);
 	}
 	function doTocuhStart(){
-		pintar()	
+		document.addEventListener('touchmove', doTocuhMove);
 		haciendo_click = true
+		inter_pintar = setTimeout(pintar , 200)
 	}
 
 	function doTocuhEnd(){
 		
 		if(haciendo_click){
-			app.secciones.seccioneventosofertas.ir_a_una_solapa({solapa:'un_evento', row: $row});
+			setTimeout(function(){
+				app.secciones.seccioneventosofertas.ir_a_una_solapa({solapa:'un_evento', row: $row});
+			}, 200)
 			setTimeout(despintar, 800)
 			haciendo_click = false
 		}

@@ -79,7 +79,7 @@ function SeccionMapa()
 
 	var ya_me_localizo_una_vez = false;
 	var ultimo_obj = '';
-
+	var solo_ver = '';
 	//$(document).bind('CARGAR_LISTAS', cargar_lista_de_markers);
 
 	function doCheckEventos(){
@@ -200,41 +200,42 @@ function SeccionMapa()
 			
 				}
 
-			var solo_ver = '';
+			solo_ver = '';
 			try{
 				solo_ver = obj.solo_ver;
 			}catch(e){}
 
 
 			switch(solo_ver){
+					case 'eventos':
+						mostrar_elementos('ofertas', false)
+						mostrar_elementos('eventos', true)
+						chk_eventos.setSelected(true)
+						chk_oferta.setSelected(false)
+					break;
+					case 'ofertas':
+						mostrar_elementos('ofertas', true)
+						mostrar_elementos('eventos', false)
+						chk_eventos.setSelected(false)
+						chk_oferta.setSelected(true)
 
-				case 'eventos':
-					mostrar_elementos('ofertas', false)
-					mostrar_elementos('eventos', true)
-					chk_eventos.setSelected(true)
-					chk_oferta.setSelected(false)
-				break;
-				case 'ofertas':
-					mostrar_elementos('ofertas', true)
-					mostrar_elementos('eventos', false)
-					chk_eventos.setSelected(false)
-					chk_oferta.setSelected(true)
-
-				break;
-			    default:
-					mostrar_elementos('ofertas', true)
-					mostrar_elementos('eventos', true)
-					chk_eventos.setSelected(true)
-					chk_oferta.setSelected(true)
-				break;
-
-
-		}
+					break;
+				    default:
+						mostrar_elementos('ofertas', true)
+						mostrar_elementos('eventos', true)
+						chk_eventos.setSelected(true)
+						chk_oferta.setSelected(true)
+					break;
+			}
 
 
 
 
 	}
+
+
+
+
 
 	function mostrar_elementos($que_elmentos, $visiblildad){
 
@@ -295,6 +296,8 @@ function SeccionMapa()
 								  row: resulato_locales.rows.item(i)
 								});
 
+					if(solo_ver == 'eventos') array_markers_ofertas[i].setVisible(false);
+
 					array_markers_ofertas[i].setMap(map);
 
 					google.maps.event.addListener(array_markers_ofertas[i], 'click', function() {
@@ -316,6 +319,7 @@ function SeccionMapa()
 
 		array_markers_eventos = new Array();
 		app.db.transaction(function (tx) {
+			
 			//TODO agregar el estado
 			tx.executeSql("SELECT * FROM eventos WHERE eventos_estado=1 AND eventos_departamentos_id=?" , [app.depto_que_me_encuentro], function (tx, resultado) {
 		    	
@@ -330,6 +334,7 @@ function SeccionMapa()
 								  row: resultado.rows.item(i)
 								});
 
+		            if(solo_ver == 'ofertas') array_markers_eventos[i].setVisible(false);
 					array_markers_eventos[i].setMap(map);
 
 					google.maps.event.addListener(array_markers_eventos[i], 'click', function() {

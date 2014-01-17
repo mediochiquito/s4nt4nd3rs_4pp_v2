@@ -249,7 +249,8 @@ function App(){
 							tipo_de_instalacion = 1;
 						} 
 					
-						crear_db($tx)	
+						crear_db($tx);
+
 					});	
 			   			 
 		   })
@@ -283,6 +284,8 @@ function App(){
 		
 		self.posicion_global = position
 		navigator.geolocation.clearWatch(watchid);
+		console.log('onLocation OK')
+		console.log(position)
 
 		// geolocalizar
 
@@ -335,7 +338,7 @@ function App(){
 
 	function errorLocation(error) {
 		
-			
+			console.log('errorLocation')
 		
 	}
 
