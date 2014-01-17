@@ -157,11 +157,11 @@ var holder = document.createElement('div')
 			};
 			
 			// calling show() function with options and a result handler
-			datePicker.show(options, function(date){
+			datePicker.show(options, function($date){
 			  console.log("time result " + date);
 
 			 	 var _date = new Date(date)
-			  	 txt_hora.setValor(_date.getHours() + ':' + _date.getMinutes() )
+			  	 txt_hora.setValor($date.getHours() + ':' + $date.getMinutes() )
 
 			});
 
