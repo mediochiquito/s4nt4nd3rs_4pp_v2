@@ -153,20 +153,26 @@ var holder = document.createElement('div')
 
 			var options = {
 			   date: new Date(),
-			   mode : 'time'
+			   allowOldDates:false,
+			   mode : 'time',
+			    allowFutureDates : true
 			};
 			
 			// calling show() function with options and a result handler
 			datePicker.show(options, function(date){
 			 	
-			 	//console.log("time result " + date);
+			 	console.log("1 time result " + date);
 			  	var _date = date
-			  	var array_date = date.split(',')
+			  	console.log("2 time result " + date);
+			  	var array_date = date.split(',');
 			  	alert(array_date.length)
+			  	console.log("3 time result " + date);
 			  	if(array_date.length > 1) _date = array_date[1];
 			 	var date_f = new Date(_date)
+			 	console.log("4 time result " + date);
 			  	txt_hora.setValor(date_f.getHours() + ':' + date_f.getMinutes() )
-
+			  	console.log("5 time result " + date);
+			  	console.log(array_date);
 			});
 
 	}
