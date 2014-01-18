@@ -103,7 +103,12 @@ function SeccionMapa()
 	}
 
 	this._remove = function(){
-
+		for (i in array_markers_eventos) {
+		  array_markers_eventos[i].setMap(null);
+		}
+		for (i in array_markers_ofertas) {
+		  array_markers_ofertas[i].setMap(null);
+		}
 		$(map_canvas).empty()
 		
 	}
