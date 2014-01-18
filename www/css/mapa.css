@@ -120,7 +120,7 @@ margin-left: 105px;
 
 #SeccionMapa_holdermap_canvas img{
 
-	-webkit-backface-visibility: hidden;
+	/*-webkit-backface-visibility: hidden;*/
 	
 
 }
