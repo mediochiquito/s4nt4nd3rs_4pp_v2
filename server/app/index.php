@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>SantandersApp</title>
+<title>Santander Uruguay</title>
 <style>
 
 div{
@@ -24,7 +24,7 @@ div{
 <div><img src='icon.png' /></div>
 
 <div><a href='itms-services://?action=download-manifest&url=http://<?=preg_replace('~www.~i', '', $_SERVER['HTTP_HOST'])?>/app/app.plist'>Installar App para iOS</a></div>
-<div><a href='SantandersApp.apk'>Installar App para Android</a></div>
+<div><a href='SantanderUruguay.apk'>Installar App para Android</a></div>
 
 
 </center>
