@@ -35,12 +35,12 @@ input,textarea, select{
 
 }
 body{
-	/*background-image: url(../img/bg_x.jpg);
+	background-image: url(../img/bg.png);
 	background-repeat: repeat-x;
-	
-    background-color: #60478b;*/
+	background-size: 50% 100%;
+    background-color: #60478b;
 
-    background-image: -webkit-linear-gradient(bottom, #60478b 0%, #cc3333 80%);
+  /*  background-image: -webkit-linear-gradient(bottom, #60478b 0%, #cc3333 80%);*/
     background-attachment:fixed;
 }
 
