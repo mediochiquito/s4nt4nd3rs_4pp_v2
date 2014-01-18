@@ -51,7 +51,10 @@ function ListaOfertas()
 						
 						//
 						setTimeout(function(){
-							var btn_terms = new Boton2Frames("img/ofertas/btn_terms_banner.png", 20, 40, doVerTermsBanner)
+							var btn_terms = new Boton2Frames("img/ofertas/btn_terms_banner.png", 20, 40, function(){
+
+								app.secciones.go(app.secciones.secciontermsbanner, 300, {id:$json.banners_ofertas_id})
+							})
 							btn_terms.main.id = 'ListaOfertas_btn_ver_terms'
 							$('#ListaOfertas_header_banner').append(btn_terms.main)
 
@@ -63,10 +66,6 @@ function ListaOfertas()
 
 	}
 
-	function doVerTermsBanner(){
-
-		alert('doVerTermsBanner')
-	}
 
 
 

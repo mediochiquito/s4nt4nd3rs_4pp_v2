@@ -58,23 +58,35 @@
 .UnEvento_reg{
 	position: relative;
 	
-	padding: 5px;
-	border-bottom: solid 1px #ccc;
 	
 }
+
 .UnEvento_label{
-	position: relative;
-	width: 100px;
+	position: absolute;
+	width: 120px;
 	font-family: 'GothamBold';
 	font-size: 12px;
-	float: left;
+	top:5px;
+	
+	left: 10px;
 }
 .UnEvento_data{
 	position: relative;
 	font-family: 'GothamBook';
 	font-size: 12px;
 	float: left;
+
+	min-height: 25px;
+	width: 100%;
+	border-bottom: solid 1px #e5e5e5;
 }
+.UnEvento_data>div{
+	padding: 5px;
+	margin-left: 130px;
+}
+
+
+
 #UnEvento_holder_footer{
 	position: relative;
 

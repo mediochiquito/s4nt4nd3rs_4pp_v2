@@ -29,6 +29,10 @@ function Secciones(){
 	$(this.main).append(this.seccionmapaform.main)
 	this.seccionmapaform.ocultar(0);
 
+	this.secciontermsbanner = new SeccionTermsBanner();
+	$(this.main).append(this.secciontermsbanner.main);
+	this.secciontermsbanner.ocultar(0);
+
 	var historia = new Array()
 
 	document.addEventListener("backbutton", backKeyDown, true);
