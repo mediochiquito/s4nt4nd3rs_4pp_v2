@@ -213,7 +213,6 @@ function App(){
 
        	$(self.main).append('<div id="loading"><div id="txt_loading"></div><div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div></div>');
 		
-
 		$('body').append(self.main)
         
         app.db.transaction(function (tx) {
@@ -288,8 +287,8 @@ function App(){
 		console.log(position)
 
 		// geolocalizar
-
 		if(buscando_depto){
+				
 				buscando_depto = false;
 				
 				$.ajax({
@@ -306,14 +305,9 @@ function App(){
 								var depto_encontrado = ($.inArray($json.results[0].address_components[address_components].short_name, array_deptos_google)+1);
 								if(depto_encontrado>0){
 
-									///setTimeout(function(){
-										
 											self.depto_que_me_encuentro = depto_encontrado;
-										
- 
 											$(document).trigger('CARGAR_LISTAS')
 
-									//}, 5000)
 								
 								}
 

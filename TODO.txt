@@ -1,17 +1,1 @@
-- doble consulta al inicio, a los listados, verificar! 
-
-
-- boton menu que se pinta?
-
-- paddin en unevento
-
-- orden por distancia locales.
-
-
- - Se cambiaron algunos iconos, verás en el PSD de subir-eventos.psd 
-También mando un PSD con los nuevos iconos de los headers de Eventos y Descuentos, que mencionan que se ven poco. Son 3 iconos nuevos. Están en el set GRID ONLY, apagados, del PSD descuentos-banner-ampliacion.psd
-
-- En iPad la imágen central del logo + el ideas para hoy no se ajusta al dispositivo. Debe quedar asi, o podría ajustarse? supongo pasará lo mismo en tabletas  Android, pero no recuerdo si esta app debía validar de esa forma, o si era únicamente para celulares. ¿Luciano?
-
-
-- En las ampliaciones de los eventos o descuentos, los 3 primeros inputs de datos están descentrados con respecto al espacio de esa fila. Están como hacia arriba.
+- doble consulta al inicio, a los listados, verificar! ??

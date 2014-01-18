@@ -9,7 +9,16 @@
 
 
 }
-
+.ItemLocal_disancia{
+	font-family: 'GothamBook';
+	font-size: 10px;
+	color: #8D8C8C;
+	position: absolute;
+	top: 13px;
+	right: 29px;
+	width: 60px;
+	text-align: right;
+}
 #ItemLocal_header_titulo{
 	position: relative;
 	width: 100%;

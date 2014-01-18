@@ -73,7 +73,7 @@ function UnaOferta()
                     caption: obj.row.ofertas_descuento+'. '+obj.row.ofertas_cutoas,
                     description: 'Publicado a través de la APP de Eventos y Descuentos de Banco Santander. Descargala gratis en www.ideasparahoy.com.uy y enterate de las actividades del verano.'
                   };
-            
+
             FB.ui(params, function(obj) { console.log(obj);});
 		}) 
      
@@ -94,17 +94,52 @@ function UnaOferta()
 			tx.executeSql("SELECT * FROM locales WHERE locales_estado=1 AND locales_ofertas_id="+$obj.row.ofertas_id+" AND locales_departamentos_id="+app.depto_que_me_encuentro , [], function (tx, resulato_locales) {
 		    	
 		    	var cant_locales = resulato_locales.rows.length;
-		    	
-		        for(var i=0; i<cant_locales; i++){
-					
-		        	var itemlocal = new ItemLocal(resulato_locales.rows.item(i));
-		        	$(holder_data).append(itemlocal.main)
+		    	var array_locales = new Array();
 
+		        for(var i=0; i<cant_locales; i++){
+		        	
+		        	if(app.posicion_global!=''){
+	        			var d = distance(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude, resulato_locales.rows.item(i).locales_lat, resulato_locales.rows.item(i).locales_lon, 'K')
+		        		array_locales.push([d, resulato_locales.rows.item(i)])
+		        	}else{
+						var itemlocal = new ItemLocal(resulato_locales.rows.item(i), false);
+			        	$(holder_data).append(itemlocal.main)
+
+		        	}
+					
 		        }
+		        if(app.posicion_global!=''){
+			        array_locales.sort()
+			        for(var u=0; u<array_locales.length; u++){
+						var itemlocal = new ItemLocal(array_locales[u][1], true);
+			        	$(holder_data).append(itemlocal.main)
+			        }
+		    	}
+
+
 		    });
+
 		}, app.db_errorGeneral);
 
 	}
+
+
+
+	function distance(lat1, lon1, lat2, lon2, unit) {
+		var radlat1 = Math.PI * lat1/180
+		var radlat2 = Math.PI * lat2/180
+		var radlon1 = Math.PI * lon1/180
+		var radlon2 = Math.PI * lon2/180
+		var theta = lon1-lon2
+		var radtheta = Math.PI * theta/180
+		var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+		dist = Math.acos(dist)
+		dist = dist * 180/Math.PI
+		dist = dist * 60 * 1.1515
+		if (unit=="K") { dist = dist * 1.609344 }
+		if (unit=="N") { dist = dist * 0.8684 }
+		return dist
+	}      
 
 }
 
