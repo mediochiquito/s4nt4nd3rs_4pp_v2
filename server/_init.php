@@ -21,9 +21,9 @@
 
 		// http://santander.crudo.com.uy/
 		define("DB_HOST", "localhost");
-		define("DB_USER", "herna_moto");
+		define("DB_USER", "herna_mooto_prod");
 		define("DB_PASS", "vespa");
-		define("DB_NAME", "hernan_santanders");
+		define("DB_NAME", "hernan_santander");
 						   
 	}
 
