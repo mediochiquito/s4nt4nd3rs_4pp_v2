@@ -109,6 +109,7 @@ function SeccionMapa()
 		for (i in array_markers_ofertas) {
 		  array_markers_ofertas[i].setMap(null);
 		}
+		map = null
 		$(map_canvas).empty()
 		
 	}
@@ -177,7 +178,7 @@ function SeccionMapa()
 
 				if(app.hay_internet() && !app.cargo_mapa){
 					
-					$.getScript("http://maps.google.com/maps/api/js?callback=app.secciones.seccionmapa.googleMapsLoaded&sensor=false", function(){});
+					$.getScript("http://maps.google.com/maps/api/js?callback=app.secciones.seccionmapa.googleMapsLoaded&sensor=true", function(){});
 					return;
 				}
 
