@@ -24,6 +24,7 @@ function Base_Seccion(){
 
 		}, t, function(){
 			$(self.main).css('pointer-events', 'auto');
+
 		});
 
 	

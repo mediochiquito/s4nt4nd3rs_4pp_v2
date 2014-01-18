@@ -98,17 +98,32 @@ function SeccionEventosOfertas()
 		$(lista_ofertas.main).css('pointer-events', 'none')
 		$(lista_eventos.main).css('pointer-events', 'none')
 
+		$('#ListaOferta_combo_deptos').attr('disabled', true)
+		$('#ListaEventos_combo_deptos').attr('disabled', true)
+		
+		$('#FormSubirEvento_txt_titulo').attr('disabled', true)
+		$('#FormSubirEvento_txt_desc').attr('disabled', true)
+		$('#FormSubirEvento_txt_lugar').attr('disabled', true)
+		$('#FormSubirEvento_combo_categorias').attr('disabled', true)
+		$('#FormSubirEvento_combo_deptos').attr('disabled', true)
+
 		if($obj.solapa == 'subirevento'){
 			
 			subirevento._set()
 			solapa_eventos.habil(true);
 			solapa_ofertas.habil(false);
 			$(subirevento.main).transition({x:0}, 0)
-
+			
+				$('#FormSubirEvento_txt_titulo').attr('disabled', false)
+				$('#FormSubirEvento_txt_desc').attr('disabled', false)
+				$('#FormSubirEvento_txt_lugar').attr('disabled', false)
+				$('#FormSubirEvento_combo_categorias').attr('disabled', false)
+				$('#FormSubirEvento_combo_deptos').attr('disabled', false)
 		}
 
 		if($obj.solapa == 'eventos'){
 		
+			$('#ListaEventos_combo_deptos').attr('disabled', false)
 			solapa_eventos.habil(true);
 			solapa_ofertas.habil(false);
 			$(lista_eventos.main).transition({x:0}, 0)
@@ -120,7 +135,7 @@ function SeccionEventosOfertas()
 		}
 
 		if($obj.solapa == 'ofertas'){
-			
+			$('#ListaOferta_combo_deptos').attr('disabled', false)
 			solapa_eventos.habil(false);
 			solapa_ofertas.habil(true);
 			$(lista_ofertas.main).transition({x:0}, 0);

@@ -105,6 +105,15 @@ var holder = document.createElement('div')
 	$(document).bind('CARGAR_LISTAS', doSelectComboDepto)
 
 
+	setTimeout(function(){
+
+		$('#FormSubirEvento_txt_titulo').attr('disabled', true)
+		$('#FormSubirEvento_txt_desc').attr('disabled', true)
+		$('#FormSubirEvento_txt_lugar').attr('disabled', true)
+		$('#FormSubirEvento_combo_categorias').attr('disabled', true)
+		$('#FormSubirEvento_combo_deptos').attr('disabled', true)
+	},0)
+
 	function doSelectComboDepto(){
 
 		$(combo_deptos).find('option[value="'+app.depto_que_me_encuentro+'"]').prop('selected', true)

@@ -21,6 +21,7 @@ function Header(){
 	$(search).bind('click', do_click)
 	$(search).bind('touchstart', do_touchstart)
 	$(search).bind('blur', do_blur)
+	$(search).attr('tabindex', -1)
 
 
 	var btn_close = new Boton2Frames('img/header/close.svg', 30, 60, do_click_btn_close)

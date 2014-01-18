@@ -13,6 +13,7 @@ function ListaOfertas()
 	var combo_deptos = document.createElement('select');
 	combo_deptos.id = 'ListaOferta_combo_deptos'
 	$(combo_deptos).bind('change', doChangeDepto)
+	$(combo_deptos).attr('disabled', true)
 	for(var i=0; i< app.array_deptos.length; i++){
 
 			var option =  document.createElement('option');
@@ -51,7 +52,7 @@ function ListaOfertas()
 						
 						//
 						setTimeout(function(){
-							var btn_terms = new Boton2Frames("img/ofertas/btn_terms_banner.png", 20, 40, function(){
+							var btn_terms = new Boton2Frames("img/ofertas/btn_terms_banner.svg", 20, 40, function(){
 
 								app.secciones.go(app.secciones.secciontermsbanner, 300, {id:$json.banners_ofertas_id})
 							})

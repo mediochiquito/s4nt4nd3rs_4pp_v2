@@ -19,6 +19,7 @@ function ListaEventos()
 	var combo_deptos = document.createElement('select');
 	combo_deptos.id = 'ListaEventos_combo_deptos'
 	$(combo_deptos).bind('change', doChangeDepto)
+	$(combo_deptos).attr('disabled', true)
 	for(var i=0; i< app.array_deptos.length; i++){
 
 			var option =  document.createElement('option');

@@ -24,7 +24,7 @@ function ItemLocal($row, $con_gps)
 	addRegistro('Descuento', $row.locales_descuento)
 				addRegistro('Cuotas', $row.locales_cutoas)
 				addRegistro('Días de descuentos', $row.locales_dias)
-				addRegistro('Teléfono', '<a href="tel:' + $row.locales_tel + '">' + $row.locales_tel + "</a>")
+				addRegistro('Teléfono', '<a tabindex="-1" href="tel:' + $row.locales_tel + '">' + $row.locales_tel + "</a>")
 				addRegistro('Dirección', $row.locales_dir)
 				addRegistro('Observaciones', $row.locales_desc)
 
@@ -32,10 +32,10 @@ function ItemLocal($row, $con_gps)
 	setTimeout(function(){
 		if($con_gps) $(header_titulo).append('<div class="ItemLocal_disancia">'+distance(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude, $row.locales_lat, $row.locales_lon, 'K').toFixed(2)+' KM.</div>')
 	}, 0)
-			
+	
 
 	function doVerEnMapa(){
-
+		
 		app.secciones.go(app.secciones.seccionmapa, 300, {solo_ver:'ofertas', center:[$row.locales_lat, $row.locales_lon]});
 
 	}
