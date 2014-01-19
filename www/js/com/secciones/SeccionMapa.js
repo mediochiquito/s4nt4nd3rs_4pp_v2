@@ -80,6 +80,9 @@ function SeccionMapa()
 	var ya_me_localizo_una_vez = false;
 	var ultimo_obj = '';
 	var solo_ver = '';
+
+	var ya_creado = false;
+
 	//$(document).bind('CARGAR_LISTAS', cargar_lista_de_markers);
 
 	function doCheckEventos(){
@@ -104,23 +107,28 @@ function SeccionMapa()
 
 	this._remove = function(){
 		
-
-		/*for (i in array_markers_eventos) {
+	
+		for (i in array_markers_eventos) {
 		  array_markers_eventos[i].setMap(null);
 		}
-		for (i in array_markers_ofertas) {
-		  array_markers_ofertas[i].setMap(null);
-		}*/
-		
-		$(map_canvas).remove()
-		map = null;
+		for (u in array_markers_ofertas) {
+		  array_markers_ofertas[u].setMap(null);
+		}
+		if(app.plataforma=='android'){
+			$(map_canvas).remove()
+			map = null;
+		}
 	}
 
 	function _construct() { 
+		
+		if(app.plataforma=='android'){
 
-		  map_canvas = document.createElement('div')
+			 map_canvas = document.createElement('div')
 			map_canvas.id = 'SeccionMapa_map_canvas'
 			$(holdermap_canvas).append(map_canvas)
+		}
+		 
 
 		  var mapOptions = {
 		    zoom: 13,
@@ -144,18 +152,22 @@ function SeccionMapa()
 					    }
 					]
 		  };
-		
-		  map = new google.maps.Map(map_canvas,  mapOptions);
+		if(!ya_creado ||  app.plataforma=='android'){
 
-		 var pos = new google.maps.LatLng(-34.965311,-54.94985);
-		 map.setCenter(pos);
+			 map = new google.maps.Map(map_canvas,  mapOptions);
 
-		 my_marker = new google.maps.Marker(
-		           				{
-								  icon: {url:'img/mapa/mypoint.png', scaledSize: new google.maps.Size(20, 20), size: new google.maps.Size(20, 20)}
-								  
-								});
-		my_marker.setMap(map);
+			 var pos = new google.maps.LatLng(-34.965311,-54.94985);
+			 map.setCenter(pos);
+
+			 my_marker = new google.maps.Marker(
+			           				{
+									  icon: {url:'img/mapa/mypoint.png', scaledSize: new google.maps.Size(20, 20), size: new google.maps.Size(20, 20)}
+									  
+									});
+			my_marker.setMap(map);
+			ya_creado = true
+		}
+		 
 
 		
 	}
@@ -166,21 +178,23 @@ function SeccionMapa()
 		
 		ultimo_obj = obj;
 
-				if(!app.hay_internet()) {
+			if(!app.hay_internet()) {
 
-					app.alerta("Debes conectarte a internet para ver el mapa.");
-					return;
-				}
+				app.alerta("Debes conectarte a internet para ver el mapa.");
+				return;
+			}
 
-				if(app.hay_internet() && !app.cargo_mapa){
+			if(app.hay_internet() && !app.cargo_mapa){
 					
-					$.getScript("http://maps.google.com/maps/api/js?callback=app.secciones.seccionmapa.googleMapsLoaded&sensor=true", function(){});
-					return;
-				}
+				$.getScript("http://maps.google.com/maps/api/js?callback=app.secciones.seccionmapa.googleMapsLoaded&sensor=true", function(){});
+				return;
 
-				_construct()
+			}
+		
+			
+				_construct();
 
-				cargar_lista_de_markers()
+				setTimeout(cargar_lista_de_markers, 0)
 
 				try{
 					  mostrando_mi_pos = false

@@ -43,6 +43,7 @@ function SeccionMapaForm()
 	var marker;
 	var lat = "";
 	var lon = "";
+	var ya_creado = false;
 
 
 	function doAceptar(){
@@ -62,7 +63,14 @@ function SeccionMapaForm()
 	}
 	function _construct() {
 		
+		if(app.plataforma=='android'){
 
+			 map_canvas = document.createElement('div')
+			map_canvas.id = 'SeccionMapa_map_canvas'
+			$(holdermap_canvas).append(map_canvas)
+		}
+
+		
 		  var mapOptions = {
 		    zoom: 15,
 		    mapTypeControl: false,
@@ -84,8 +92,9 @@ function SeccionMapaForm()
 					    }
 					]
 		  };
-		
-		  map = new google.maps.Map(map_canvas,  mapOptions);
+
+
+		if(!ya_creado ||  app.plataforma=='android') map = new google.maps.Map(map_canvas,  mapOptions);
 
 		
 
@@ -105,7 +114,10 @@ function SeccionMapaForm()
 	}
 	this._remove = function(){
 
-		$(map_canvas).empty()
+		if(app.plataforma=='android'){
+			$(map_canvas).remove()
+			map = null;
+		}
 
 	}
 	this._set = function (obj){
