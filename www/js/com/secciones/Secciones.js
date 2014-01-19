@@ -24,10 +24,10 @@ function Secciones(){
 	this.seccionterms = new SeccionTerms();
 	$(this.main).append(this.seccionterms.main)
 	this.seccionterms.ocultar(0);
-
+/*
 	this.seccionmapaform = new SeccionMapaForm();
 	$(this.main).append(this.seccionmapaform.main)
-	this.seccionmapaform.ocultar(0);
+	this.seccionmapaform.ocultar(0);*/
 
 	this.secciontermsbanner = new SeccionTermsBanner();
 	$(this.main).append(this.secciontermsbanner.main);
