@@ -153,7 +153,7 @@ var holder = document.createElement('div')
 							cache: false, 
 							data:{
 								
-								lat_lon: app.secciones.seccionmapaform.getLatLonString(),
+								lat_lon: app.secciones.seccionmapa.getLatLonString(),
 								id_categoria: $(combo_categorias).val(),
 								titulo: txt_titulo.getValor(),
 								fecha: txt_fecha.getValor(),
@@ -188,7 +188,7 @@ var holder = document.createElement('div')
 		txt_lugar.setValor('')
 		txt_hora.setValor('')
 		txt_desc.setValor('')
-		app.secciones.seccionmapaform.resetLatLonString();
+		app.secciones.seccionmapa.resetLatLonString();
 	}
 
 	function doTime(){
@@ -257,7 +257,7 @@ var holder = document.createElement('div')
 
 	function doVerMapa(){
 		
-		app.secciones.go(app.secciones.seccionmapaform, 300, {pos:app.secciones.seccionmapaform.getLatLonString()})
+		app.secciones.go(app.secciones.seccionmapa, 300, {accion:'form', pos:app.secciones.seccionmapa.getLatLonString()})
 	}
 
 }

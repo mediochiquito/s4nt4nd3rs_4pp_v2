@@ -55,6 +55,7 @@ function SeccionMapa()
 	var map;
 
 
+
 /*
 	setTimeout(_construct, 0);*/
 //	$(document).bind('LISTAR_EVENTOS', do_LISTAR_EVENTOS);
@@ -81,9 +82,27 @@ function SeccionMapa()
 	var ultimo_obj = '';
 	var solo_ver = '';
 
+	var marker;
+	var lat = "";
+	var lon = "";
 	var ya_creado = false;
 
-	//$(document).bind('CARGAR_LISTAS', cargar_lista_de_markers);
+	var btn_aceptar = new Boton('ACEPTAR', doAceptar);
+	btn_aceptar.main.id = 'SeccionMapaForm_btn_aceptar'
+	$(this.main).append(btn_aceptar.main);
+
+	function doAceptar(){
+
+		lat = marker.getPosition().lat();
+		lon = marker.getPosition().lng()
+
+		app.secciones.go(app.secciones.seccioneventosofertas, 300, {solapa: 'subirevento'});
+	}
+	this.getLatLonString = function (){
+		if(lat=='') return '';
+		return lat + ',' + lon
+	}
+	
 
 	function doCheckEventos(){
 
@@ -107,6 +126,14 @@ function SeccionMapa()
 
 	this._remove = function(){
 		
+
+			$(btn_aceptar.main).hide()
+			$(chk_eventos.main).hide()
+			$(chk_oferta.main).hide()
+			$('#SeccionMapa_txt_filtrar').hide()
+			$('#SeccionMapa_txt_eventos').hide()
+			$('#SeccionMapa_txt_ofertas').hide()
+
 	
 		for (i in array_markers_eventos) {
 		  array_markers_eventos[i].setMap(null);
@@ -165,6 +192,20 @@ function SeccionMapa()
 									  
 									});
 			my_marker.setMap(map);
+
+
+			marker = new google.maps.Marker(
+						           				{ 
+						           					 
+						           					title:'YO',
+						           					
+						           				  animation: google.maps.Animation.DROP,
+												
+												 draggable:true,
+												  icon: {url:'img/markers/evento.png',  scaledSize: new google.maps.Size(19, 30), size: new google.maps.Size(19, 30)}
+												});
+			marker.setMap(map);
+
 			ya_creado = true
 		}
 		 
@@ -172,7 +213,7 @@ function SeccionMapa()
 		
 	}
 
-	
+
 
 	this._set = function (obj){
 		
@@ -194,7 +235,7 @@ function SeccionMapa()
 			
 				_construct();
 
-				setTimeout(cargar_lista_de_markers, 0)
+
 
 				try{
 					  mostrando_mi_pos = false
@@ -210,11 +251,79 @@ function SeccionMapa()
 	 					var mi_pos = new google.maps.LatLng(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude     )
 							map.setCenter(mi_pos);
 							my_marker.setPosition(mi_pos);
-
+						
 	 				}catch(e){}
 						        	
 			
 				}
+
+
+				marker.setVisible(false)
+				my_marker.setVisible(true)
+				try{
+						
+						if(obj.accion =='form'){
+							
+
+							marker.setVisible(true)
+							my_marker.setVisible(false)
+
+
+								$(btn_aceptar.main).show()
+							
+							var pos
+							var ultima_pos;
+							try{
+								ultima_pos = new google.maps.LatLng(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude)
+							}catch(e){
+								ultima_pos = ''
+							}	
+
+							if(obj.pos != ''){
+								
+								var array_pos = obj.pos.split(',')
+								pos = new google.maps.LatLng(array_pos[0],array_pos[1]);
+
+							}else if(ultima_pos!='' && typeof(ultima_pos)!='undefined'){
+								pos = ultima_pos;
+
+							}else{
+								pos = new google.maps.LatLng(-34.965311,-54.94985);
+							}
+
+
+							marker.setPosition(pos)
+							map.setCenter(pos);
+				 			
+
+
+
+						}else{
+
+			
+							$(chk_eventos.main).show()
+							$(chk_oferta.main).show()
+							$('#SeccionMapa_txt_filtrar').show()
+							$('#SeccionMapa_txt_eventos').show()
+							$('#SeccionMapa_txt_ofertas').show()
+
+								setTimeout(cargar_lista_de_markers, 0)
+
+						}
+
+					
+				} catch(e){
+						$(chk_eventos.main).show()
+							$(chk_oferta.main).show()
+							$('#SeccionMapa_txt_filtrar').show()
+							$('#Eventos').show()
+							$('#Descuentos').show()
+							
+					setTimeout(cargar_lista_de_markers, 0)
+				
+				}
+				
+
 
 			solo_ver = '';
 			try{
