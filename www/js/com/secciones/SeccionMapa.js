@@ -313,11 +313,11 @@ function SeccionMapa()
 
 					
 				} catch(e){
-						$(chk_eventos.main).show()
+							$(chk_eventos.main).show()
 							$(chk_oferta.main).show()
 							$('#SeccionMapa_txt_filtrar').show()
-							$('#Eventos').show()
-							$('#Descuentos').show()
+							$('#SeccionMapa_txt_eventos').show()
+							$('#SeccionMapa_txt_ofertas').show()
 							
 					setTimeout(cargar_lista_de_markers, 0)
 				
