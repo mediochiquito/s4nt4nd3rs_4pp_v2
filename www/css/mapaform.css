@@ -59,8 +59,8 @@ height: 100%;
 #SeccionMapaForm_holdermap_canvas img{
 
 	
-	/*-webkit-backface-visibility: hidden;
-*/
+	-webkit-backface-visibility: hidden;
+
 }
 
 #SeccionMapaForm_holdermap_canvas .gmnoprint img{

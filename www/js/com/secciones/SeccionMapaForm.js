@@ -115,7 +115,10 @@ function SeccionMapaForm()
 				$.getScript("http://maps.google.com/maps/api/js?callback=app.secciones.seccionmapaform.googleMapsLoaded&sensor=false", function(){ });
 				return;
 		}else{
-			if(!app.hay_internet()) app.alerta("Debes conectarte a internet para ver el mapa.");
+			if(!app.hay_internet()) {
+				app.alerta("Debes conectarte a internet para ver el mapa.");
+				return;
+			}
 			_construct();
 		}
 		

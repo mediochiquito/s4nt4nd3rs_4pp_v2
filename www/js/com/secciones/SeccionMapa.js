@@ -103,18 +103,24 @@ function SeccionMapa()
 	}
 
 	this._remove = function(){
-		for (i in array_markers_eventos) {
+		
+
+		/*for (i in array_markers_eventos) {
 		  array_markers_eventos[i].setMap(null);
 		}
 		for (i in array_markers_ofertas) {
 		  array_markers_ofertas[i].setMap(null);
-		}
-		map = null
-		$(map_canvas).empty()
+		}*/
 		
+		$(map_canvas).remove()
+		map = null;
 	}
 
 	function _construct() { 
+
+		  map_canvas = document.createElement('div')
+			map_canvas.id = 'SeccionMapa_map_canvas'
+			$(holdermap_canvas).append(map_canvas)
 
 		  var mapOptions = {
 		    zoom: 13,
@@ -151,30 +157,20 @@ function SeccionMapa()
 								});
 		my_marker.setMap(map);
 
-		//listar_ofertas()
-
-
-		/*setTimeout(function() {
-		     google.maps.event.trigger(map,'resize');
-		}, 200);
-	*/
+		
 	}
 
 	
-	/*this.setMarcadores = function(xml){
-			
-		arr_marcadores = new Array();
-			
-		
-		}
-	}
-	*/
 
 	this._set = function (obj){
 		
 		ultimo_obj = obj;
 
-		if(!app.hay_internet()) app.alerta("Debes conectarte a internet para ver el mapa.");
+				if(!app.hay_internet()) {
+
+					app.alerta("Debes conectarte a internet para ver el mapa.");
+					return;
+				}
 
 				if(app.hay_internet() && !app.cargo_mapa){
 					
