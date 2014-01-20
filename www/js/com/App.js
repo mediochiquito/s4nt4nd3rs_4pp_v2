@@ -303,15 +303,15 @@ function App(){
 					url: "http://maps.googleapis.com/maps/api/geocode/json?latlng="+app.posicion_global.coords.latitude+","+app.posicion_global.coords.longitude+"&sensor=true",
 					dataType: 'json'
 					}).success(function($json) {
-						
-						
+						console.log('geokode OK')
+						console.log($json)
 						for(var address_components in  $json.results[0].address_components){
 
 							if($json.results[0].address_components[address_components].types[0] == 'administrative_area_level_1'){
 								
 								var depto_encontrado = ($.inArray($json.results[0].address_components[address_components].short_name, array_deptos_google)+1);
 								
-alert(depto_encontrado)
+
 								if(depto_encontrado>0){
 
 											self.depto_que_me_encuentro = depto_encontrado;
