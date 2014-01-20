@@ -20,12 +20,12 @@ function ItemListaEvento($row)
 		hoy.src = 'img/hoy.png';
 		$(this.main).append(hoy);
 	}
+ 
 
+	//setTimeout(function(){
 
-	setTimeout(function(){
-
-		$('.ItemListaEvento_nombre').css('width', app.ancho-145)
-	}, 0)
+		$(txt).css('width', app.ancho-145)
+	//}, 0)
 	
 
 	var haciendo_click = false;
