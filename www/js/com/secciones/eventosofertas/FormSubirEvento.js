@@ -210,7 +210,8 @@ var holder = document.createElement('div')
 			  	}catch(e){}
 			  
 			 	var date_f = new Date(_date);*/
-
+			 	console.log(String(date))
+			 	console.log(obtener_la_hora(String(date)))
 			  	txt_hora.setValor(obtener_la_hora(String(date)));
 			
 			});
