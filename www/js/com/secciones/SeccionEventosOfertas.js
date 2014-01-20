@@ -167,6 +167,19 @@ function SeccionEventosOfertas()
 
 	}
 
+	this._remove = function(){
+
+
+			$('#ListaOferta_combo_deptos').attr('disabled', true)
+			$('#ListaEventos_combo_deptos').attr('disabled', true)
+			
+			$('#FormSubirEvento_txt_titulo').attr('disabled', true)
+			$('#FormSubirEvento_txt_desc').attr('disabled', true)
+			$('#FormSubirEvento_txt_lugar').attr('disabled', true)
+			$('#FormSubirEvento_combo_categorias').attr('disabled', true)
+			$('#FormSubirEvento_combo_deptos').attr('disabled', true)
+
+	}
 	this._set = function ($obj){
 
 		if(typeof($obj)!='undefined'){

@@ -130,10 +130,13 @@ function SeccionMapa()
 			$(btn_aceptar.main).hide()
 			$(chk_eventos.main).hide()
 			$(chk_oferta.main).hide()
-			$('#SeccionMapa_txt_filtrar').hide()
+			setTimeout(function(){
+				$('#SeccionMapa_txt_filtrar').hide()
 			$('#SeccionMapa_txt_eventos').hide()
 			$('#SeccionMapa_txt_ofertas').hide()
 
+			}, 100)
+			
 	
 		for (i in array_markers_eventos) {
 		  array_markers_eventos[i].setMap(null);
@@ -227,7 +230,7 @@ function SeccionMapa()
 
 			if(app.hay_internet() && !app.cargo_mapa){
 					
-				$.getScript("http://maps.google.com/maps/api/js?callback=app.secciones.seccionmapa.googleMapsLoaded&sensor=true", function(){});
+				$.getScript("http://maps.google.com/maps/api/js?callback=app.secciones.seccionmapa.googleMapsLoaded&sensor=false", function(){});
 				return;
 
 			}
@@ -268,7 +271,9 @@ function SeccionMapa()
 							marker.setVisible(true)
 							my_marker.setVisible(false)
 
-
+								$('#SeccionMapa_txt_filtrar').hide()
+			$('#SeccionMapa_txt_eventos').hide()
+			$('#SeccionMapa_txt_ofertas').hide()
 								$(btn_aceptar.main).show()
 							
 							var pos

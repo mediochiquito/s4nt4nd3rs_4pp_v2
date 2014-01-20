@@ -9,12 +9,10 @@ function Base_Seccion(){
 		var t = $time;
 		if(typeof($time) == 'undefined') t = 300;
 		
-		/*
+		
 		document.activeElement.blur();
 		$("input").blur();
-		*/
-
-	
+		
 
 		$(self.main).transition({x:app.ancho},0)
 		$(this.main).transition({
