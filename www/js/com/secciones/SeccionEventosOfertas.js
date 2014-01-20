@@ -65,7 +65,7 @@ function SeccionEventosOfertas()
 				lista_eventos.listar($busqueda, function ($cantidad_eventos){
 		
 					lista_ofertas.listar($busqueda, function ($cantidad_ofertas){
-		
+							alert($busqueda)
 							if($busqueda != ''){
 		
 								if($cantidad_ofertas>$cantidad_eventos) mostrar_solapa({solapa: 'ofertas'});

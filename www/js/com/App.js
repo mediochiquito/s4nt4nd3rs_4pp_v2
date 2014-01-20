@@ -290,8 +290,7 @@ function App(){
 		
 		self.posicion_global = position
 		navigator.geolocation.clearWatch(watchid);
-		console.log('onLocation OK')
-		console.log(position)
+	
 
 		// geolocalizar
 		if(buscando_depto){
