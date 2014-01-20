@@ -300,7 +300,7 @@ function App(){
 				
 				$.ajax({
 					type: "GET",
-					url: "http://maps.googleapis.com/maps/api/geocode/json?latlng="+app.posicion_global.coords.latitude+","+app.posicion_global.coords.longitude+"&sensor=true",
+					url: "http://maps.googleapis.com/maps/api/geocode/json?latlng="+app.posicion_global.coords.latitude+","+app.posicion_global.coords.longitude+"&sensor=true&language=es",
 					dataType: 'json'
 					}).success(function($json) {
 						console.log('geokode OK')
