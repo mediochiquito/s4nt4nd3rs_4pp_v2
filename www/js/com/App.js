@@ -310,6 +310,8 @@ function App(){
 							if($json.results[0].address_components[address_components].types[0] == 'administrative_area_level_1'){
 								
 								var depto_encontrado = ($.inArray($json.results[0].address_components[address_components].short_name, array_deptos_google)+1);
+								
+alert(depto_encontrado)
 								if(depto_encontrado>0){
 
 											self.depto_que_me_encuentro = depto_encontrado;

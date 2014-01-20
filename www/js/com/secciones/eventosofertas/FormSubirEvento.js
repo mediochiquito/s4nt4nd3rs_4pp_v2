@@ -211,7 +211,7 @@ var holder = document.createElement('div')
 			  
 			 	var date_f = new Date(_date);*/
 
-			  	txt_hora.setValor(obtener_la_hora(date));
+			  	txt_hora.setValor(obtener_la_hora(String(date)));
 			
 			});
 
@@ -227,7 +227,7 @@ var holder = document.createElement('div')
 		if(hora<9) hora = '0' + hora;
 		if(minutes<9) minutes = '0' + minutes;
 
-		return (hora + ':' + minutes);
+		return String(hora + ':' + minutes);
 
 	}
 
