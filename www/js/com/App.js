@@ -76,7 +76,7 @@ function App(){
 	}
 
 	function doPrevent(event) {
-		if(app.secciones.get_obj_seccion_actual().main.id == 'SeccionMapa' || app.secciones.get_obj_seccion_actual().main.id == 'SeccionMapaForm')
+	//	if(app.secciones.get_obj_seccion_actual().main.id == 'SeccionMapa' || app.secciones.get_obj_seccion_actual().main.id == 'SeccionMapaForm')
 		event.preventDefault();
 	}
 

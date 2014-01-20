@@ -197,8 +197,7 @@ function SeccionMapa()
 			my_marker.setMap(map);
 
 
-			marker = new google.maps.Marker(
-						           				{ 
+			marker = new google.maps.Marker({ 
 						           					 
 						           					title:'YO',
 						           					
@@ -208,7 +207,6 @@ function SeccionMapa()
 												  icon: {url:'img/markers/evento.png',  scaledSize: new google.maps.Size(19, 30), size: new google.maps.Size(19, 30)}
 												});
 			marker.setMap(map);
-
 			ya_creado = true
 		}
 		 
