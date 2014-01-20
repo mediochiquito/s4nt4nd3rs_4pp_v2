@@ -18,7 +18,8 @@ function SeccionMapa()
 	chk_eventos.main.id = 'Mapa_chk_eventos'
 	$(this.main).append(chk_eventos.main);
 
-
+    $(holder_blanco_secciones).html('<div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>');
+	
 	var chk_oferta = new BotonToogle("img/mapa/checkbox.svg", 'eventos' , 30, 60, doCheckOfertas)
 	chk_oferta.main.id = 'Mapa_chk_oferta'
 	$(this.main).append(chk_oferta.main)
@@ -45,7 +46,7 @@ function SeccionMapa()
 		esquina_der.src = 'img/mapa/esquina_der.svg';
 		esquina_der.id = 'SeccionMapa_esquina_der';
 		$(this.main).append(esquina_der);
-		$(esquina_der).css('left',app.ancho-25);
+		$(esquina_der).css('left',app.ancho-24);
 	}
 
 	var my_marker;
@@ -232,12 +233,12 @@ function SeccionMapa()
 				return;
 
 			}
-			
+
 		
 			
 				_construct();
 
-
+				$(self.main).find('.spinner').hide()
 
 				try{
 					  mostrando_mi_pos = false
