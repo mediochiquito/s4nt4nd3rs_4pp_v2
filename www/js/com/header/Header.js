@@ -62,9 +62,7 @@ function Header(){
 
 	function doKeyUp(e){
 
-		if(app.secciones.get_obj_seccion_actual().main.id != 'SeccionEventosOfertas');
-			app.secciones.go(app.secciones.seccioneventosofertas);
-		
+	
 		if($(search).val().length > 0) $(btn_close.main).show();
 
 		try{
@@ -80,7 +78,8 @@ function Header(){
 
 	function enviar_busqueda(){
 
-
+		if(app.secciones.get_obj_seccion_actual().main.id != 'SeccionEventosOfertas');
+			app.secciones.go(app.secciones.seccioneventosofertas);
 		
 		if(ultima_busqeuda!=$(search).val()){
 			console.log('enviar_busqueda: ' + $(search).val())

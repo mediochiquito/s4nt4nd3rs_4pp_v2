@@ -271,9 +271,9 @@ function SeccionMapa()
 							marker.setVisible(true)
 							my_marker.setVisible(false)
 
-								$('#SeccionMapa_txt_filtrar').hide()
-			$('#SeccionMapa_txt_eventos').hide()
-			$('#SeccionMapa_txt_ofertas').hide()
+							$('#SeccionMapa_txt_filtrar').hide()
+								$('#SeccionMapa_txt_eventos').hide()
+								$('#SeccionMapa_txt_ofertas').hide()
 								$(btn_aceptar.main).show()
 							
 							var pos
@@ -327,7 +327,14 @@ function SeccionMapa()
 					setTimeout(cargar_lista_de_markers, 0)
 				
 				}
-				
+
+
+
+			setTimeout(function(){
+
+				 google.maps.event.trigger(map, 'resize')
+				 
+			}, 100)	
 
 
 			solo_ver = '';
