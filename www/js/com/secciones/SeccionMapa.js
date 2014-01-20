@@ -126,7 +126,7 @@ function SeccionMapa()
 
 	this._remove = function(){
 		
-
+		$(map_canvas).hide()
 			$(btn_aceptar.main).hide()
 			$(chk_eventos.main).hide()
 			$(chk_oferta.main).hide()
@@ -217,7 +217,7 @@ function SeccionMapa()
 
 
 	this._set = function (obj){
-		
+		$(map_canvas).show()
 		ultimo_obj = obj;
 
 			if(!app.hay_internet()) {
@@ -232,6 +232,7 @@ function SeccionMapa()
 				return;
 
 			}
+			
 		
 			
 				_construct();
