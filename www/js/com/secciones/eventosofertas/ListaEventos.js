@@ -51,7 +51,7 @@ function ListaEventos()
 	var scroll_set =  false*/
 
 	function doChangeDepto(){
-
+		
 		app.depto_que_me_encuentro = ($(combo_deptos).val())
 		$(document).trigger('CARGAR_LISTAS')
 

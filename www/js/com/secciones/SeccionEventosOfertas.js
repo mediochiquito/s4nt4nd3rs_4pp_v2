@@ -43,7 +43,7 @@ function SeccionEventosOfertas()
 	var en_solapa=''
 	var en_transaccion=false;
 
-	$(document).bind('CARGAR_LISTAS', function(){
+	$(document).bind('CARGAR_LISTAS', function(e){
 		
 		app.secciones.seccioneventosofertas.cargar_listas('')
 	});
@@ -56,23 +56,22 @@ function SeccionEventosOfertas()
 
 	this.cargar_listas = function($busqueda){
 
-		
+		/*
 		if(en_solapa=='una_oferta') mostrar_solapa({solapa:'eventos'});
-		if(en_solapa=='un_evento')  mostrar_solapa({solapa:'ofertas'});
+		if(en_solapa=='un_evento')  mostrar_solapa({solapa:'ofertas'});*/
 		
 		
-				en_transaccion =  true
+			
 				lista_eventos.listar($busqueda, function ($cantidad_eventos){
 		
 					lista_ofertas.listar($busqueda, function ($cantidad_ofertas){
-							alert($busqueda)
+							
 							if($busqueda != ''){
-		
+			
 								if($cantidad_ofertas>$cantidad_eventos) mostrar_solapa({solapa: 'ofertas'});
 								else mostrar_solapa({solapa: 'eventos'});
 							}
-							en_transaccion = false;
-		
+						 
 					});
 				});
 		
@@ -85,7 +84,9 @@ function SeccionEventosOfertas()
 	}
 
 	function mostrar_solapa($obj){
-		
+
+		console.log('$obj.solapa')
+		console.log($obj.solapa)
 		if(typeof($obj.solapa) == 'undefined') en_solapa = 'eventos';
 		else en_solapa = $obj.solapa;
 		
@@ -169,7 +170,6 @@ function SeccionEventosOfertas()
 
 	this._remove = function(){
 
-
 			$('#ListaOferta_combo_deptos').attr('disabled', true)
 			$('#ListaEventos_combo_deptos').attr('disabled', true)
 			
@@ -184,7 +184,6 @@ function SeccionEventosOfertas()
 
 		if(typeof($obj)!='undefined'){
 
-			//this.cargar_listas('');
 			mostrar_solapa($obj);
 
 		}else{

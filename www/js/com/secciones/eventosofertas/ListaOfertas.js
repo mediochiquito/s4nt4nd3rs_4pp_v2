@@ -77,9 +77,7 @@ function ListaOfertas()
 
 	}
 
-	/*var is ;
-	var scroll_set =  false
-*/
+	
 	function doVerEnMapa(e){
 
 		app.secciones.go(app.secciones.seccionmapa, 300, {solo_ver:'ofertas'})
@@ -112,10 +110,7 @@ function ListaOfertas()
 			        	$(self.main).css('height', 50)
 			        },100)
 		    	}else{
-/*
-		    		setTimeout(function(){
-			        	$(holder).find('>div').css('height', '')
-			        },100)*/
+
 		    	}
 
 		        
@@ -126,19 +121,6 @@ function ListaOfertas()
 		          
 		        }
 
-
-				/*setTimeout(function(){  
-					if(!scroll_set){
-							scroll_set = true;
-							is =  new IScroll('#ListaOfertas_holder',{ mouseWheel: true });
-							//is =  new IScroll('ListaOfertas_holder', {hScrollbar: false, vScrollbar: false});
-						
-					}else{
-							//is.refresh()
-					}
-					//is.scrollTo(0, 0, 0);
-		   		}, 0);
-		   		*/
 				if(typeof($callback)!='undefined') $callback(cant_ofertas);
 
 		    })

@@ -50,7 +50,7 @@ function ManagePush(){
 	        });
 	    }
 	    catch(err) {
-	        //Handle errors here
+	      
 	        alert(err.message);
 	    }
 		
@@ -76,7 +76,6 @@ function ManagePush(){
 						});	
 	}
 
-	// result contains any message sent from the plugin call
 	function successHandler (result) {
 	  
 	}
@@ -96,7 +95,6 @@ function ManagePush(){
 	   
 	    if ( event.alert )
 	    {
-	      // alert('event.idevento: ' + event.idevento)
 	        objeto_recibido(event.idevento)
 	    }
 
@@ -126,28 +124,8 @@ function ManagePush(){
 		    break;
 
 		    case 'message':
-		      
-		  		//alert('id_evento: ' + e.payload.idevento + ' - ' + e.payload.message)
 		  		objeto_recibido(e.payload.idevento)
-		        /*if ( e.foreground )
-		        {
-		            app.alerta('notificacion en primer plano')
-		         
-		        }
-		        else
-		        { 
-		            if ( e.coldstart )
-		            {
-		                app.alerta('COLDSTART NOTIFICATIO')
-		            }
-		            else
-		            {
-		                app.alerta('BACKGROUND NOTIFICATIO');
-		            }
-		        }
 
-		         app.alerta('MESSAGE -> MSG: ' + e.payload.message);
-		         app.alerta('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt);*/
 		    break;
 
 		    case 'error':
@@ -184,3 +162,6 @@ function ManagePush(){
 		}
 	}
 }
+
+
+

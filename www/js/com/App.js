@@ -234,10 +234,9 @@ function App(){
 	{
 		   $tx.executeSql("SELECT version FROM app" , [], function (tx, resultado) {
 	    		
-	    		//ya tiene la version 2
+
 	    		if(String(resultado.rows.item(0).version) == String(version)){
-	    			//ya tiene lo ultimo;
-	    			//alert('asd')
+	    			
 	    			start()
 	    		}else{
 
@@ -273,7 +272,7 @@ function App(){
 
 					xml_default_db = xml;
 					tablas_creadas = 0;
-					//crearTabla_Categorias, 
+				
 					array_tablas_a_crear = new Array(crearTabla_Eventos,
 													 crearTabla_Participaciones,
 													 crearTabla_Ofertas, 
@@ -302,8 +301,7 @@ function App(){
 					url: "http://maps.googleapis.com/maps/api/geocode/json?latlng="+app.posicion_global.coords.latitude+","+app.posicion_global.coords.longitude+"&sensor=true&language=es",
 					dataType: 'json'
 					}).success(function($json) {
-						console.log('geokode OK')
-						console.log($json)
+						
 						for(var address_components in  $json.results[0].address_components){
 
 							if($json.results[0].address_components[address_components].types[0] == 'administrative_area_level_1'){
@@ -313,9 +311,8 @@ function App(){
 
 								if(depto_encontrado>0){
 
-											self.depto_que_me_encuentro = depto_encontrado;
-											$(document).trigger('CARGAR_LISTAS')
-
+									self.depto_que_me_encuentro = depto_encontrado;
+									$(document).trigger('CARGAR_LISTAS')
 								
 								}
 
@@ -328,6 +325,7 @@ function App(){
 					}).error(function(){
 
 						app.cargando(false);
+
 					});
 			
 		}
@@ -366,8 +364,28 @@ function App(){
 		    				}
 
 
+
 		    				if(app.hay_internet()) verfificar_sync();
 							else $(document).trigger('CARGAR_LISTAS');
+
+
+
+		    				/*setTimeout(function (){
+
+									app.db.transaction(function (tx) {
+									
+											tx.executeSql("SELECT * FROM eventos WHERE eventos_id='22'  AND  eventos_estado=1" , [], 
+													function (tx, resultado) {
+													
+														if(resultado.rows.length == 1)
+										    				app.secciones.go(app.secciones.seccioneventosofertas, 300, {solapa:'un_evento', row: resultado.rows.item(0)});
+										    		}
+									    	);
+
+									});	
+
+							}, 0)*/
+
 
 					})
 
