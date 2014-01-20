@@ -203,30 +203,34 @@ var holder = document.createElement('div')
 			// calling show() function with options and a result handler
 			datePicker.show(options, function(date){
 			 	
-			 	console.log("1 time result " + date);
-			  	var _date = date
-			  	console.log("2 time result " + date);
-
+/*			  	var _date = date
 			  	try{
-
 					var array_date = date.toString().split(',');
-				
 				  	if(array_date.length > 1) _date = array_date[1];
-
-			  	}catch(e){
-
-			  	}
+			  	}catch(e){}
 			  
+			 	var date_f = new Date(_date);*/
 
-			 	var date_f = new Date(_date)
-			 	console.log("4 time result " + date);
-			  	txt_hora.setValor(date_f.getHours() + ':' + date_f.getMinutes() )
-			  	console.log("5 time result " + date);
-			  	console.log(array_date);
+			  	txt_hora.setValor(obtener_la_hora(date));
+			
 			});
 
 	}
 		
+
+	function obtener_la_hora($str_date){
+		
+		var reg = new RegExp('^[0-9]$');
+		var arry_2_puntos = $str_date.split(':')
+		var hora = Number(String(arry_2_puntos[0]).substr(String(arry_2_puntos[0]).length-2,2).replace(/[^0-9.]/g, ""));
+		var minutes = Number(String(arry_2_puntos[1]).replace(/[^0-9.]/g, ""));
+		if(hora<9) hora = '0' + hora;
+		if(minutes<9) minutes = '0' + minutes;
+
+		return (hora + ':' + minutes);
+
+	}
+
 
 
 	function doDate(){

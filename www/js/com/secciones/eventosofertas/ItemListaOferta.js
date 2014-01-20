@@ -20,9 +20,9 @@ function ItemListaOferta($row)
 	hoy.src = 'img/hoy.png';
 	$(this.main).append(hoy);
 
-
 	var haciendo_click = false;
 	var inter_pintar;
+
 	if(app.es_touch()){
 		
 		this.main.addEventListener('touchstart', doTocuhStart);
@@ -31,7 +31,6 @@ function ItemListaOferta($row)
 	}else{
 
 		this.main.addEventListener('click', doClick);
-
 
 	}
 	
@@ -58,6 +57,9 @@ function ItemListaOferta($row)
 		}
 
 	}
+
+
+	
 
 
 	function doClick(e){

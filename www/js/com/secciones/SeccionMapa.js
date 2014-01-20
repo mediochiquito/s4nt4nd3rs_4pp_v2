@@ -218,7 +218,9 @@ function SeccionMapa()
 
 
 	this._set = function (obj){
+
 		$(map_canvas).show()
+		
 		ultimo_obj = obj;
 
 			if(!app.hay_internet()) {

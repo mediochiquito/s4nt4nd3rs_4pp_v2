@@ -105,6 +105,8 @@ function App(){
 
 	}
 
+
+
 	this.es_touch = function(){
 
 		if($.browser.chrome) return false;  
