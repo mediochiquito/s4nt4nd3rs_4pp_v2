@@ -137,7 +137,7 @@ var holder = document.createElement('div')
 		if(txt_lugar.getValor()=='') {txt_lugar.marcar_error(true); r = false;}
 		if(txt_hora.getValor()=='') {txt_hora.marcar_error(true); r = false;}
 		if(txt_desc.getValor()=='') {txt_desc.marcar_error(true);  r = false;}
-		if(r && app.secciones.seccionmapaform.getLatLonString()=='') {app.alerta('Debes elegir las coordenadas del lugar.'); r = false;}
+		if(r && app.secciones.seccionmapa.getLatLonString()=='') {app.alerta('Debes elegir las coordenadas del lugar.'); r = false;}
 		
 
 		if(r)
