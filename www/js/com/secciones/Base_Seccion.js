@@ -54,9 +54,9 @@ function Base_Seccion(){
 			  scale:.9, 
 			  opacity: 0
 
-		}, t, function(){
+		}, t, function(){ 
 
-			$(self.main).transition({x:3000},0)
+			$(self.main).transition({x:2000},0)
 			
 		})
 		
