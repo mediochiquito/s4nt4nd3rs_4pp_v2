@@ -29,8 +29,12 @@ function ListaOfertas()
 	$(holder).append('<div id="ListaOferta_banner"></div><div id="ListaOferta_holder_combo_deptos"><div id="ListaOferta_txt_deptos">Departamento:</div></div><div id="ListaOfertasWrapper">')
 	$(this.main).append(holder)
 
+	this.array_ids_encontrados;
+
 	$(holder).css({width: app.ancho-40, height: app.alto-200});
 	
+
+
 	setTimeout(function (){
 		$('#ListaOferta_holder_combo_deptos').append(combo_deptos);
 		cargar_banner_oferta()
@@ -102,20 +106,19 @@ function ListaOfertas()
 		    	
 		    	var cant_ofertas = resultado.rows.length;
 
-		    
 		    	$(holder).find('#ListaOfertasWrapper').empty()
 		    	if(cant_ofertas == 0){
-		    		$(holder).find('#ListaOfertasWrapper').html('<div class="sin_resultados"><div>La busqueda no ha arrojado ningun resultado en descuentos.</div></div>')
-		    		setTimeout(function(){
-			        	$(self.main).css('height', 50)
-			        },100)
-		    	}else{
 
+		    		btn_ver_en_mapa.habil(false)
+		    		$(holder).find('#ListaOfertasWrapper').html('<div class="sin_resultados"><div>La busqueda no ha arrojado ningun resultado en descuentos.</div></div>')
+		    		
+		    	}else{
+		    		btn_ver_en_mapa.habil(true)
 		    	}
 
 		        
 		        for(var i=0; i<cant_ofertas; i++){
-					
+					this.array_ids_encontrados.push(resultado.rows.item(i).ofertas_id);
 					var _ItemListaOferta = new ItemListaOferta(resultado.rows.item(i));
 					$(holder).find('#ListaOfertasWrapper').append(_ItemListaOferta.main)
 		          

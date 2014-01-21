@@ -35,8 +35,7 @@ function SeccionMenu()
 	$(btn_notitficaciones.main).append(chk_push.main)
 	chk_push.setSelected(true)
 
-
-
+	
 	app.db.transaction(function (tx) {
 			tx.executeSql("SELECT push FROM app" , [], function (tx, resultado) {
 	    					if(String(resultado.rows.item(0).push) == '1'){

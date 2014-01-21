@@ -49,9 +49,17 @@ function SeccionEventosOfertas()
 	});
 
 	function doSolapaClick($value){
-
+		
 		mostrar_solapa({solapa:$value})
+		
+	}
 
+	this.get_lista_eventos =  function (){
+		return lista_eventos;
+	}
+
+	this.get_lista_ofertas =  function (){
+		return lista_ofertas;
 	}
 
 	this.cargar_listas = function($busqueda){

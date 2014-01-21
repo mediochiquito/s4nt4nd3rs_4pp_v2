@@ -35,7 +35,7 @@ function ListaEventos()
 	$(holder).append('<div id="ListaEventos_holder_combo_deptos"><div id="ListaEventos_txt_deptos">Departamento:</div></div><div id="ListaEventosWrapper">')
 	$(this.main).append(holder),
 
-
+	this.array_ids_encontrados;
 
 	$(holder).css({width: app.ancho-40, height: app.alto-200});
 
@@ -90,8 +90,6 @@ function ListaEventos()
 			where = ' WHERE (eventos_nombre LIKE "%' + busqueda + '%" OR eventos_tags LIKE "%' + busqueda + '%") AND eventos_estado=1 AND eventos_departamentos_id="'+app.depto_que_me_encuentro+'" AND  eventos_fecha_hora>="'+fecha_hasta_hoy+'"';
 		}
 
-		
-		
 		app.db.transaction(function (tx) {
 			
 			tx.executeSql('SELECT * FROM eventos ' + where + ' ORDER BY eventos_fecha_hora ASC' , [], function (tx, resultado) {
@@ -100,22 +98,28 @@ function ListaEventos()
 			    	var cant_eventos = resultado.rows.length;
 			    	if(cant_eventos == 0){
 
+			    		btn_ver_en_mapa.habil(false)
+
 			    		if(busqueda != '' && busqueda != 'Buscar...')
 			    			$(holder).find('#ListaEventosWrapper').html('<div class="sin_resultados"><div>La busqueda no ha arrojado ningun resultado en eventos.</div></div>');
 			    		else 
 			    			$(holder).find('#ListaEventosWrapper').html('<div class="sin_resultados"><div>No hay eventos publicados por el momento.<br /><br />Te invitamos a que consultes la sección Descuentos.</div></div>');
 
-			    	}else{
 
+
+
+			    	}else{
+			    		btn_ver_en_mapa.habil(true)
 			    		
 			    	}
-		    	
+		    		this.array_ids_encontrados = new Array();
 		    		for(var i=0; i<cant_eventos; i++){
-
-						//for(var u=0; u<5; u++){
+		    			
+		    			this.array_ids_encontrados.push(resultado.rows.item(i).eventos_id)
+						
 						var _ItemListaEvento = new ItemListaEvento(resultado.rows.item(i));
 						$(holder).find('#ListaEventosWrapper').append(_ItemListaEvento.main)
-			            //}
+			            
 			        }
 
 

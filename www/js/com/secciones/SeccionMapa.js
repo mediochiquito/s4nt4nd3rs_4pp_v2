@@ -383,7 +383,23 @@ function SeccionMapa()
 				case 'eventos':
 
 						for(var i in array_markers_eventos){
-							array_markers_eventos[i].setVisible($visiblildad)
+
+							if($visiblildad)
+							{
+								if($.inArray(array_markers_eventos.row.eventos_id, app.secciones.seccioneventosOofertas.get_lista_eventos())){
+
+									array_markers_eventos[i].setVisible(true);
+								}else{
+									array_markers_eventos[i].setVisible(false);
+
+								}
+
+							}else{
+								array_markers_eventos[i].setVisible($visiblildad);
+
+							}
+							
+
 						}
 						
 						
@@ -391,7 +407,22 @@ function SeccionMapa()
 				case 'ofertas':
 
 						for(var i in array_markers_ofertas){
-							array_markers_ofertas[i].setVisible($visiblildad)
+							
+							if($visiblildad)
+							{
+								alert(array_markers_ofertas.row.ofertas_id)
+								if($.inArray(array_markers_ofertas.row.ofertas_id, app.secciones.seccioneventosOofertas.get_lista_ofertas())){
+
+									array_markers_ofertas[i].setVisible(true);
+								}else{
+									array_markers_ofertas[i].setVisible(false);
+
+								}
+
+							}else{
+								array_markers_ofertas[i].setVisible($visiblildad)
+
+							}
 						}
 						
 				break;
@@ -455,12 +486,19 @@ function SeccionMapa()
 	
 	function listar_eventos(){
 
+		var _date = new Date();
+		var mes =  (_date.getMonth()+1)
+		if(mes<10) mes = '0' + mes;
+		var dia =  (_date.getDate())
+		if(dia<10) dia = '0' + dia;
+
+		var fecha_hasta_hoy = _date.getFullYear() + '-' + mes + '-' + dia + ' 00:00:00';
 
 		array_markers_eventos = new Array();
 		app.db.transaction(function (tx) {
 			
 			//TODO agregar el estado
-			tx.executeSql("SELECT * FROM eventos WHERE eventos_estado=1 AND eventos_departamentos_id=?" , [app.depto_que_me_encuentro], function (tx, resultado) {
+			tx.executeSql("SELECT * FROM eventos WHERE eventos_estado=1  AND  eventos_fecha_hora>='" +fecha_hasta_hoy+"' AND eventos_departamentos_id=?" , [app.depto_que_me_encuentro], function (tx, resultado) {
 		    	
 		    	var cant_eventos = resultado.rows.length;
 		        for(var i=0; i<cant_eventos; i++){
