@@ -146,7 +146,7 @@ function ManagePush(){
 		if(typeof($obj_id_evento) !='undefined'){
 
 			if($obj_id_evento > 0){
-
+				app.cargando_evento_desde_push = true;
 				app.db.transaction(function (tx) {
 				
 						tx.executeSql("SELECT * FROM eventos WHERE eventos_id='" + $obj_id_evento + "'  AND  eventos_estado=1" , [], 

@@ -236,6 +236,9 @@ function SeccionMapa()
 
 				$(self.main).find('.spinner').hide()
 
+
+				
+
 				try{
 
 					  
@@ -244,10 +247,10 @@ function SeccionMapa()
 					centrando_en_bounds = false
 
 				}catch(e){
-			
+					
+
 	 				centrando_en_bounds = true;
-	 				if(app.posicion_global!='')
-					my_marker.setPosition(new google.maps.LatLng(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude));
+	 				
 				}
 
 
@@ -436,15 +439,22 @@ function SeccionMapa()
 		else chk_oferta.habil(true)
 
 		if(centrando_en_bounds){
-			map.fitBounds(bounds)
-			if(map.getZoom()>16 ) map.setZoom(16)
+			
+			
 			if(bounds.isEmpty() ){
 
-					if(app.posicion_global!='')
+				
+						if(app.posicion_global!='')
 						map.setCenter(new google.maps.LatLng(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude));
-					else
+						else
 						map.setCenter(new google.maps.LatLng(-34.965311,-54.9498));
-					map.setZoom(16)
+				
+						map.setZoom(16)
+				
+			}else{
+
+				map.fitBounds(bounds)
+				if(map.getZoom()>16 ) map.setZoom(16)
 			}
 		}
 		

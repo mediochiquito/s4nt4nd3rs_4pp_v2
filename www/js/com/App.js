@@ -53,7 +53,7 @@ function App(){
 	this.posicion_global = ''
 	var watchid;
 	this.plataforma = 'ios'
-
+	this.cargando_evento_desde_push = false;
 
 	// tipo_de_instalacion 
 	// 1 = intalando de 0
@@ -189,7 +189,7 @@ function App(){
 
 				
    		}
-   		
+   	/*	
    		 if(navigator.geolocation) {
 
 		    		watchid = navigator.geolocation.watchPosition(
@@ -199,7 +199,7 @@ function App(){
 												timeout: 5000
 											}
 					);
-			}
+			}*/
 
         self.ancho = window.innerWidth;
 		self.alto = window.innerHeight;
@@ -370,8 +370,8 @@ function App(){
 
 
 
-		    				/*setTimeout(function (){
-
+		    			/*	setTimeout(function (){
+		    						app.cargando_evento_desde_push = true;
 									app.db.transaction(function (tx) {
 									
 											tx.executeSql("SELECT * FROM eventos WHERE eventos_id='22'  AND  eventos_estado=1" , [], 
@@ -384,8 +384,8 @@ function App(){
 
 									});	
 
-							}, 0)*/
-
+							}, 0)
+*/
 
 					})
 

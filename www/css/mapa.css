@@ -121,11 +121,10 @@ margin-left: 105px;
 #SeccionMapa_holdermap_canvas img{
 
 	-webkit-backface-visibility: hidden;
-
-
 }
 
 .gmsc img { max-width: none; }
+
 #SeccionMapa_holdermap_canvas .gmnoprint img{
 
 	

@@ -21,15 +21,22 @@ function UnEvento()
 	header_titulo.id = 'UnEvento_header_titulo'
 	$(holder).find('>div').append(header_titulo)
 
+	var disancia =  document.createElement('div')
+	disancia.className = 'UnEvento_disancia'
+	$(header_titulo).append(disancia)
+
 
 	var titulo_txt =  document.createElement('div')
 	titulo_txt.id = 'UnEvento_titulo_txt'
 	$(header_titulo).append(titulo_txt)
-	$(titulo_txt).css('width', app.ancho-110)
+	$(titulo_txt).css('width', app.ancho-180)
 
 	var holder_data =  document.createElement('div')
 	holder_data.id = 'UnEvento_holder_data'
 	$(holder).find('>div').append(holder_data)
+
+
+
 
 	var holder_footer =  document.createElement('div')
 	holder_footer.id = 'UnEvento_holder_footer'
@@ -43,6 +50,9 @@ function UnEvento()
 	btn_participar.main.id = 'UnEvento_btn_participar'
 	$(holder_footer).append(btn_participar.main)
 
+
+
+
 	var holder_participaciones =  document.createElement('div')
 	holder_participaciones.id = 'UnEvento_holder_participaciones'
 
@@ -53,6 +63,8 @@ function UnEvento()
 	var btn_ver_en_mapa = new Boton2Frames("img/eventos/marker_lineas.svg", 25, 50, doVerEnMapa)
 	btn_ver_en_mapa.main.id = 'UnEvento_btn_ver_en_mapa'
 	$(header_titulo).append(btn_ver_en_mapa.main)
+
+
 
 	var hoy = new Image();
 	hoy.id =  'UnaOferta_hoy';
@@ -77,7 +89,22 @@ function UnEvento()
 
 
 	}
-	
+	function distance(lat1, lon1, lat2, lon2, unit) {
+		var radlat1 = Math.PI * lat1/180
+		var radlat2 = Math.PI * lat2/180
+		var radlon1 = Math.PI * lon1/180
+		var radlon2 = Math.PI * lon2/180
+		var theta = lon1-lon2
+		var radtheta = Math.PI * theta/180
+		var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+		dist = Math.acos(dist)
+		dist = dist * 180/Math.PI
+		dist = dist * 60 * 1.1515
+		if (unit=="K") { dist = dist * 1.609344 }
+		if (unit=="N") { dist = dist * 0.8684 }
+		return dist
+	}                                   
+
 	function addRegistro($label, $data){
 
 		$(holder_data).append('<div class="UnEvento_reg"><div class="UnEvento_label">'+ $label+
@@ -255,6 +282,17 @@ function UnEvento()
 		
 		$(titulo_txt).html($obj.row.eventos_nombre);
 		$(holder_data).empty()
+
+
+		if(app.posicion_global!=''){
+
+
+			$(disancia).html(distance(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude, $obj.row.eventos_lat, $obj.row.eventos_lon, 'K').toFixed(2)+' KM.')
+		
+		}
+
+
+
 		
 		addRegistro('Categoría', app.categorias_eventos[$obj.row.eventos_categoria_id-1])
 		addRegistro('Fecha', getDateUruguay($obj.row.eventos_fecha_hora))
