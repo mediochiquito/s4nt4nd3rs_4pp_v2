@@ -189,8 +189,8 @@ function App(){
 
 				
    		}
-   	/*	
-   		 if(navigator.geolocation) {
+   		
+   		/* if(navigator.geolocation) {
 
 		    		watchid = navigator.geolocation.watchPosition(
 											onLocation, 
@@ -199,8 +199,8 @@ function App(){
 												timeout: 5000
 											}
 					);
-			}*/
-
+			}
+*/
         self.ancho = window.innerWidth;
 		self.alto = window.innerHeight;
 		if(self.alto<480)self.alto = 480;

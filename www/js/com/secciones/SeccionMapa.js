@@ -188,7 +188,7 @@ function SeccionMapa()
 
 			 my_marker = new google.maps.Marker(
 			           				{
-									  icon: {url:'img/mapa/mypoint.png', scaledSize: new google.maps.Size(20, 20), size: new google.maps.Size(20, 20)}
+									  icon: {url:'img/mapa/mypoint.png', scaledSize: new google.maps.Size(20, 20)}
 									  
 									});
 			my_marker.setMap(map);
@@ -201,7 +201,7 @@ function SeccionMapa()
 						           				  animation: google.maps.Animation.DROP,
 												
 												 draggable:true,
-												  icon: {url:'img/markers/evento.png',  scaledSize: new google.maps.Size(19, 30), size: new google.maps.Size(19, 30)}
+												  icon: {url:'img/markers/evento.png',  scaledSize: new google.maps.Size(19, 30)}
 												});
 			marker.setMap(map);
 			ya_creado = true
@@ -506,7 +506,7 @@ function SeccionMapa()
 								  position: new google.maps.LatLng(resulato_locales.rows.item(i).locales_lat, resulato_locales.rows.item(i).locales_lon),
 								  title:resulato_locales.rows.item(i).locales_nombre,
 								  
-								  icon: {url:'img/markers/oferta.png', scaledSize: new google.maps.Size(19, 30), size: new google.maps.Size(19, 30)},
+								  icon: {url:'img/markers/oferta.png', scaledSize: new google.maps.Size(19, 30)},
 								  row: resulato_locales.rows.item(i)
 								});
 
@@ -554,7 +554,7 @@ function SeccionMapa()
 		           				{
 								  position: new google.maps.LatLng(resultado.rows.item(i).eventos_lat,resultado.rows.item(i).eventos_lon),
 								  title:resultado.rows.item(i).eventos_nombre,
-								  icon: {url:'img/markers/evento.png', scaledSize: new google.maps.Size(19, 30), size: new google.maps.Size(19, 30)},
+								  icon: {url:'img/markers/evento.png', scaledSize: new google.maps.Size(19, 30)},
 								  row: resultado.rows.item(i)
 								});
 

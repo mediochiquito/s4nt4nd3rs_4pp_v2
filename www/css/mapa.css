@@ -121,13 +121,15 @@ margin-left: 105px;
 #SeccionMapa_holdermap_canvas img{
 
 
-	-webkit-transform: translateZ(0); 
+-webkit-backface-visibility: hidden;
+	
 }
 
-.gmsc img { max-width: none; }
+#SeccionMapa_holdermap_canvas img { max-width: none; }
 
 #SeccionMapa_holdermap_canvas .gmnoprint img{
 
 	-webkit-backface-visibility: hidden;
 	
 }
+.openlayers-map img{ margin:0px }
