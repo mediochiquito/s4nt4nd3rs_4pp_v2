@@ -64,9 +64,9 @@ function SeccionEventosOfertas()
 
 	this.cargar_listas = function($busqueda){
 
-		/*
+		
 		if(en_solapa=='una_oferta') mostrar_solapa({solapa:'eventos'});
-		if(en_solapa=='un_evento')  mostrar_solapa({solapa:'ofertas'});*/
+		if(en_solapa=='un_evento')  mostrar_solapa({solapa:'ofertas'});
 		
 		
 			
@@ -78,6 +78,9 @@ function SeccionEventosOfertas()
 			
 								if($cantidad_ofertas>$cantidad_eventos) mostrar_solapa({solapa: 'ofertas'});
 								else mostrar_solapa({solapa: 'eventos'});
+							}else{
+
+								mostrar_solapa({solapa: 'eventos'});
 							}
 						 
 					});
@@ -93,8 +96,6 @@ function SeccionEventosOfertas()
 
 	function mostrar_solapa($obj){
 
-		console.log('$obj.solapa')
-		console.log($obj.solapa)
 		if(typeof($obj.solapa) == 'undefined') en_solapa = 'eventos';
 		else en_solapa = $obj.solapa;
 		

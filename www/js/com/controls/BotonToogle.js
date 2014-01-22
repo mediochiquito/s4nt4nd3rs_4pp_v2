@@ -66,9 +66,13 @@ function BotonToogle($img, $value, $img_w, $img_h, $callback){
 
 	function do_click(){
 
-		self.setSelected(!Selected)
-		if(habil) $callback(value);
+		if(habil) {
 
+			self.setSelected(!Selected)
+		$callback(value);
+
+		}
+		
 		
 		
 	}

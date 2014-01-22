@@ -59,7 +59,7 @@ function ListaEventos()
 
 	function doVerEnMapa(e){
 
-		app.secciones.go(app.secciones.seccionmapa, 300, {solo_ver:'eventos'})
+		app.secciones.go(app.secciones.seccionmapa, 300, {solo_ver:'eventos', desde:'lista'})
 
 	}
 	
@@ -78,9 +78,8 @@ function ListaEventos()
 		var dia =  (_date.getDate())
 		if(dia<10) dia = '0' + dia;
 
-		var busqueda = $.trim($('#Header_search').val())
-
-
+		var busqueda = $.trim($('#Header_search').val());
+		
 		var fecha_hasta_hoy = _date.getFullYear() + '-' + mes + '-' + dia + ' 00:00:00';
 
 		$(combo_deptos).find('option[value="'+app.depto_que_me_encuentro+'"]').prop('selected', true)
@@ -112,10 +111,10 @@ function ListaEventos()
 			    		btn_ver_en_mapa.habil(true)
 			    		
 			    	}
-		    		this.array_ids_encontrados = new Array();
+		    		self.array_ids_encontrados = new Array();
 		    		for(var i=0; i<cant_eventos; i++){
 		    			
-		    			this.array_ids_encontrados.push(resultado.rows.item(i).eventos_id)
+		    			self.array_ids_encontrados.push(resultado.rows.item(i).eventos_id)
 						
 						var _ItemListaEvento = new ItemListaEvento(resultado.rows.item(i));
 						$(holder).find('#ListaEventosWrapper').append(_ItemListaEvento.main)

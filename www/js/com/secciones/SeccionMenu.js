@@ -114,7 +114,7 @@ function SeccionMenu()
 
 	function doVerMapa(){
 
-		app.secciones.go(app.secciones.seccionmapa);
+		app.secciones.go(app.secciones.seccionmapa, 300, {desde:'menu'});
 
 	}
 

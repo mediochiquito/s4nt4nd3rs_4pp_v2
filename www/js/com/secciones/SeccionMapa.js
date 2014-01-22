@@ -32,6 +32,7 @@ function SeccionMapa()
 	map_canvas.id = 'SeccionMapa_map_canvas'
 	$(holdermap_canvas).append(map_canvas)
 
+	var bounds;
 
 	$(holdermap_canvas).css({	width: app.ancho-20, height: app.alto-120})
 	
@@ -50,19 +51,11 @@ function SeccionMapa()
 	}
 
 	var my_marker;
-
 	var array_markers_eventos;
 	var array_markers_ofertas;
 	var map;
-
-
-
-/*
-	setTimeout(_construct, 0);*/
-//	$(document).bind('LISTAR_EVENTOS', do_LISTAR_EVENTOS);
-
-	
-	var mostrando_mi_pos = false
+	var cantidad_de_listas_cargadas = 0
+	var centrando_en_bounds = true
 	var ultima_pos = '';
 	var  config_gps = {
 		minAccuracy : 150,
@@ -106,8 +99,8 @@ function SeccionMapa()
 	
 
 	function doCheckEventos(){
-
-		mostrar_elementos('eventos', chk_eventos.getSelected())
+		centrando_en_bounds = true
+		mostrar_elementos(chk_eventos.getSelected(), chk_oferta.getSelected())
 
 	}
 
@@ -116,8 +109,9 @@ function SeccionMapa()
 	}
 
 	function doCheckOfertas(){
+		centrando_en_bounds = true
+		mostrar_elementos(chk_eventos.getSelected(), chk_oferta.getSelected())
 
-		mostrar_elementos('ofertas', chk_oferta.getSelected())
 	}
 	
 	this.googleMapsLoaded = function (){
@@ -133,8 +127,8 @@ function SeccionMapa()
 			$(chk_oferta.main).hide()
 			setTimeout(function(){
 				$('#SeccionMapa_txt_filtrar').hide()
-			$('#SeccionMapa_txt_eventos').hide()
-			$('#SeccionMapa_txt_ofertas').hide()
+				$('#SeccionMapa_txt_eventos').hide()
+				$('#SeccionMapa_txt_ofertas').hide()
 
 			}, 100)
 			
@@ -183,6 +177,8 @@ function SeccionMapa()
 					    }
 					]
 		  };
+
+
 		if(!ya_creado ||  app.plataforma=='android'){
 
 			 map = new google.maps.Map(map_canvas,  mapOptions);
@@ -236,32 +232,28 @@ function SeccionMapa()
 
 			}
 
-		
-			
 				_construct();
 
 				$(self.main).find('.spinner').hide()
 
 				try{
-					  mostrando_mi_pos = false
-					  map.setCenter(new google.maps.LatLng(obj.center[0], obj.center[1]));
-					  map.setZoom(16)
+
+					  
+					map.setCenter(new google.maps.LatLng(obj.center[0], obj.center[1]));
+					map.setZoom(16)
+					centrando_en_bounds = false
 
 				}catch(e){
 			
-	 				mostrando_mi_pos = true;
-	 				
-	 				try{
+	 				centrando_en_bounds = true;
 
-	 					var mi_pos = new google.maps.LatLng(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude     )
-							map.setCenter(mi_pos);
-							my_marker.setPosition(mi_pos);
-						
-	 				}catch(e){}
-						        	
-			
 				}
 
+
+				solo_ver = '';
+				try{
+					solo_ver = obj.solo_ver;
+				}catch(e){}
 
 				marker.setVisible(false)
 				my_marker.setVisible(true)
@@ -314,7 +306,7 @@ function SeccionMapa()
 							$('#SeccionMapa_txt_eventos').show()
 							$('#SeccionMapa_txt_ofertas').show()
 
-								setTimeout(cargar_lista_de_markers, 0)
+							cargar_lista_de_markers()
 
 						}
 
@@ -326,7 +318,7 @@ function SeccionMapa()
 							$('#SeccionMapa_txt_eventos').show()
 							$('#SeccionMapa_txt_ofertas').show()
 							
-					setTimeout(cargar_lista_de_markers, 0)
+							cargar_lista_de_markers()
 				
 				}
 
@@ -339,109 +331,149 @@ function SeccionMapa()
 			}, 100)	
 
 
-			solo_ver = '';
-			try{
-				solo_ver = obj.solo_ver;
-			}catch(e){}
 
+
+		
+
+
+
+	}
+
+
+	function set_solo_ver_init(){
 
 			switch(solo_ver){
 					case 'eventos':
-						mostrar_elementos('ofertas', false)
-						mostrar_elementos('eventos', true)
+						mostrar_elementos(true, false)
+					
 						chk_eventos.setSelected(true)
 						chk_oferta.setSelected(false)
+
+
 					break;
 					case 'ofertas':
-						mostrar_elementos('ofertas', true)
-						mostrar_elementos('eventos', false)
+						mostrar_elementos(false, true)
+				
 						chk_eventos.setSelected(false)
 						chk_oferta.setSelected(true)
 
 					break;
 				    default:
-						mostrar_elementos('ofertas', true)
-						mostrar_elementos('eventos', true)
+						mostrar_elementos(true, true)
+					
 						chk_eventos.setSelected(true)
 						chk_oferta.setSelected(true)
 					break;
 			}
 
-
-
-
 	}
 
 
 
 
 
-	function mostrar_elementos($que_elmentos, $visiblildad){
 
-		switch($que_elmentos){
+	function mostrar_elementos($visiblildad_eventos, $visiblildad_ofertas){
 
-				case 'eventos':
+
+		bounds = new google.maps.LatLngBounds();
+	
 
 						for(var i in array_markers_eventos){
 
-							if($visiblildad)
+							if($visiblildad_eventos)
 							{
-								if($.inArray(array_markers_eventos.row.eventos_id, app.secciones.seccioneventosOofertas.get_lista_eventos())){
-
-									array_markers_eventos[i].setVisible(true);
-								}else{
+								
+								if($.inArray(array_markers_eventos[i].row.eventos_id, app.secciones.seccioneventosofertas.get_lista_eventos().array_ids_encontrados) == -1){
+								
 									array_markers_eventos[i].setVisible(false);
 
+								}else{
+									
+									array_markers_eventos[i].setVisible(true);
+									bounds.extend(array_markers_eventos[i].getPosition());
 								}
 
 							}else{
-								array_markers_eventos[i].setVisible($visiblildad);
 
+								array_markers_eventos[i].setVisible($visiblildad_eventos);
+
+								
 							}
 							
 
 						}
 						
-						
-				break;
-				case 'ofertas':
 
 						for(var i in array_markers_ofertas){
 							
-							if($visiblildad)
+							if($visiblildad_ofertas)
 							{
-								alert(array_markers_ofertas.row.ofertas_id)
-								if($.inArray(array_markers_ofertas.row.ofertas_id, app.secciones.seccioneventosOofertas.get_lista_ofertas())){
+								
+								if($.inArray(array_markers_ofertas[i].row.ofertas_id, app.secciones.seccioneventosofertas.get_lista_ofertas().array_ids_encontrados) == -1){
 
-									array_markers_ofertas[i].setVisible(true);
-								}else{
 									array_markers_ofertas[i].setVisible(false);
+								}else{
+									array_markers_ofertas[i].setVisible(true);
+									bounds.extend(array_markers_ofertas[i].getPosition());
 
 								}
 
 							}else{
-								array_markers_ofertas[i].setVisible($visiblildad)
+								array_markers_ofertas[i].setVisible($visiblildad_ofertas)
 
 							}
 						}
 						
-				break;
-				case 'todo':
-					for(var i in array_markers_eventos){
-							array_markers_eventos[i].setVisible($visiblildad)
-					}
-					for(var i in array_markers_ofertas){
-							array_markers_ofertas[i].setVisible($visiblildad)
-					}
-				break;
+
+
+		if(app.secciones.seccioneventosofertas.get_lista_eventos().array_ids_encontrados.length == 0) chk_eventos.habil(false)
+		else  chk_eventos.habil(true)
+
+		if(app.secciones.seccioneventosofertas.get_lista_ofertas().array_ids_encontrados.length == 0) chk_oferta.habil(false)
+		else chk_oferta.habil(true)
+
+		if(centrando_en_bounds){
+			map.fitBounds(bounds)
+			if(map.getZoom()>16 ) map.setZoom(16)
+			if(bounds.isEmpty() ){
+
+					if(app.posicion_global!='')
+						map.setCenter(new google.maps.LatLng(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude));
+					else
+						map.setCenter(new google.maps.LatLng(-34.965311,-54.9498));
+					map.setZoom(16)
+			}
 		}
+		
+		if(!centrando_en_bounds){
+
+			
+
+		}
+
+		
+		if(app.posicion_global!='')
+					my_marker.setPosition(new google.maps.LatLng(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude));
+
+			
+	 
+
+	}
+
+	function sum_cantidad_de_listas_cargadas(){
+
+		cantidad_de_listas_cargadas++
+		if(cantidad_de_listas_cargadas==2) set_solo_ver_init()
 
 	}
 
 	function cargar_lista_de_markers(){
 		
+		cantidad_de_listas_cargadas = 0
 		listar_eventos();
 		listar_ofertas();
+
 
 	}
 
@@ -471,11 +503,14 @@ function SeccionMapa()
 					array_markers_ofertas[i].setMap(map);
 
 					google.maps.event.addListener(array_markers_ofertas[i], 'click', function() {
-					   
-
 					   	mostrar_una_oferta(this.row)
 					});
 		        }
+
+
+		        sum_cantidad_de_listas_cargadas()
+
+
 		    });
 
 
@@ -518,6 +553,8 @@ function SeccionMapa()
 					   	mostrar_un_evento(this.row)
 					});
 		        }
+
+		        sum_cantidad_de_listas_cargadas()
 		    });
 
 		});

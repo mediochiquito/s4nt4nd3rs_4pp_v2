@@ -72,8 +72,6 @@ function ListaOfertas()
 	}
 
 
-
-
 	function doChangeDepto(){
 
 		app.depto_que_me_encuentro = ($(combo_deptos).val())
@@ -84,7 +82,7 @@ function ListaOfertas()
 	
 	function doVerEnMapa(e){
 
-		app.secciones.go(app.secciones.seccionmapa, 300, {solo_ver:'ofertas'})
+		app.secciones.go(app.secciones.seccionmapa, 300, {solo_ver:'ofertas', desde:'lista'})
 		
 	}
 	
@@ -116,9 +114,9 @@ function ListaOfertas()
 		    		btn_ver_en_mapa.habil(true)
 		    	}
 
-		        
+		        self.array_ids_encontrados = new Array();
 		        for(var i=0; i<cant_ofertas; i++){
-					this.array_ids_encontrados.push(resultado.rows.item(i).ofertas_id);
+					self.array_ids_encontrados.push(resultado.rows.item(i).ofertas_id);
 					var _ItemListaOferta = new ItemListaOferta(resultado.rows.item(i));
 					$(holder).find('#ListaOfertasWrapper').append(_ItemListaOferta.main)
 		          

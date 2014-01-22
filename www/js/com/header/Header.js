@@ -86,6 +86,7 @@ function Header(){
 			app.secciones.seccioneventosofertas.cargar_listas($(search).val());
 			ultima_busqeuda = $(search).val()
 		}
+		
 	}
 
 
@@ -101,6 +102,9 @@ function Header(){
 		$(search).blur();
 		$(btn_close.main).hide()
 		app.secciones.seccioneventosofertas.cargar_listas('')
+
+		if(app.secciones.get_obj_seccion_actual().main.id != 'SeccionEventosOfertas');
+			app.secciones.go(app.secciones.seccioneventosofertas);
 
 		setTimeout(function(){
 			$(search).blur();
