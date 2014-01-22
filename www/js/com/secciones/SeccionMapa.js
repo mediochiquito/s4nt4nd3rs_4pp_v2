@@ -246,10 +246,12 @@ function SeccionMapa()
 				}catch(e){
 			
 	 				centrando_en_bounds = true;
-
+	 				if(app.posicion_global!='')
+					my_marker.setPosition(new google.maps.LatLng(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude));
 				}
 
 
+				
 				solo_ver = '';
 				try{
 					solo_ver = obj.solo_ver;
