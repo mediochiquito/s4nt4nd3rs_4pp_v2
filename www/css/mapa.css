@@ -20,7 +20,7 @@
 
 	 bottom: 30px;
 	 
--webkit-backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
 	 margin-left: -127px;
 }
 
@@ -120,14 +120,14 @@ margin-left: 105px;
 
 #SeccionMapa_holdermap_canvas img{
 
-	-webkit-backface-visibility: hidden;
+
+	-webkit-transform: translateZ(0); 
 }
 
 .gmsc img { max-width: none; }
 
 #SeccionMapa_holdermap_canvas .gmnoprint img{
 
+	-webkit-backface-visibility: hidden;
 	
-	-webkit-backface-visibility: visible;
-
 }
