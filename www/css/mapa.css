@@ -118,8 +118,11 @@ margin-left: 105px;
 	height: 100%;
 }
 
+#SeccionMapa_holdermap_canvas *{
+	
+}
 #SeccionMapa_holdermap_canvas img{
-	-webkit-backface-visibility: hidden;
+	
 }
 
 #SeccionMapa_holdermap_canvas img { max-width: none; }
