@@ -39,12 +39,12 @@ function SeccionMapa()
 	if (!navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
 	
 		var esquina_si = new Image()
-		esquina_si.src = 'img/mapa/esquina_izq.svg';
+		esquina_si.src = 'img/mapa/esquina_izq.png';
 		esquina_si.id = 'SeccionMapa_esquina_si';
 		$(this.main).append(esquina_si);
 
 		var esquina_der = new Image()
-		esquina_der.src = 'img/mapa/esquina_der.svg';
+		esquina_der.src = 'img/mapa/esquina_der.png';
 		esquina_der.id = 'SeccionMapa_esquina_der';
 		$(this.main).append(esquina_der);
 		$(esquina_der).css('left',app.ancho-24);
