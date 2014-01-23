@@ -52,7 +52,7 @@ function ListaOfertas()
 
 				if($json!==false) {
 
-					$('#ListaOferta_banner').html('<img width="'+(app.ancho-40)+'" src="'+app.server+'imgs/banners/'+$json.banners_ofertas_url+'" /><div id="ListaOfertas_header_banner"><div id="ListaOfertas_header_banner_titulo_txt">Bases y Condiciones</div></div>')
+					$('#ListaOferta_banner').html('<img width="'+(app.ancho-40)+'" src="'+app.server+$json.banners_ofertas_url+'" /><div id="ListaOfertas_header_banner"><div id="ListaOfertas_header_banner_titulo_txt">Bases y Condiciones</div></div>')
 						
 						//
 						setTimeout(function(){
