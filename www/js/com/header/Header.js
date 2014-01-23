@@ -4,14 +4,17 @@ function Header(){
   	this.main = document.createElement('div')
   	this.main.id = 'Header'
 
-	var btn_menu = new Boton2Frames('img/header/btn_menu.png', 26, 60, doMenu)
-	btn_menu.main.id = 'Header_btn_menu'
-	$(this.main).append(btn_menu.main)
-
 	var logito = new Image()
 	logito.src = 'img/header/logito.png';
 	logito.id = 'Header_logito';
 	$(this.main).append(logito);
+
+
+	var btn_menu = new Boton2Frames('img/header/btn_menu.png', 50, 60, doMenu)
+	btn_menu.main.id = 'Header_btn_menu'
+	$(this.main).append(btn_menu.main)
+
+
 
 	var search = document.createElement('input');
 	search.id = 'Header_search';
