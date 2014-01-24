@@ -35,7 +35,7 @@ function Secciones(){
 
 	var historia = new Array()
 
-	document.addEventListener("backbutton", backKeyDown, true);
+	document.addEventListener("backbutton", backKeyDown, false);
 
 	var obj_seccion_actual = null;	
 	var cambiando_historia = false;
@@ -48,12 +48,12 @@ function Secciones(){
 		try{
 			if(!cambiando_historia){
 
-
-
 						cambiando_historia = true;
 						if(historia.length>1) historia.pop();
 						var penultimo_elemento = historia[historia.length-1];
 						app.secciones.go(penultimo_elemento[0], 300, penultimo_elemento[1], false);
+
+						if(historia.length<=1) 	navigator.app.exitApp();
 
 						setTimeout(function (){
 							cambiando_historia = false;
