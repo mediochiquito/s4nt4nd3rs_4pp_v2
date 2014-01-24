@@ -45,8 +45,8 @@ function Secciones(){
 
 	function backKeyDown(){
 
-		vonsole.log('cambiando_historia: ' + cambiando_historia)
-		vonsole.log('historia.length: ' + historia.length)
+		console.log('cambiando_historia: ' + cambiando_historia)
+		console.log('historia.length: ' + historia.length)
 	
 			if(!cambiando_historia){
 
@@ -58,7 +58,7 @@ function Secciones(){
 							
 							navigator.app.exitApp();
 							e.preventDefault();
-							
+
 						}else{
 
 							var penultimo_elemento = historia[historia.length-1];
