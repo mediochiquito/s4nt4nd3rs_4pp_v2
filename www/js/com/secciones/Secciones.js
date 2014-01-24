@@ -58,11 +58,10 @@ function Secciones(){
 						if(historia.length>1) historia.pop();
 						var penultimo_elemento = historia[historia.length-1];
 						app.secciones.go(penultimo_elemento[0], 300, penultimo_elemento[1], false);
-console.log(historia)
-console.log(lister_volver)
+
 						if(historia.length<=1){
 						
-							document.remEoveventListener("backbutton", backKeyDown);
+							document.remEoveventListener("backbutton", backKeyDown, false);
 							lister_volver = false
 		
 						}
@@ -80,7 +79,7 @@ console.log(lister_volver)
 
 		if(!lister_volver) {
 
-			document.addEventListener("backbutton", backKeyDown);
+			document.addEventListener("backbutton", backKeyDown, false);
 			lister_volver = true
 		}
 
