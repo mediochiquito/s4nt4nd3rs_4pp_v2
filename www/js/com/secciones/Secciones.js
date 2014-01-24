@@ -45,20 +45,25 @@ function Secciones(){
 
 	function backKeyDown(){
 
-		//navigator.app.exitApp();
-		/*
-		try{
+		vonsole.log('cambiando_historia: ' + cambiando_historia)
+		vonsole.log('cambiando_historia: ' + cambiando_historia)
+	
 			if(!cambiando_historia){
 
 						cambiando_historia = true;
 						if(historia.length>1) historia.pop();
-						var penultimo_elemento = historia[historia.length-1];
-						app.secciones.go(penultimo_elemento[0], 300, penultimo_elemento[1], false);
-						console.log('historia.length: ' + historia.length)
+						
+						
 						if(historia.length<=1) 	{
-							e.preventDefault();
-							console.log("close application");
+							
 							navigator.app.exitApp();
+							e.preventDefault();
+							
+						}else{
+
+							var penultimo_elemento = historia[historia.length-1];
+							app.secciones.go(penultimo_elemento[0], 300, penultimo_elemento[1], false);
+
 						}
 
 						setTimeout(function (){
@@ -66,7 +71,7 @@ function Secciones(){
 						}, 500)
 
 			}
-		}catch(e){}*/
+		
 		
 	}
 	this.go = function($base_seccion, $time, $data, $guardar_historia){
