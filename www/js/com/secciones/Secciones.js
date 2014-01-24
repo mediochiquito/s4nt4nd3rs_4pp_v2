@@ -49,27 +49,23 @@ function Secciones(){
 		console.log('historia.length: ' + historia.length)
 	
 			if(!cambiando_historia){
-
-						cambiando_historia = true;
-						if(historia.length>1) historia.pop();
 						
-						
-						if(historia.length<=1) 	{
-							
-							navigator.app.exitApp();
-							e.preventDefault();
+				if(historia.length<=1) 	{
+					
+					navigator.app.exitApp();
+					e.preventDefault();
 
-						}else{
+				}else{
 
-							var penultimo_elemento = historia[historia.length-1];
-							app.secciones.go(penultimo_elemento[0], 300, penultimo_elemento[1], false);
-
-						}
-
-						setTimeout(function (){
-							cambiando_historia = false;
-						}, 500)
-
+					cambiando_historia = true;
+					if(historia.length>1) historia.pop();
+					var penultimo_elemento = historia[historia.length-1];
+					app.secciones.go(penultimo_elemento[0], 300, penultimo_elemento[1], false);
+					setTimeout(function (){
+						cambiando_historia = false;
+					}, 500)
+				}
+				
 			}
 		
 		
