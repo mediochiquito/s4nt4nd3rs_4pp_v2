@@ -53,7 +53,10 @@ function Secciones(){
 						var penultimo_elemento = historia[historia.length-1];
 						app.secciones.go(penultimo_elemento[0], 300, penultimo_elemento[1], false);
 
-						if(historia.length<=1) 	navigator.app.exitApp();
+						if(historia.length<=1) 	{
+							e.preventDefault();
+							navigator.app.exitApp();
+						}
 
 						setTimeout(function (){
 							cambiando_historia = false;
