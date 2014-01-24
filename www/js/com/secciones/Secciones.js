@@ -35,10 +35,14 @@ function Secciones(){
 
 	var historia = new Array()
 
-	document.addEventListener("backbutton", backKeyDown, true);
+
 
 	var obj_seccion_actual = null;	
 	var cambiando_historia = false;
+
+	var lister_volver = false;
+
+
 	this.get_obj_seccion_actual = function (){
 		return obj_seccion_actual;
 	}
@@ -55,6 +59,14 @@ function Secciones(){
 						var penultimo_elemento = historia[historia.length-1];
 						app.secciones.go(penultimo_elemento[0], 300, penultimo_elemento[1], false);
 
+						if(historia.length<=1){
+						
+							document.remEoveventListener("backbutton", backKeyDown);
+							lister_volver = false
+		
+						}
+
+
 						setTimeout(function (){
 							cambiando_historia = false;
 						}, 500)
@@ -64,6 +76,12 @@ function Secciones(){
 		
 	}
 	this.go = function($base_seccion, $time, $data, $guardar_historia){
+
+		if(!lister_volver) {
+
+			document.addEventListener("backbutton", backKeyDown, true);
+			lister_volver = true
+		}
 
 		var guardar_historia = true;
 		if(typeof($guardar_historia) != 'undefined') guardar_historia =  $guardar_historia;
