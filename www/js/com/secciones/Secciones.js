@@ -52,7 +52,7 @@ function Secciones(){
 						if(historia.length>1) historia.pop();
 						var penultimo_elemento = historia[historia.length-1];
 						app.secciones.go(penultimo_elemento[0], 300, penultimo_elemento[1], false);
-
+						console.log('historia.length: ' + historia.length)
 						if(historia.length<=1) 	{
 							e.preventDefault();
 							navigator.app.exitApp();
