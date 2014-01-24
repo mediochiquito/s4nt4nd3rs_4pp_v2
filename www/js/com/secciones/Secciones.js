@@ -55,6 +55,7 @@ function Secciones(){
 						console.log('historia.length: ' + historia.length)
 						if(historia.length<=1) 	{
 							e.preventDefault();
+							console.log("close application");
 							navigator.app.exitApp();
 						}
 
