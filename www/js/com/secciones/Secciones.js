@@ -45,7 +45,7 @@ function Secciones(){
 
 	function backKeyDown(){
 
-		navigator.app.exitApp();
+		//navigator.app.exitApp();
 		/*
 		try{
 			if(!cambiando_historia){
