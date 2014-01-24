@@ -51,7 +51,7 @@ function SeccionMenu()
 	})
 
 	function doCheckPush(){
-
+			
 
 	}
 	function doSubirEvento(){
