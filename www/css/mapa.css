@@ -22,7 +22,7 @@
 	border: solid 1px #F1E271;
 }
 #SeccionMapaForm_btn_aceptar{
-
+	-webkit-backface-visibility: hidden;
 	position: absolute;
 	bottom: 20px;
 	left: 50%;

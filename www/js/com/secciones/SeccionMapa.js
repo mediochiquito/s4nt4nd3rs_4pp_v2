@@ -100,6 +100,7 @@ function SeccionMapa()
 
 		app.secciones.go(app.secciones.seccioneventosofertas, 300, {solapa: 'subirevento'});
 	}
+	
 	this.getLatLonString = function (){
 		if(lat=='') return '';
 		return lat + ',' + lon
@@ -343,7 +344,7 @@ function SeccionMapa()
 
 				 google.maps.event.trigger(map, 'resize')
 				 
-			}, 100)	
+			}, 500)	
 
 
 
