@@ -45,9 +45,6 @@ function Secciones(){
 
 	function backKeyDown(){
 
-		console.log('cambiando_historia: ' + cambiando_historia)
-		console.log('historia.length: ' + historia.length)
-	
 			if(!cambiando_historia){
 						
 				if(historia.length<=1) 	{
@@ -65,7 +62,7 @@ function Secciones(){
 						cambiando_historia = false;
 					}, 500)
 				}
-				
+
 			}
 		
 		

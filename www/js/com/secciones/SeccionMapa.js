@@ -85,6 +85,14 @@ function SeccionMapa()
 	btn_aceptar.main.id = 'SeccionMapaForm_btn_aceptar'
 	$(this.main).append(btn_aceptar.main);
 
+	var txt_drag = document.createElement('div');
+	txt_drag.id = 'SeccionMapa_txt_drag';
+	$(txt_drag).css({	width: app.ancho-60})
+	$(txt_drag).css({'display': 'none'});
+	$(txt_drag).html('Tocá y arrastrá el marcador hasta la ubicación del evento')
+	
+	$(this.main).append(txt_drag)
+
 	function doAceptar(){
 
 		lat = marker.getPosition().lat();
@@ -160,6 +168,7 @@ function SeccionMapa()
 		    draggable:true,
 		    mapTypeControl: false,
 		    zoomControl: true,
+		    panControl:false,
 		    mapTypeId: google.maps.MapTypeId.ROADMAP,
 		    zoomControlOptions: {
 		        style: google.maps.ZoomControlStyle.LARGE,
@@ -262,11 +271,12 @@ function SeccionMapa()
 
 				marker.setVisible(false)
 				my_marker.setVisible(true)
+				$(txt_drag).hide()
 				try{
 						
 						if(obj.accion =='form'){
 							
-
+							$(txt_drag).show()
 							marker.setVisible(true)
 							my_marker.setVisible(false)
 
