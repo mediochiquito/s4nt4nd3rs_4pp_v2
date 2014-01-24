@@ -46,7 +46,7 @@ function Secciones(){
 	function backKeyDown(){
 
 		vonsole.log('cambiando_historia: ' + cambiando_historia)
-		vonsole.log('cambiando_historia: ' + cambiando_historia)
+		vonsole.log('historia.length: ' + historia.length)
 	
 			if(!cambiando_historia){
 
