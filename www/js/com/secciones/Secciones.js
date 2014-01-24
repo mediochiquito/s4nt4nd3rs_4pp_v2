@@ -44,7 +44,9 @@ function Secciones(){
 	}
 
 	function backKeyDown(){
-		
+
+		navigator.app.exitApp();
+		/*
 		try{
 			if(!cambiando_historia){
 
@@ -64,7 +66,7 @@ function Secciones(){
 						}, 500)
 
 			}
-		}catch(e){}
+		}catch(e){}*/
 		
 	}
 	this.go = function($base_seccion, $time, $data, $guardar_historia){
