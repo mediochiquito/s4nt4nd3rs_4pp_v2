@@ -35,7 +35,7 @@ function Secciones(){
 
 	var historia = new Array()
 
-	//document.addEventListener("backbutton", backKeyDown, true);
+	document.addEventListener("backbutton", backKeyDown, true);
 
 	var obj_seccion_actual = null;	
 	var cambiando_historia = false;
@@ -73,7 +73,7 @@ function Secciones(){
 
 		if($base_seccion==obj_seccion_actual) return;
 		var d = new Date()
-		document.location.href = '#'  + d.getTime();
+		//document.location.href = '#'  + d.getTime();
 		$(this.main).css({ display: 'block'});
 		
 		try{
