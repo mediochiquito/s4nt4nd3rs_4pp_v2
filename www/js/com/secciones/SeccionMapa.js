@@ -339,13 +339,12 @@ function SeccionMapa()
 				}
 
 
-
 			setTimeout(function(){
 
 				 google.maps.event.trigger(map, 'resize')
 				 
-			}, 500)	
-
+			}, 200)		
+			
 
 
 
@@ -381,6 +380,12 @@ function SeccionMapa()
 						chk_oferta.setSelected(true)
 					break;
 			}
+
+			setTimeout(function(){
+				try{
+					 google.maps.event.trigger(map, 'resize')
+				}catch(e){}
+			}, 0)	
 
 	}
 
