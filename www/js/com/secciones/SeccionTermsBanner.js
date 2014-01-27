@@ -23,8 +23,6 @@ function SeccionTermsBanner()
 
 
 	function doVolver(){
-
-
 		app.secciones.go(app.secciones.seccioneventosofertas, 300, {solapa: 'ofertas'})
 	}
 	this._set  = function (obj){

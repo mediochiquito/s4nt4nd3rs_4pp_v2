@@ -159,7 +159,7 @@
 
 #SeccionMapa_holdermap_canvas .gmnoprint img{
 
-	-webkit-backface-visibility: hidden;
+	-webkit-backface-visibility: visible;
 	
 }
 .openlayers-map img{ margin:0px }

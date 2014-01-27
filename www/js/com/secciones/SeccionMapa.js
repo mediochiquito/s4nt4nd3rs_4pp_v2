@@ -89,7 +89,7 @@ function SeccionMapa()
 	txt_drag.id = 'SeccionMapa_txt_drag';
 	$(txt_drag).css({	width: app.ancho-60})
 	$(txt_drag).css({'display': 'none'});
-	$(txt_drag).html('Tocá y arrastrá el marcador hasta la ubicación del evento')
+	$(txt_drag).html('Tocá y arrastrá el marcador hasta la ubicación del evento');
 	
 	$(this.main).append(txt_drag)
 
