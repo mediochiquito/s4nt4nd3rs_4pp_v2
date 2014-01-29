@@ -152,7 +152,7 @@ function App(){
 	function deviceready(){
 
 		if(app.is_phonegap()){
-			navigator.splashscreen.show();
+			
 
 			if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) alert('Cordova variable does not exist. Check that you have included cordova.js correctly');
 			if (typeof CDV == 'undefined') alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
@@ -382,6 +382,10 @@ function App(){
 							else $(document).trigger('CARGAR_LISTAS');
 
 
+							try{
+								navigator.splashscreen.hide();
+							}catch(e){}
+							
 
 		    				
 
