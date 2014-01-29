@@ -246,8 +246,7 @@ function SeccionMapa()
 
 				$(self.main).find('.spinner').hide()
 
-				google.maps.event.trigger(map, 'resize')
-				
+				google.maps.event.trigger(map, 'resize');
 
 				try{
 
@@ -312,8 +311,6 @@ function SeccionMapa()
 							map.setCenter(pos);
 				 			
 
-
-
 						}else{
 
 			
@@ -353,8 +350,7 @@ function SeccionMapa()
 			}, 2000)		
 
 
-		
-
+	
 
 
 	}
