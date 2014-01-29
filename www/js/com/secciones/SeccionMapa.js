@@ -346,7 +346,11 @@ function SeccionMapa()
 				 
 			}, 200)		
 			
+			setTimeout(function(){
 
+				 google.maps.event.trigger(map, 'resize')
+				 
+			}, 2000)		
 
 
 		
