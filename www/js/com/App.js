@@ -288,7 +288,7 @@ function App(){
 	function onLocation(position){
 		
 		self.posicion_global = position
-		navigator.geolocation.clearWatch(watchid);
+		//navigator.geolocation.clearWatch(watchid);
 	
 
 		// geolocalizar
