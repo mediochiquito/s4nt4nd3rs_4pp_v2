@@ -246,7 +246,7 @@ function SeccionMapa()
 
 				$(self.main).find('.spinner').hide()
 
-
+				google.maps.event.trigger(map, 'resize')
 				
 
 				try{
