@@ -9,7 +9,7 @@
     <preference name="fullscreen" value="true" />
     <preference name="orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true"/>
-    <preference name="BackgroundColor" value="0xff0000ff"/>
+  
     <preference name="ios-statusbarstyle" value="black-translucent"/>
 
 
