@@ -10,7 +10,10 @@
     <preference name="orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true"/>
     <preference name="ios-statusbarstyle" value="black-translucent"/>
+    
     <preference name="SplashScreenDelay" value="500000" />                                              
+    <preference name="AutoHideSplashScreen" value="false" />
+
 
     <preference name="android-minSdkVersion" value="11" />
     <preference name="android-targetSdkVersion" value="14" />
