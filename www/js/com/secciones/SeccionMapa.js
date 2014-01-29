@@ -273,6 +273,7 @@ function SeccionMapa()
 				marker.setVisible(false)
 				my_marker.setVisible(true)
 				$(txt_drag).hide()
+				
 				try{
 						
 						if(obj.accion =='form'){
