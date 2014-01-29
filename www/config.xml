@@ -5,14 +5,12 @@
         versionCode="14" 
         version   = "2.0">
 
-    <preference name="phonegap-version" value="3.3.0" />
+    <preference name="phonegap-version" value="3.1.0" />
     <preference name="fullscreen" value="true" />
     <preference name="orientation" value="portrait" />
-    <preference name="DisallowOverscroll" value="true"/>
+    <!-- <preference name="DisallowOverscroll" value="true"/> -->
     <preference name="ios-statusbarstyle" value="black-translucent"/>
-    
-    <preference name="SplashScreenDelay" value="500000" />                                              
-    <preference name="AutoHideSplashScreen" value="false" />
+
 
 
     <preference name="android-minSdkVersion" value="11" />
@@ -55,7 +53,7 @@
         <param name="APP_NAME" value="Santanders App" />
     </gap:plugin>
 
-    <!-- <gap:plugin name="com.phonegap.plugin.statusbar" /> -->
+    <gap:plugin name="com.phonegap.plugin.statusbar" /> 
     <gap:plugin name="com.dileep.plugins.datepicker" />
     <gap:plugin name="de.websector.datepicker" />
    
