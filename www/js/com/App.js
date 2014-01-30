@@ -804,7 +804,7 @@ function App(){
 			$tx.executeSql('CREATE  TABLE  IF NOT EXISTS "participaciones" ("participaciones_id" INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL , "participaciones_id_evento" VARCHAR, "participaciones_uid" VARCHAR) ', [], comprobacion_total_tablas_creadas);
 
 		
-    }
+    } 
 
     function la_tala_fue_creada($tx, $table_name, $callback){
     	$tx.executeSql("SELECT name FROM sqlite_master WHERE name='"+$table_name+"'" , [],	
@@ -813,7 +813,7 @@ function App(){
 					else $callback(true);
 		},  app.db_errorGeneral);
     }
-
+    
 
     this.db_errorGeneral = function(tx, err) {
 		
