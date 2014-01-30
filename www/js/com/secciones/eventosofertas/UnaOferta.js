@@ -83,7 +83,7 @@ function UnaOferta()
 	this._set = function ($obj){
 
 		obj = $obj;
-		img.src = 'img/fotos_header_ofertas/' + $obj.row.ofertas_header_img;
+		img.src = 'img/fotos_header_ofertas/' + $obj.row.ofertas_ofertas_tipo_id + '.jpg';
 		$(img).css('width', app.ancho-40);
 
 		$(titulo_txt).html($obj.row.ofertas_nombre);
@@ -108,6 +108,7 @@ function UnaOferta()
 		        	}
 					
 		        }
+		        
 		        if(app.posicion_global!=''){
 			        array_locales.sort()
 			        for(var u=0; u<array_locales.length; u++){

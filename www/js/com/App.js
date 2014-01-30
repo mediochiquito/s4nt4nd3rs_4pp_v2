@@ -475,13 +475,12 @@ function App(){
 
 
 			for(var item_ofeta in obj_ofertas){
-						tx.executeSql('INSERT OR IGNORE INTO "ofertas" ("ofertas_id","ofertas_nombre","ofertas_tags","ofertas_tipo","ofertas_header_img","ofertas_estado") VALUES (?,?,?,?,?,?)', 
+						tx.executeSql('INSERT OR IGNORE INTO "ofertas" ("ofertas_id","ofertas_nombre","ofertas_tags","ofertas_ofertas_tipo_id","ofertas_estado") VALUES (?,?,?,?,?)', 
 													  [
 													  obj_ofertas[item_ofeta].ofertas_id, 
 													  obj_ofertas[item_ofeta].ofertas_nombre, 
 													  obj_ofertas[item_ofeta].ofertas_tags, 
-													  obj_ofertas[item_ofeta].ofertas_tipo, 
-													  obj_ofertas[item_ofeta].ofertas_header_img,
+													  obj_ofertas[item_ofeta].ofertas_ofertas_tipo_id, 
 													  obj_ofertas[item_ofeta].ofertas_estado
 													  ]);
 			}
@@ -558,12 +557,11 @@ function App(){
 
 							for(var item_oferta in obj_ofertas){
 
-									$tx.executeSql('UPDATE "ofertas" SET  "ofertas_nombre"=?,"ofertas_tags"=?,"ofertas_tipo"=?,"ofertas_header_img"=?,"ofertas_estado"=? WHERE "ofertas_id"=?', 
+									$tx.executeSql('UPDATE "ofertas" SET  "ofertas_nombre"=?,"ofertas_tags"=?,"ofertas_ofertas_tipo_id"=?,"ofertas_estado"=? WHERE "ofertas_id"=?', 
 													  [
 													  obj_ofertas[item_oferta].ofertas_nombre, 
 													  obj_ofertas[item_oferta].ofertas_tags, 
-													  obj_ofertas[item_oferta].ofertas_tipo, 
-													  obj_ofertas[item_oferta].ofertas_header_img,
+													  obj_ofertas[item_oferta].ofertas_ofertas_tipo_id,
 													  obj_ofertas[item_oferta].ofertas_estado,
 													  obj_ofertas[item_oferta].ofertas_id
 													  ]);
@@ -655,7 +653,6 @@ function App(){
 
 				}
 
-
 				if(!$bool) {
 
 					$tx.executeSql('INSERT INTO app (sync_value, push, version) VALUES (?,?,?)', [0,0,version]);
@@ -663,7 +660,6 @@ function App(){
 				} else {
 
 					$tx.executeSql('UPDATE app SET version=?', [version]);
-
 					
 				} 
 			});	
@@ -732,8 +728,7 @@ function App(){
 			$tx.executeSql('CREATE TABLE IF NOT EXISTS ofertas ("ofertas_id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , ' +
 						  '"ofertas_nombre" VARCHAR, ' +
 						  '"ofertas_tags" VARCHAR, ' +
-						  '"ofertas_tipo" VARCHAR, ' +
-						  '"ofertas_header_img" VARCHAR, ' +
+						  '"ofertas_ofertas_tipo_id" INTEGER, ' +
 						  '"ofertas_estado" INTEGER)', [], comprobacion_total_tablas_creadas);
 
 
@@ -741,13 +736,12 @@ function App(){
 		
 			for(var item_ofeta in obj){
 					
-					$tx.executeSql('INSERT OR IGNORE INTO "ofertas" ("ofertas_id","ofertas_nombre","ofertas_tags","ofertas_tipo","ofertas_header_img","ofertas_estado") VALUES (?,?,?,?,?,?)', 
+					$tx.executeSql('INSERT OR IGNORE INTO "ofertas" ("ofertas_id","ofertas_nombre","ofertas_tags","ofertas_ofertas_tipo_id","ofertas_estado") VALUES (?,?,?,?,?)', 
 													  [
 													  obj[item_ofeta].ofertas_id, 
 													  obj[item_ofeta].ofertas_nombre, 
 													  obj[item_ofeta].ofertas_tags, 
-													  obj[item_ofeta].ofertas_tipo, 
-													  obj[item_ofeta].ofertas_header_img,
+													  obj[item_ofeta].ofertas_ofertas_tipo_id, 
 													  obj[item_ofeta].ofertas_estado
 													  ]);
 
