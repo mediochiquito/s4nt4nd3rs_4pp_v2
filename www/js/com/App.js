@@ -805,7 +805,7 @@ function App(){
 
 		
     } 
-
+ 
     function la_tala_fue_creada($tx, $table_name, $callback){
     	$tx.executeSql("SELECT name FROM sqlite_master WHERE name='"+$table_name+"'" , [],	
 		function (tx, resultado) {
