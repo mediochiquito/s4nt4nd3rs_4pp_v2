@@ -36,8 +36,6 @@ function UnEvento()
 	$(holder).find('>div').append(holder_data)
 
 
-
-
 	var holder_footer =  document.createElement('div')
 	holder_footer.id = 'UnEvento_holder_footer'
 	$(holder).find('>div').append(holder_footer)
