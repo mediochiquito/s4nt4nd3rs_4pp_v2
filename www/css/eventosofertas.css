@@ -161,32 +161,28 @@
 .ItemListaEvento{
 	position: relative !important;
 	padding: 10px 5px 8px 20px;
-	 
-	 border-bottom: solid 1px #e5e5e5;
-	 
-	 outline: none;
+	border-bottom: solid 1px #e5e5e5;
+	outline: none;
 	 
 }
 .ItemListaEvento_txt_nombre{
-
 	 font-family: 'GothamBook';
 	 font-size: 13px;
-	
+	  pointer-events:none;
 }
+
 .ItemListaOferta{
 	position: relative !important;
 	padding: 10px 5px 8px 20px;
-	 
-	 border-bottom: solid 1px #e5e5e5;
-	 
-	  outline: none;
-	
+	border-bottom: solid 1px #e5e5e5;
+	outline: none;
 }
+
 .ItemListaOferta_txt_nombre{
 
 	 font-family: 'GothamBook';
 	 font-size: 13px;
-
+	 pointer-events:none;
 }
 .ItemListaOferta_txt_descuento{
 
@@ -197,14 +193,14 @@
 	right: 10px;
 	top: 10px;
 	text-align: right;
-
+	pointer-events:none;
 }
 .ItemListaEvento_fecha{
 	position: relative;
 	font-family: 'GothamBold';
 	 font-size: 13px;
 	 color: #674d97;
-	 
+	 pointer-events:none;
 	width: 55px;
 
 	display: block;
@@ -212,7 +208,7 @@
 }
 .ItemListaEvento_nombre{
 	position: relative;
-	
+	pointer-events:none;
 	float: left;
 }
 .sin_resultados{

@@ -103,6 +103,11 @@
 	width: 140px;
 	text-align: center;
 }
+
+.Boton > div{
+	pointer-events:none;
+}
+
 .Boton2Frames{
 	overflow: hidden;
 }

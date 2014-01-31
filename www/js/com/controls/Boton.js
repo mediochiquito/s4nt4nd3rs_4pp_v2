@@ -7,7 +7,7 @@ function Boton($html, $callback, $className){
 	else
 		this.main.className = $className;
 
-	$(this.main).html($html)
+	$(this.main).html('<div>' + $html + '</div>')
 	$(this.main).css("cursor", "pointer");
 
 	var habil = true;
