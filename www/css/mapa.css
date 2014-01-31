@@ -27,7 +27,9 @@
 	bottom: 20px;
 	left: 50%;
 	margin-left: -75px;
+	width: 140px;
 }
+
 #SeccionMapa img{
 	position: absolute;
 
@@ -35,6 +37,9 @@
 #SeccionMapa div{
 	position: absolute;
 
+}
+#SeccionMapaForm_btn_aceptar > div{
+	position: relative !important;
 }
 
 #SeccionMapa_txt_filtrar{
