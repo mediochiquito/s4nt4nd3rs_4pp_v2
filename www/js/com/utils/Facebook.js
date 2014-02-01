@@ -15,6 +15,11 @@ function Facebook(){
 
 	this.conectar = function($callback){
 		 app.cargando(true, 'Conectando con Facebook...');
+
+		 setTimeout(function (){
+		 	app.cargando(false);
+		 }, 3000);
+		 
      	 FB.getLoginStatus(function(response) {
      	
 	          	if (response.status == 'connected') {
