@@ -100,7 +100,8 @@ function UnaOferta()
 		        	
 		        	if(app.posicion_global!=''){
 	        			var d = distance(app.posicion_global.coords.latitude, app.posicion_global.coords.longitude, resulato_locales.rows.item(i).locales_lat, resulato_locales.rows.item(i).locales_lon, 'K')
-		        		array_locales.push([d, resulato_locales.rows.item(i)])
+		        		array_locales.push([parseFloat(d), resulato_locales.rows.item(i)]);
+
 		        	}else{
 						var itemlocal = new ItemLocal(resulato_locales.rows.item(i), false);
 			        	$(holder_data).append(itemlocal.main)
@@ -110,7 +111,9 @@ function UnaOferta()
 		        }
 		        
 		        if(app.posicion_global!=''){
-			        array_locales.sort()
+		        	
+			        array_locales.sort(function(a,b) { return a[0] - b[0]; });
+
 			        for(var u=0; u<array_locales.length; u++){
 						var itemlocal = new ItemLocal(array_locales[u][1], true);
 			        	$(holder_data).append(itemlocal.main)
