@@ -151,10 +151,6 @@ function App(){
 
 	
 	function deviceready(){
-
-		try{
-			navigator.splashscreen.show();
-		}catch(e){}
 		
 		if(app.is_phonegap()){
 			
@@ -189,7 +185,7 @@ function App(){
 		    }
 			else {
 			   app.plataforma = 'ios';
-			  // StatusBar.hide();
+			   StatusBar.hide();
 			}
 
 				
@@ -388,7 +384,7 @@ function App(){
 
 
 							try{
-							//	navigator.splashscreen.hide();
+								navigator.splashscreen.hide();
 							}catch(e){}
 							
 
