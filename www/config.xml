@@ -27,6 +27,10 @@
       Santander Uruguay Ideas para Hoy permite a los usuarios acceder a información sobre eventos de verano y descuentos para usuarios de tarjetas Santander en Punta del Este, Uruguay.
     </description>
 
+
+    <icon src="icon.png" />
+    <gap:splash src="splash.png" />
+
     <icon src="img/icons/icon.png" gap:platform="ios" width="57" height="57" />
     <icon src="img/icons/icon-72.png" gap:platform="ios" width="72" height="72" />
     <icon src="img/icons/icon_at_2x.png" gap:platform="ios" width="114" height="114" />
@@ -35,8 +39,14 @@
     <icon src="img/icons/icon-152.png" gap:platform="ios" width="152" height="152" />
 
 
-    <icon src="icon.png" />
-    <gap:splash src="splash.png" />
+    <gap:splash src="img/splash/ios/Default.png" gap:platform="ios" width="320" height="480" />
+    <gap:splash src="img/splash/ios/Default_at_2x.png" gap:platform="ios" width="640" height="960" />
+    <gap:splash src="img/splash/ios/Default_iphone5.png" gap:platform="ios" width="640" height="1136" />
+    <gap:splash src="img/splash/ios/Default-Portrait.png" gap:platform="ios" width="768" height="1004" />
+    <gap:splash src="img/splash/ios/Default-Portrait_at_2x.png" gap:platform="ios" width="1536" height="2008" />
+
+
+
 
     <author href="https://build.phonegap.com" email="support@phonegap.com">
         Hardeep Shoker 
