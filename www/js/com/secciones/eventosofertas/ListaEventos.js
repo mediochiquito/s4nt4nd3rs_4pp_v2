@@ -46,7 +46,9 @@ function ListaEventos()
 
 	}, 0);
 
-
+/*	setTimeout(function(){
+		
+	}, 0)*/
 	/*var is ;
 	var scroll_set =  false*/
 
@@ -122,6 +124,9 @@ function ListaEventos()
 						$(holder).find('#ListaEventosWrapper').append(_ItemListaEvento.main)
 			            
 			        }
+
+
+			        $('.ItemListaEvento_nombre').css('width', app.ancho-145)
 
 
 				if(typeof($callback)!='undefined') $callback(cant_eventos);

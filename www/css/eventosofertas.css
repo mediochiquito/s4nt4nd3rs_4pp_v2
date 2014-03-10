@@ -163,6 +163,7 @@
 	padding: 10px 5px 8px 20px;
 	border-bottom: solid 1px #e5e5e5;
 	outline: none;
+	
 	 
 }
 .ItemListaEvento_txt_nombre{
@@ -205,6 +206,7 @@
 
 	display: block;
 	float: left;
+
 }
 .ItemListaEvento_nombre{
 	position: relative;

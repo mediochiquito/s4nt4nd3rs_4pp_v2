@@ -22,10 +22,7 @@ function ItemListaEvento($row)
 	}
 
 
-	setTimeout(function(){
 
-		$('.ItemListaEvento_nombre').css('width', app.ancho-145)
-	}, 0)
 	
 
 	var haciendo_click = false;
