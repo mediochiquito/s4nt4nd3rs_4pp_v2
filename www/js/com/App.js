@@ -377,14 +377,14 @@ function App(){
 									    	);
 
 									});	
-*/
+							*/
 
 		    				if(app.hay_internet()) verfificar_sync();
 							else $(document).trigger('CARGAR_LISTAS');
 
 
 							try{
-								navigator.splashscreen.hide();
+								//navigator.splashscreen.hide();
 							}catch(e){}
 							
 
