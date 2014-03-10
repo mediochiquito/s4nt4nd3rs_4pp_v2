@@ -111,6 +111,8 @@ function ListaEventos()
 			    		btn_ver_en_mapa.habil(true)
 			    		
 			    	}
+			    	console.log('cantidad de eventos: ' + cant_eventos)
+
 		    		self.array_ids_encontrados = new Array();
 		    		for(var i=0; i<cant_eventos; i++){
 		    			

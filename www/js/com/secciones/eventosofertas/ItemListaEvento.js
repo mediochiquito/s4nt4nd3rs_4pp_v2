@@ -32,7 +32,7 @@ function ItemListaEvento($row)
 	var inter_pintar;
 
 	if(app.es_touch()){
-		 this.main.addEventListener('touchstart', doTocuhStart);
+		this.main.addEventListener('touchstart', doTocuhStart);
 		this.main.addEventListener('touchend', doTocuhEnd);
 	}else{
 
