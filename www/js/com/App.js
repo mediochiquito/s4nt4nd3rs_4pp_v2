@@ -152,6 +152,9 @@ function App(){
 	
 	function deviceready(){
 
+		try{
+			navigator.splashscreen.show();
+		}catch(e){}
 		if(app.is_phonegap()){
 			
 
