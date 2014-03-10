@@ -9,7 +9,9 @@
     <preference name="fullscreen" value="true" />
     <preference name="orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true"/>
+    <preference name="auto-hide-splash-screen" value="false" />
     <preference name="AutoHideSplashScreen" value="false"/>
+    <preference name="splash-screen-duration" value="10000"/>
     <preference name="SplashScreenDelay" value="500000" />
     <preference name="ShowSplashScreenSpinner" value="false"/>
     <preference name="ios-statusbarstyle" value="black-translucent"/>
