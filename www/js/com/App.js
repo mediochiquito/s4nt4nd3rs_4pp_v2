@@ -185,6 +185,7 @@ function App(){
 		    }
 			else {
 			   app.plataforma = 'ios';
+			   window.plugins.webviewcolor.change('#ec1c24');
 			   StatusBar.hide();
 			}
 
