@@ -387,7 +387,7 @@ function App(){
 
 
 							try{
-								navigator.splashscreen.hide();
+							//	navigator.splashscreen.hide();
 							}catch(e){}
 							
 
