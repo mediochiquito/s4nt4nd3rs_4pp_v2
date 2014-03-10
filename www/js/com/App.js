@@ -155,6 +155,7 @@ function App(){
 		try{
 			navigator.splashscreen.show();
 		}catch(e){}
+		
 		if(app.is_phonegap()){
 			
 
@@ -188,7 +189,7 @@ function App(){
 		    }
 			else {
 			   app.plataforma = 'ios';
-			   StatusBar.hide();
+			  // StatusBar.hide();
 			}
 
 				
