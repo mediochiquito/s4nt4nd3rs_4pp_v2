@@ -151,7 +151,7 @@ function App(){
 
 	
 	function deviceready(){
-		
+
 		if(app.is_phonegap()){
 			
 
@@ -384,7 +384,9 @@ function App(){
 
 
 							try{
-								navigator.splashscreen.hide();
+								setTimeout(function() {
+									navigator.splashscreen.hide();
+								}, 1000);
 							}catch(e){}
 							
 
