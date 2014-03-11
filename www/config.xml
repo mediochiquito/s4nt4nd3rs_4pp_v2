@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<widget xmlns = "http://www.w3.org/ns/widgets"
+    <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.pimod.santanderapp" 
-        versionCode = "15" 
-        version   = "2.1">
+        id        = "com.pimod.santanderapp"
+        versionCode="14" 
+        version   = "2.0">
 
-    <preference name="phonegap-version" value="3.3.0" />
+    <preference name="phonegap-version" value="3.1.0" />
     <preference name="fullscreen" value="true" />
     <preference name="orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true"/>
-    <preference name="SplashScreen" value="splash" />
-    <preference name="AutoHideSplashScreen" value="false" />
-    <preference name="SplashScreenDelay" value="10000" />
-    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="AutoHideSplashScreen" value="false"/>
+    <preference name="splash-screen-duration" value="10000"/>
+    <preference name="ShowSplashScreenSpinner" value="false"/>
+    <preference name="ios-statusbarstyle" value="black-translucent"/>
 
 
 
@@ -27,10 +27,6 @@
       Santander Uruguay Ideas para Hoy permite a los usuarios acceder a información sobre eventos de verano y descuentos para usuarios de tarjetas Santander en Punta del Este, Uruguay.
     </description>
 
-
-    <icon src="icon.png" />
-    <gap:splash src="splash.png" />
-
     <icon src="img/icons/icon.png" gap:platform="ios" width="57" height="57" />
     <icon src="img/icons/icon-72.png" gap:platform="ios" width="72" height="72" />
     <icon src="img/icons/icon_at_2x.png" gap:platform="ios" width="114" height="114" />
@@ -39,17 +35,8 @@
     <icon src="img/icons/icon-152.png" gap:platform="ios" width="152" height="152" />
 
 
-    <gap:splash src="img/splash/ios/Default.png" gap:platform="ios" width="320" height="480" />
-    <gap:splash src="img/splash/ios/Default_at_2x.png" gap:platform="ios" width="640" height="960" />
-    <gap:splash src="img/splash/ios/Default_iphone5.png" gap:platform="ios" width="640" height="1136" />
-    <gap:splash src="img/splash/ios/Default-Portrait.png" gap:platform="ios" width="768" height="1004" />
-    <gap:splash src="img/splash/ios/Default-Portrait_at_2x.png" gap:platform="ios" width="1536" height="2008" />
-
-
-    <gap:splash src="img/splash/android/ldpi.png" gap:platform="android" gap:density="ldpi" />
-    <gap:splash src="img/splash/android/mdpi.png" gap:platform="android" gap:density="mdpi" />
-    <gap:splash src="img/splash/android/hdpi.png" gap:platform="android" gap:density="hdpi" />
-    <gap:splash src="img/splash/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
+    <icon src="icon.png" />
+    <gap:splash src="splash.png" />
 
     <author href="https://build.phonegap.com" email="support@phonegap.com">
         Hardeep Shoker 
@@ -65,7 +52,6 @@
     <gap:plugin name="org.apache.cordova.dialogs" />
     <gap:plugin name="com.phonegap.plugins.pushplugin" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
-
     <gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.4.0">
         <param name="APP_ID" value="381248932009498" />
         <param name="APP_NAME" value="Santanders App" />
@@ -74,4 +60,5 @@
     <gap:plugin name="com.phonegap.plugin.statusbar" /> 
     <gap:plugin name="com.dileep.plugins.datepicker" />
     <gap:plugin name="de.websector.datepicker" />
+   
 </widget>
