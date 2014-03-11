@@ -13,7 +13,7 @@
     <preference name="splash-screen-duration" value="10000"/>
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="SplashScreenDelay" value="10000" />
-    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="true" />
     <preference name="auto-hide-splash-screen"    value="false" />
     <preference name="StatusBarOverlaysWebView" value="true" />
 
@@ -28,6 +28,13 @@
       Santander Uruguay Ideas para Hoy permite a los usuarios acceder a información sobre eventos de verano y descuentos para usuarios de tarjetas Santander en Punta del Este, Uruguay.
     </description>
 
+    <gap:config-file platform="ios" parent="UIStatusBarHidden">
+        <true/>
+    </gap:config-file>
+
+    <gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
+        <false/>
+    </gap:config-file>
 
     <icon src="icon.png" />
     <gap:splash src="splash.png" />
