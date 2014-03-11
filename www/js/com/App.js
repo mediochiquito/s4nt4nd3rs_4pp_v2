@@ -385,7 +385,7 @@ function App(){
 
 							try{
 								setTimeout(function() {
-									navigator.splashscreen.hide();
+									//navigator.splashscreen.hide();
 								}, 1000);
 							}catch(e){}
 							
