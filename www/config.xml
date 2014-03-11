@@ -5,7 +5,7 @@
         versionCode="15" 
         version   = "2.1">
 
-    <preference name="phonegap-version" value="3.1.0" />
+    <preference name="phonegap-version" value="3.3.0" />
     <preference name="fullscreen" value="true" />
     <preference name="orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true"/>
@@ -17,6 +17,7 @@
     <preference name="ios-statusbarstyle" value="black-translucent"/>
 
 
+    <preference name="BackgroundColor" value="0xffec1c24"/>
 
     <preference name="android-minSdkVersion" value="11" />
     <preference name="android-targetSdkVersion" value="14" />
@@ -76,5 +77,4 @@
     <gap:plugin name="com.phonegap.plugin.statusbar" /> 
     <gap:plugin name="com.dileep.plugins.datepicker" />
     <gap:plugin name="de.websector.datepicker" />
-   <gap:plugin name="nl.x-services.plugins.ioswebviewcolor" />
 </widget>
