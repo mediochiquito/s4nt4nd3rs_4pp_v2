@@ -157,14 +157,15 @@
 #SeccionMapa_holdermap_canvas img{
 	
 	max-width: none;
-	-webkit-backface-visibility: hidden;
+	
+	
 }
 
 
 
 #SeccionMapa_holdermap_canvas .gmnoprint img{
 
-	-webkit-backface-visibility: visible;
+	
 	
 }
 .openlayers-map img{ margin:0px }
