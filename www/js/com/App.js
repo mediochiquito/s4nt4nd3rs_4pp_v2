@@ -382,13 +382,13 @@ function App(){
 		    				if(app.hay_internet()) verfificar_sync();
 							else $(document).trigger('CARGAR_LISTAS');
 
-
-							try{
-								setTimeout(function() {
-									navigator.splashscreen.hide();
-								}, 1000);
-							}catch(e){}
-							
+							setTimeout(function() {
+								try{
+									
+										navigator.splashscreen.hide();
+									
+								}catch(e){}
+							}, 1000);
 
 		    				
 
