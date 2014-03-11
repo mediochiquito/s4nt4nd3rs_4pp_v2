@@ -47,17 +47,6 @@
     <icon src="img/icons/icon-152.png" gap:platform="ios" width="152" height="152" />
 
 
-    <gap:splash src="img/splash/ios/Default.png" gap:platform="ios" width="320" height="480" />
-    <gap:splash src="img/splash/ios/Default_at_2x.png" gap:platform="ios" width="640" height="960" />
-    <gap:splash src="img/splash/ios/Default_iphone5.png" gap:platform="ios" width="640" height="1136" />
-    <gap:splash src="img/splash/ios/Default-Portrait.png" gap:platform="ios" width="768" height="1004" />
-    <gap:splash src="img/splash/ios/Default-Portrait_at_2x.png" gap:platform="ios" width="1536" height="2008" />
-
-
-    <gap:splash src="img/splash/android/ldpi.png" gap:platform="android" gap:density="ldpi" />
-    <gap:splash src="img/splash/android/mdpi.png" gap:platform="android" gap:density="mdpi" />
-    <gap:splash src="img/splash/android/hdpi.png" gap:platform="android" gap:density="hdpi" />
-    <gap:splash src="img/splash/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
 
     <author href="https://build.phonegap.com" email="support@phonegap.com">
         Hardeep Shoker 
