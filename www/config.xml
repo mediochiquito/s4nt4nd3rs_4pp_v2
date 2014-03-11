@@ -13,7 +13,7 @@
     <preference name="splash-screen-duration" value="10000"/>
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="SplashScreenDelay" value="10000" />
-    <preference name="ShowSplashScreenSpinner" value="true" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="auto-hide-splash-screen"    value="false" />
 
 
